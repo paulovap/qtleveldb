@@ -1,5 +1,7 @@
 #include "qleveldb.h"
-#include <QDebug>
+#include <qqmlinfo.h>
+#include <QJsonDocument>
+
 QLevelDB::QLevelDB(QObject *parent)
     : QObject(parent)
     , m_levelDB(nullptr)
@@ -49,7 +51,63 @@ void QLevelDB::setSource(QUrl source)
 
 QLevelDBOptions *QLevelDB::options()
 {
+    leveldb::WriteOptions options;
     return &m_options;
+}
+
+QLevelDB::Status QLevelDB::del(QString key)
+{
+    leveldb::WriteOptions options;
+    leveldb::Status status = m_levelDB->Delete(options, leveldb::Slice(key.toStdString()));
+    return parseStatusCode(status);
+}
+
+QLevelDB::Status QLevelDB::put(QString key, QString value)
+{
+    leveldb::WriteOptions options;
+    if (m_opened && m_levelDB){
+        leveldb::Status status = m_levelDB->Put(options,
+                       leveldb::Slice(key.toStdString()),
+                       leveldb::Slice(value.toStdString()));
+        return parseStatusCode(status);
+    }
+    return Status::NotFound;
+}
+
+QLevelDB::Status QLevelDB::putSync(QString key, QString value)
+{
+    leveldb::WriteOptions options;
+    options.sync = true;
+    if (m_opened && m_levelDB){
+        leveldb::Status status = m_levelDB->Put(options,
+                       leveldb::Slice(key.toStdString()),
+                       leveldb::Slice(value.toStdString()));
+        return parseStatusCode(status);
+    }
+    return Status::NotFound;
+}
+
+void QLevelDB::get(QString key, const QJSValue &callback)
+{
+    if (!callback.isCallable()){
+        qmlInfo(this) << "passing a invalid argument as callback";
+        return;
+    }
+    QJSValue back = callback;
+    QJSValueList list;
+    leveldb::ReadOptions options;
+    std::string value = "";
+    if (m_opened && m_levelDB){
+        leveldb::Status status = m_levelDB->Get(options,
+                                                leveldb::Slice(key.toStdString()),
+                                                &value);
+
+        list << callback.engine()->toScriptValue(static_cast<int>(parseStatusCode(status)));
+        list << callback.engine()->toScriptValue(QString::fromStdString(value));
+        back.call(list);
+    }
+    list<< callback.engine()->toScriptValue(static_cast<int>(Status::Undefined));
+    back.call(list);
 }
 
 QLevelDB::Status QLevelDB::destroyDB(QUrl path)
@@ -107,7 +165,6 @@ bool QLevelDB::openDatabase(QString localPath)
 {
     if (m_levelDB)
         reset();
-    qDebug() << "OPENING DB: " << localPath;
     leveldb::Options options = m_options.leveldbOptions();
     leveldb::Status status = leveldb::DB::Open(options,
                                                localPath.toStdString(),

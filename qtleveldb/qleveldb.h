@@ -74,6 +74,10 @@ public:
     void setSource(QUrl source);
     QLevelDBOptions *options();
 
+    Q_INVOKABLE Status del(QString key);
+    Q_INVOKABLE Status put(QString key, QString value);
+    Q_INVOKABLE Status putSync(QString key, QString value);
+    Q_INVOKABLE void get(QString key, const QJSValue &callback=QJSValue::UndefinedValue);
     Q_INVOKABLE Status destroyDB(QUrl path);
     Q_INVOKABLE Status repairDB(QUrl path);
 signals:

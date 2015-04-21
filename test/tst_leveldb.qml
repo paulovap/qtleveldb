@@ -38,6 +38,16 @@ TestCase {
         compare(db.repairDB(source), LevelDB.Ok)
     }
 
+    function test_sync_put_get(){
+        db.source = source
+        compare(db.opened, true, db.statusText)
+        compare(db.putSync("asdf", "asdf"), LevelDB.Ok, "should be ok")
+        db.get("asdf", function (status, result){
+            compare(status, LevelDB.Ok, "should be ok")
+            compare(result, "asdf", "value in get is diferent from put")
+        })
+    }
+
     LevelDB{
         id:db
         options{
