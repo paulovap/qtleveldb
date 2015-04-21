@@ -13,7 +13,7 @@ public:
         Q_ASSERT(QLatin1String(uri) == QLatin1String("QtLevelDB"));
 
         qmlRegisterType<QLevelDB>(uri, 1, 0, "LevelDB");
-        qmlRegisterUncreatableType<Options>(uri, 1, 0, "Options", QObject::tr("Cannot create separate instance of Options"));
+        qmlRegisterUncreatableType<QLevelDBOptions>(uri, 1, 0, "Options", QObject::tr("Cannot create separate instance of Options"));
 //        qmlRegisterUncreatableType<QQuickWebEngineLoadRequest>(uri, 1, 0, "WebEngineLoadRequest", QObject::tr("Cannot create separate instance of WebEngineLoadRequest"));
 //        qmlRegisterUncreatableType<QQuickWebEngineNavigationRequest>(uri, 1, 0, "WebEngineNavigationRequest", QObject::tr("Cannot create separate instance of WebEngineNavigationRequest"));
 
