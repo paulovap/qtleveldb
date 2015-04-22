@@ -61,7 +61,6 @@ TestCase {
     function test_batch(){
         db.source = source
         compare(db.opened, true, db.statusText)
-        console.log("BATCH: " + db.batch())
         var status = db.batch()
                         .put("asdf","asdf")
                         .put("asdf2", "asdf2")

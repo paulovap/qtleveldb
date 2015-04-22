@@ -85,7 +85,7 @@ Module {
             Parameter { name: "value"; type: "string" }
         }
         Method { name: "clear"; type: "QLevelDBBatch*" }
-        Method { name: "write"; type: "QLevelDB::Status" }
+        Method { name: "write"; type: "int" }
     }
     Component {
         name: "QLevelDBOptions"
