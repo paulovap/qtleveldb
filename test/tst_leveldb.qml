@@ -3,16 +3,10 @@ import QtTest 1.0
 import QtLevelDB 1.0
 
 TestCase {
-    name: "QtLeveldbTest"
+    name: "QtLevelDBTest"
     property url source: Qt.resolvedUrl("test.db")
     function init() {
-    }
-
-    function cleanup() {
-    }
-
-    function initTestCase() {
-        db.source = Qt.resolvedUrl("")
+        db.source = source
     }
 
     function cleanupTestCase() {
@@ -20,7 +14,6 @@ TestCase {
     }
 
     function test_create() {
-        db.source = source
         compare(db.opened, true, db.statusText)
         db.source = Qt.resolvedUrl("")
         compare(db.opened, false, db.statusText)
@@ -31,15 +24,15 @@ TestCase {
         compare(db.opened, true, db.statusText)
         db.source = Qt.resolvedUrl("")
         compare(db.opened, false, db.statusText)
-        compare(db.destroyDB(Qt.resolvedUrl("test.db")), LevelDB.Ok)
+        compare(db.destroyDB(Qt.resolvedUrl("test2.db")), LevelDB.Ok)
     }
 
-    function test_repair() {
-        compare(db.repairDB(source), LevelDB.Ok)
-    }
+// TODO: add this test, but remove "lost" folder at the end
+//    function test_repair() {
+//        compare(db.repairDB(source), LevelDB.Ok)
+//    }
 
-    function test_sync_put_get(){
-        db.source = source
+    function test_put_get(){
         compare(db.opened, true, db.statusText)
         compare(db.putSync("asdf", "asdf"), LevelDB.Ok, "should be ok")
         db.get("asdf", function (status, result){
@@ -49,7 +42,6 @@ TestCase {
     }
 
     function test_delete(){
-        db.source = source
         compare(db.opened, true, db.statusText)
         compare(db.put("asdf", "asdf"), LevelDB.Ok)
         compare(db.del("asdf"), LevelDB.Ok)
@@ -59,7 +51,6 @@ TestCase {
     }
 
     function test_batch(){
-        db.source = source
         compare(db.opened, true, db.statusText)
         var status = db.batch()
                         .put("asdf","asdf")

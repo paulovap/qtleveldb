@@ -134,6 +134,9 @@ QLevelDB::Status QLevelDB::destroyDB(QUrl path)
 {
     if (!path.isLocalFile())
         return Status::InvalidArgument;
+    if(m_source == path){
+        reset();
+    }
     leveldb::Options options;
     leveldb::Status status = leveldb::DestroyDB(path.toLocalFile().toStdString(), options);
     return parseStatusCode(status);
