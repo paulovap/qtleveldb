@@ -6,41 +6,10 @@
 #include <leveldb/db.h>
 #include <QtQml>
 #include <QtQml/qqmlparserstatus.h>
+#include "qleveldboptions.h"
+//#include "qleveldbbatch.h"
 
-class QLevelDBOptions : public QObject
-{
-    Q_OBJECT
-    Q_PROPERTY(bool createIfMissing READ createIfMissing WRITE setCreateIfMissing)
-    Q_PROPERTY(bool errorIfExists READ errorIfExists WRITE setErrorIfExists)
-    Q_PROPERTY(bool paranoidChecks READ paranoidChecks WRITE setParanoidChecks)
-    Q_PROPERTY(CompressionType compressionType READ compressionType WRITE setCompressionType)
-    Q_ENUMS(CompressionType)
-
-
-public:
-    explicit QLevelDBOptions(QObject *parent = 0);
-
-    enum CompressionType{
-        NoCompression     = 0x0,
-        SnappyCompression = 0x1
-    };
-
-    leveldb::Options leveldbOptions() const;
-    bool createIfMissing() const;
-    bool errorIfExists() const;
-    bool paranoidChecks() const;
-    CompressionType compressionType() const;
-
-    void setCreateIfMissing(bool value);
-    void setErrorIfExists(bool value);
-    void setParanoidChecks(bool value);
-    void setCompressionType(CompressionType type);
-
-private:
-    //Q_DISABLE_COPY(QLevelDBOptions)
-    leveldb::Options m_options;
-};
-
+class QLevelDBBatch;
 class QLevelDB : public QObject, public QQmlParserStatus
 {
     Q_OBJECT
@@ -70,16 +39,18 @@ public:
     QUrl source() const;
     Status status() const;
     QString statusText() const;
-
     void setSource(QUrl source);
     QLevelDBOptions *options();
 
+    Q_INVOKABLE QLevelDBBatch* batch();
     Q_INVOKABLE Status del(QString key);
+
+    Q_INVOKABLE void get(QString key, const QJSValue &callback=QJSValue::UndefinedValue);
     Q_INVOKABLE Status put(QString key, QString value);
     Q_INVOKABLE Status putSync(QString key, QString value);
-    Q_INVOKABLE void get(QString key, const QJSValue &callback=QJSValue::UndefinedValue);
     Q_INVOKABLE Status destroyDB(QUrl path);
     Q_INVOKABLE Status repairDB(QUrl path);
+
 signals:
     void openedChanged();
     void sourceChanged();
@@ -90,6 +61,7 @@ protected:
     void componentComplete();
 private:
     Q_DISABLE_COPY(QLevelDB)
+    QLevelDBBatch *m_batch;
     leveldb::DB *m_levelDB;
     QLevelDBOptions m_options;
     bool m_opened;
@@ -106,5 +78,4 @@ private:
 };
 
 QML_DECLARE_TYPE(QLevelDB)
-QML_DECLARE_TYPE(QLevelDBOptions)
 #endif // QLEVELDB_H

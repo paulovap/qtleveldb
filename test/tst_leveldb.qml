@@ -48,6 +48,35 @@ TestCase {
         })
     }
 
+    function test_delete(){
+        db.source = source
+        compare(db.opened, true, db.statusText)
+        compare(db.put("asdf", "asdf"), LevelDB.Ok)
+        compare(db.del("asdf"), LevelDB.Ok)
+        db.get("asdf", function (status, result){
+            compare(status, LevelDB.NotFound, "should be not found!")
+        })
+    }
+
+    function test_batch(){
+        db.source = source
+        compare(db.opened, true, db.statusText)
+        console.log("BATCH: " + db.batch())
+        var status = db.batch()
+                        .put("asdf","asdf")
+                        .put("asdf2", "asdf2")
+                        .del("asdf")
+                        .write()
+        compare(status, LevelDB.Ok, "Batch Operation Failed")
+        db.get("asdf", function (status, result){
+            compare(status, LevelDB.NotFound, "Key should have been deleted")
+        })
+        db.get("asdf2", function (status, result){
+            compare(status, LevelDB.Ok, "Key should exist")
+            compare(result, "asdf2", "Wrong data")
+        })
+    }
+
     LevelDB{
         id:db
         options{

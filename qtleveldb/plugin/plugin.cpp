@@ -1,6 +1,9 @@
 #include <QtQml/qqmlextensionplugin.h>
 #include <QtQml>
 #include "qleveldb.h"
+#include "qleveldbbatch.h"
+#include "qleveldboptions.h"
+
 QT_BEGIN_NAMESPACE
 
 class QtLeveldbPlugin : public QQmlExtensionPlugin
@@ -14,7 +17,7 @@ public:
 
         qmlRegisterType<QLevelDB>(uri, 1, 0, "LevelDB");
         qmlRegisterUncreatableType<QLevelDBOptions>(uri, 1, 0, "Options", QObject::tr("Cannot create separate instance of Options"));
-//        qmlRegisterUncreatableType<QQuickWebEngineLoadRequest>(uri, 1, 0, "WebEngineLoadRequest", QObject::tr("Cannot create separate instance of WebEngineLoadRequest"));
+        qmlRegisterUncreatableType<QLevelDBBatch>(uri, 1, 0, "Batch", QObject::tr("Cannot create separate instance of Batch"));
 //        qmlRegisterUncreatableType<QQuickWebEngineNavigationRequest>(uri, 1, 0, "WebEngineNavigationRequest", QObject::tr("Cannot create separate instance of WebEngineNavigationRequest"));
 
 //        qmlRegisterType<QQuickWebEngineView, 1>(uri, 1, 1, "WebEngineView");

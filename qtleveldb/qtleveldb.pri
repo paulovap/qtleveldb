@@ -70,7 +70,9 @@ HEADERS += \
     $$SOURCE_DIR/util/mutexlock.h \
     $$SOURCE_DIR/util/qt_logger.h \
     $$SOURCE_DIR/util/random.h \
-    $$PWD/qleveldb.h
+    $$PWD/qleveldb.h \
+    $$PWD/qleveldbbatch.h \
+    $$PWD/qleveldboptions.h
 
 SOURCES += \
     $$SOURCE_DIR/db/builder.cc\
@@ -111,5 +113,7 @@ SOURCES += \
     $$SOURCE_DIR/util/logging.cc \
     $$SOURCE_DIR/util/options.cc \
     $$SOURCE_DIR/util/status.cc \
-    $$PWD/qleveldb.cpp
+    $$PWD/qleveldb.cpp \
+    $$PWD/qleveldbbatch.cpp \
+    $$PWD/qleveldboptions.cpp
 

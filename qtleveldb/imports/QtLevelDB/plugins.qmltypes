@@ -29,31 +29,32 @@ Module {
         Property { name: "opened"; type: "bool"; isReadonly: true }
         Property { name: "source"; type: "QUrl" }
         Property { name: "options"; type: "QLevelDBOptions"; isReadonly: true; isPointer: true }
+        Method { name: "batch"; type: "QLevelDBBatch*" }
         Method {
-            name: "put"
+            name: "del"
+            type: "Status"
             Parameter { name: "key"; type: "string" }
-            Parameter { name: "value"; type: "QJSValue" }
+        }
+        Method {
+            name: "get"
+            Parameter { name: "key"; type: "string" }
             Parameter { name: "callback"; type: "QJSValue" }
         }
         Method {
-            name: "put"
+            name: "get"
             Parameter { name: "key"; type: "string" }
-            Parameter { name: "value"; type: "QJSValue" }
+        }
+        Method {
+            name: "put"
+            type: "Status"
+            Parameter { name: "key"; type: "string" }
+            Parameter { name: "value"; type: "string" }
         }
         Method {
             name: "putSync"
             type: "Status"
             Parameter { name: "key"; type: "string" }
             Parameter { name: "value"; type: "string" }
-        }
-        Method {
-            name: "get"
-            Parameter { name: "key"; type: "string" }
-            Parameter { name: "callback"; type: "QJSValue" }
-        }
-        Method {
-            name: "get"
-            Parameter { name: "key"; type: "string" }
         }
         Method {
             name: "destroyDB"
@@ -65,6 +66,26 @@ Module {
             type: "Status"
             Parameter { name: "path"; type: "QUrl" }
         }
+    }
+    Component {
+        name: "QLevelDBBatch"
+        prototype: "QObject"
+        exports: ["QtLevelDB/Batch 1.0"]
+        isCreatable: false
+        exportMetaObjectRevisions: [0]
+        Method {
+            name: "del"
+            type: "QLevelDBBatch*"
+            Parameter { name: "key"; type: "string" }
+        }
+        Method {
+            name: "put"
+            type: "QLevelDBBatch*"
+            Parameter { name: "key"; type: "string" }
+            Parameter { name: "value"; type: "string" }
+        }
+        Method { name: "clear"; type: "QLevelDBBatch*" }
+        Method { name: "write"; type: "QLevelDB::Status" }
     }
     Component {
         name: "QLevelDBOptions"

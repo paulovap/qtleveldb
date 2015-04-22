@@ -1,9 +1,12 @@
 #include "qleveldb.h"
+#include "qleveldbbatch.h"
 #include <qqmlinfo.h>
+#include <qqmlengine.h>
 #include <QJsonDocument>
 
 QLevelDB::QLevelDB(QObject *parent)
     : QObject(parent)
+    , m_batch(nullptr)
     , m_levelDB(nullptr)
     , m_opened(false)
     , m_status(Status::Undefined)
@@ -14,8 +17,17 @@ QLevelDB::QLevelDB(QObject *parent)
 
 QLevelDB::~QLevelDB()
 {
-    if (m_levelDB != nullptr)
+    if (m_levelDB)
         delete m_levelDB;
+}
+
+void QLevelDB::classBegin()
+{
+}
+
+void QLevelDB::componentComplete()
+{
+    openDatabase(m_source.toLocalFile());
 }
 
 bool QLevelDB::opened() const
@@ -40,8 +52,6 @@ QString QLevelDB::statusText() const
 
 void QLevelDB::setSource(QUrl source)
 {
-    if(!source.isLocalFile())
-        qDebug() << "Error: url not a local";
     if(m_source != source){
         m_source = source;
         emit sourceChanged();
@@ -53,6 +63,16 @@ QLevelDBOptions *QLevelDB::options()
 {
     leveldb::WriteOptions options;
     return &m_options;
+}
+
+QLevelDBBatch* QLevelDB::batch()
+{
+    if (m_batch)
+        m_batch->deleteLater();
+    if (!m_levelDB)
+        return nullptr;
+    m_batch = new QLevelDBBatch(m_levelDB, this);
+    return m_batch;
 }
 
 QLevelDB::Status QLevelDB::del(QString key)
@@ -128,15 +148,6 @@ QLevelDB::Status QLevelDB::repairDB(QUrl path)
     return parseStatusCode(status);
 }
 
-void QLevelDB::classBegin()
-{
-}
-
-void QLevelDB::componentComplete()
-{
-    openDatabase(m_source.toLocalFile());
-}
-
 void QLevelDB::setStatus(QLevelDB::Status status)
 {
     if (m_status != status){
@@ -198,58 +209,3 @@ QLevelDB::Status QLevelDB::parseStatusCode(leveldb::Status &status)
         return Status::NotFound;
     return Status::Undefined;
 }
-
-
-
-QLevelDBOptions::QLevelDBOptions(QObject *parent) : QObject(parent)
-{
-}
-
-leveldb::Options QLevelDBOptions::leveldbOptions() const
-{
-    return m_options;
-}
-bool QLevelDBOptions::createIfMissing() const
-{
-    return m_options.create_if_missing;
-}
-
-bool QLevelDBOptions::errorIfExists() const
-{
-    return m_options.error_if_exists;
-}
-
-bool QLevelDBOptions::paranoidChecks() const
-{
-    return m_options.paranoid_checks;
-}
-
-QLevelDBOptions::CompressionType QLevelDBOptions::compressionType() const
-{
-    return m_options.compression == leveldb::CompressionType::kNoCompression ?
-                CompressionType::NoCompression : CompressionType::SnappyCompression;
-}
-
-void QLevelDBOptions::setCreateIfMissing(bool value)
-{
-    m_options.create_if_missing = value;
-}
-
-void QLevelDBOptions::setErrorIfExists(bool value)
-{
-    m_options.error_if_exists = value;
-}
-
-void QLevelDBOptions::setParanoidChecks(bool value)
-{
-    m_options.paranoid_checks = value;
-}
-
-void QLevelDBOptions::setCompressionType(QLevelDBOptions::CompressionType type)
-{
-    m_options.compression = type == CompressionType::SnappyCompression ?
-                leveldb::CompressionType::kSnappyCompression :
-                leveldb::CompressionType::kNoCompression;
-}
-
-
