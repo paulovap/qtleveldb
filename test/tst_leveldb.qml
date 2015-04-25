@@ -13,6 +13,11 @@ TestCase {
         db.destroyDB(source)
     }
 
+    function test_stringy() {
+        db.test(Qt.size(1,2))
+    }
+
+
     function test_create() {
         compare(db.opened, true, db.statusText)
         db.source = Qt.resolvedUrl("")
@@ -67,6 +72,9 @@ TestCase {
         })
     }
 
+    Item{
+        id:object
+    }
     LevelDB{
         id:db
         options{

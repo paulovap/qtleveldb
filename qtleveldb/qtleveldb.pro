@@ -4,10 +4,9 @@ CONFIG +=qt plugin c++11
 QT += core quick
 
 TARGET = qtleveldb
-
-include(qtleveldb.pri)
+include (qtleveldb.pri)
 include(plugin/plugin.pri)
-
+include(leveldb/leveldb.pri)
 API_VER=1.0
 TARGETPATH = QtLevelDB
 DESTDIR = $$OUT_PWD/imports/QtLevelDB/

@@ -1,0 +1,13 @@
+/*!
+\page index.html overview
+
+\contentspage {QtLevelDB} {Contents}
+
+\chapter Introduction
+\code
+    import QtLevelDB 1.0
+\endcode
+\part Reporting Bugs
+Please file bugs on \l {https://github.com/paulovap/qtleveldb} {Github}
+
+*/

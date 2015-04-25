@@ -3,7 +3,7 @@
 #include <qqmlinfo.h>
 #include <qqmlengine.h>
 #include <QJsonDocument>
-
+#include <QQmlEngine>
 QLevelDB::QLevelDB(QObject *parent)
     : QObject(parent)
     , m_batch(nullptr)
@@ -11,6 +11,8 @@ QLevelDB::QLevelDB(QObject *parent)
     , m_opened(false)
     , m_status(Status::Undefined)
     , m_statusText("")
+    , m_engine(nullptr)
+    , m_stringfy()
 {
 
 }
@@ -23,6 +25,10 @@ QLevelDB::~QLevelDB()
 
 void QLevelDB::classBegin()
 {
+    m_engine = qmlEngine(this);
+    if (m_engine){
+        m_stringfy = m_engine->globalObject().property("JSON").property("stringify");
+    }
 }
 
 void QLevelDB::componentComplete()
@@ -149,6 +155,17 @@ QLevelDB::Status QLevelDB::repairDB(QUrl path)
     leveldb::Options options;
     leveldb::Status status = leveldb::RepairDB(path.toLocalFile().toStdString(), options);
     return parseStatusCode(status);
+}
+
+void QLevelDB::test(QJSValue testValue)
+{
+//    if (testValue.isVariant())
+//        qmlInfo(this) << "IS VARIANT: " << m_stringfy.call(QJSValueList() << testValue).toString();
+//    else if (testValue.isQObject())
+//        qmlInfo(this) << "IS QOBJECT: " << m_stringfy.call(QJSValueList() << testValue).toString();
+//    else if (testValue.isObject())
+//        qmlInfo(this) << "OBJECT:" << m_stringfy.call(QJSValueList() << testValue).toString();
+
 }
 
 void QLevelDB::setStatus(QLevelDB::Status status)

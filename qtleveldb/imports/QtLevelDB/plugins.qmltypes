@@ -66,6 +66,10 @@ Module {
             type: "Status"
             Parameter { name: "path"; type: "QUrl" }
         }
+        Method {
+            name: "test"
+            Parameter { name: "testValue"; type: "QJSValue" }
+        }
     }
     Component {
         name: "QLevelDBBatch"

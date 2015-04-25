@@ -1,3 +1,5 @@
+include(doc/doc.pri)
+
 TEMPLATE = subdirs
 
 PROJECT_NAME = qtleveldb

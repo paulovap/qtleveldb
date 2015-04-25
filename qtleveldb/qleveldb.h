@@ -50,6 +50,7 @@ public:
     Q_INVOKABLE Status putSync(QString key, QString value);
     Q_INVOKABLE Status destroyDB(QUrl path);
     Q_INVOKABLE Status repairDB(QUrl path);
+    Q_INVOKABLE void test(QJSValue testValue);
 
 signals:
     void openedChanged();
@@ -68,7 +69,8 @@ private:
     QUrl m_source;
     Status m_status;
     QString m_statusText;
-
+    QQmlEngine *m_engine;
+    QJSValue m_stringfy;
     void setStatus(Status status);
     void setStatusText(QString text);
     void setOpened(bool opened);
