@@ -45,12 +45,11 @@ public:
     Q_INVOKABLE QLevelDBBatch* batch();
     Q_INVOKABLE bool del(QString key);
 
-    Q_INVOKABLE QVariant get(QString key);
+    Q_INVOKABLE QVariant get(QString key, QVariant defaultValue = QVariant());
     Q_INVOKABLE bool put(QString key, QVariant value);
     Q_INVOKABLE bool putSync(QString key, QVariant value);
     Q_INVOKABLE bool destroyDB(QUrl path);
     Q_INVOKABLE bool repairDB(QUrl path);
-    Q_INVOKABLE void test(QJSValue testValue);
 
 signals:
     void openedChanged();

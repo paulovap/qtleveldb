@@ -174,7 +174,7 @@ bool QLevelDB::putSync(QString key, QVariant value)
     return false;
 }
 
-QVariant QLevelDB::get(QString key)
+QVariant QLevelDB::get(QString key, QVariant defaultValue)
 {
     leveldb::ReadOptions options;
     std::string value = "";
@@ -185,7 +185,7 @@ QVariant QLevelDB::get(QString key)
         if (status.ok())
             return jsonToVariant(QString::fromStdString(value));
     }
-    return QVariant();
+    return defaultValue;
 }
 
 bool QLevelDB::destroyDB(QUrl path)

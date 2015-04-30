@@ -39,6 +39,12 @@ Module {
             name: "get"
             type: "QVariant"
             Parameter { name: "key"; type: "string" }
+            Parameter { name: "defaultValue"; type: "QVariant" }
+        }
+        Method {
+            name: "get"
+            type: "QVariant"
+            Parameter { name: "key"; type: "string" }
         }
         Method {
             name: "put"
@@ -111,15 +117,5 @@ Module {
         exports: ["QtLevelDB/Settings 1.0"]
         exportMetaObjectRevisions: [0]
         Property { name: "source"; type: "QUrl" }
-        Method {
-            name: "variantToJson"
-            type: "string"
-            Parameter { name: "variant"; type: "QVariant" }
-        }
-        Method {
-            name: "jsonToVariant"
-            type: "QVariant"
-            Parameter { name: "json"; type: "string" }
-        }
     }
 }
