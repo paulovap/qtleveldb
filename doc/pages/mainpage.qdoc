@@ -1,13 +1,67 @@
 /*!
 \page index.html overview
-
+\title QtLevelDB
 \contentspage {QtLevelDB} {Contents}
 
 \chapter Introduction
+This project is focused in create a API for using leveldb on Qt/QML. For now the API consists of two classes: 
+\table
+  \header
+    \li Class
+    \li Description
+  \row
+    \li \b{LevelDB}
+    \li Creates a leveldb key/value database and provides an API to store and retrieve data.
+  \row
+    \li \b{Settings}
+    \li Provides persistent platform-independent key/value database, using a high level API.
+  \endtable 
 \code
     import QtLevelDB 1.0
 \endcode
+
+\section1 Example usage - Basic LevelDB
+
+\qml
+import QtQuick 2.2
+import QtLevelDB 1.0
+
+ApplicationWindow {
+    id: window
+    width: 400
+    height: 250
+
+    LevelDB {
+        id: db
+        source: Qt.resolveUrl("local.db")
+        Component.onCompleted: {
+          window.width = db.get("width", 400)
+          window.height = db.get("height", 250)
+        }
+    }
+    onWidthChanged: db.put("width", width)
+    onHeightChanged: db.put("height", height)
+}
+\endqml
+
+\section1 Example usage - Settings LevelDB
+
+\qml
+import QtQuick 2.2
+import QtLevelDB 1.0
+
+ApplicationWindow {
+    id: window
+    width: 400
+    height: 250
+
+    Settings {
+        source: Qt.resolveUrl("local.db")
+        property alias width: window.width
+        property alias height: window.height
+    }
+}
+\endqml
 \part Reporting Bugs
 Please file bugs on \l {https://github.com/paulovap/qtleveldb} {Github}
-
 */

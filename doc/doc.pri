@@ -17,3 +17,5 @@ clean-docs-html.commands = \
     "rm -rf $${PWD}/html"
 
 clean-docs.depends = clean-docs-html
+
+#OTHER_FILES += $$PWD/*

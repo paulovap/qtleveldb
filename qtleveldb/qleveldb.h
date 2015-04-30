@@ -43,13 +43,13 @@ public:
     QLevelDBOptions *options();
 
     Q_INVOKABLE QLevelDBBatch* batch();
-    Q_INVOKABLE Status del(QString key);
+    Q_INVOKABLE bool del(QString key);
 
-    Q_INVOKABLE void get(QString key, const QJSValue &callback=QJSValue::UndefinedValue);
-    Q_INVOKABLE Status put(QString key, QString value);
-    Q_INVOKABLE Status putSync(QString key, QString value);
-    Q_INVOKABLE Status destroyDB(QUrl path);
-    Q_INVOKABLE Status repairDB(QUrl path);
+    Q_INVOKABLE QVariant get(QString key);
+    Q_INVOKABLE bool put(QString key, QVariant value);
+    Q_INVOKABLE bool putSync(QString key, QVariant value);
+    Q_INVOKABLE bool destroyDB(QUrl path);
+    Q_INVOKABLE bool repairDB(QUrl path);
     Q_INVOKABLE void test(QJSValue testValue);
 
 signals:

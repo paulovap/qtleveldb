@@ -16,7 +16,7 @@ public:
     explicit QLevelDBBatch(leveldb::DB *db, QObject *parent = 0);
 
     Q_INVOKABLE QLevelDBBatch* del(QString key);
-    Q_INVOKABLE QLevelDBBatch* put(QString key, QString value);
+    Q_INVOKABLE QLevelDBBatch* put(QString key, QVariant value);
     Q_INVOKABLE QLevelDBBatch* clear();
     //TODO: change it to LevelDB::Status
     Q_INVOKABLE int write();

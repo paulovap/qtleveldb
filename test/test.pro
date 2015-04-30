@@ -2,15 +2,18 @@ QT       += qml quick testlib
 
 QT       -= gui
 
-TARGET = tst_qtleveldb
+TARGET = tst_$$TARGET
 CONFIG   += warn_on qmltestcase
 
 TEMPLATE = app
-IMPORTPATH += $$OUT_PWD/../src/imports
+IMPORTPATH += $$PWD/data
+#IMPORTPATH += $$OUT_PWD/../src/imports
+DEFINES += TESTS_SOURCE_DIR=\\\"$$PWD/data\\\"
+
+warning($$DEFINES)
 SOURCES += \
     tst_qtleveldb.cpp
-OTHER_FILES += \
-    tst_main.qml
 
-DISTFILES += \
-    tst_leveldb.qml
+OTHER_FILES += \
+    data/tst_leveldb.qml \
+    data/tst_settings.qml

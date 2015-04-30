@@ -1,9 +1,17 @@
 #include "qleveldb.h"
 #include "qleveldbbatch.h"
+#include "global.h"
 #include <qqmlinfo.h>
 #include <qqmlengine.h>
 #include <QJsonDocument>
 #include <QQmlEngine>
+
+/*!
+  \qmltype LevelDB
+  \inqmlmodule QtLevelDB
+  \brief Low level API to access LevelDB database.
+
+*/
 QLevelDB::QLevelDB(QObject *parent)
     : QObject(parent)
     , m_batch(nullptr)
@@ -36,21 +44,63 @@ void QLevelDB::componentComplete()
     openDatabase(m_source.toLocalFile());
 }
 
+/*!
+  \qmlproperty boolean LevelDB::opened
+  \readonly
+  \brief show when the database is ready to do operations
+*/
 bool QLevelDB::opened() const
 {
     return m_opened;
 }
 
+/*!
+  \qmlproperty url LevelDB::source
+  \brief url that points to the leveldb database folder.
+
+  For now it's only possible to use local file paths.
+*/
 QUrl QLevelDB::source() const
 {
     return m_source;
 }
 
+
+/*!
+  \qmlproperty enumeration LevelDB::status
+  \brief This property holds information error in case the database is unable to load.
+  \table
+  \header
+    \li {2, 1} \e {LevelDB::Status} is an enumeration:
+  \header
+    \li Type
+    \li Description
+  \row
+    \li Layer.Undefined (default)
+    \li Database is in a unkown state(probably unintialized)
+  \row
+    \li Layout.Ok
+    \li Operation runs ok
+  \row
+    \li Layout.NotFound
+    \li A value is not found for a Key, during get()
+  \row
+    \li Layout.InvalidArgument
+    \li TODO
+  \row
+    \li Layout.IOError
+    \li TODO
+  \endtable
+*/
 QLevelDB::Status QLevelDB::status() const
 {
     return m_status;
 }
 
+/*!
+  \qmlproperty string LevelDB::statusText
+  \brief String information about an error when it occurs
+*/
 QString QLevelDB::statusText() const
 {
     return m_statusText;
@@ -71,6 +121,12 @@ QLevelDBOptions *QLevelDB::options()
     return &m_options;
 }
 
+/*!
+  \qmlmethod QLevelDBBatch* QLevelDB::batch()
+  \brief Return an batch item to do batch operations
+
+   The rayCast method is only useful with physics is enabled.
+*/
 QLevelDBBatch* QLevelDB::batch()
 {
     if (m_batch)
@@ -81,62 +137,58 @@ QLevelDBBatch* QLevelDB::batch()
     return m_batch;
 }
 
-QLevelDB::Status QLevelDB::del(QString key)
+/*!
+ * \qmlmethod bool QLevelDB::del(QString key)
+*/
+bool QLevelDB::del(QString key)
 {
     leveldb::WriteOptions options;
     leveldb::Status status = m_levelDB->Delete(options, leveldb::Slice(key.toStdString()));
-    return parseStatusCode(status);
+    return status.ok();
 }
 
-QLevelDB::Status QLevelDB::put(QString key, QString value)
+bool QLevelDB::put(QString key, QVariant value)
 {
     leveldb::WriteOptions options;
+    QString json = variantToJson(value);
     if (m_opened && m_levelDB){
         leveldb::Status status = m_levelDB->Put(options,
                        leveldb::Slice(key.toStdString()),
-                       leveldb::Slice(value.toStdString()));
-        return parseStatusCode(status);
+                       leveldb::Slice(json.toStdString()));
+        return status.ok();
     }
-    return Status::NotFound;
+    return false;
 }
 
-QLevelDB::Status QLevelDB::putSync(QString key, QString value)
+bool QLevelDB::putSync(QString key, QVariant value)
 {
     leveldb::WriteOptions options;
+    QString json = variantToJson(value);
     options.sync = true;
     if (m_opened && m_levelDB){
         leveldb::Status status = m_levelDB->Put(options,
                        leveldb::Slice(key.toStdString()),
-                       leveldb::Slice(value.toStdString()));
-        return parseStatusCode(status);
+                       leveldb::Slice(json.toStdString()));
+        return status.ok();
     }
-    return Status::NotFound;
+    return false;
 }
 
-void QLevelDB::get(QString key, const QJSValue &callback)
+QVariant QLevelDB::get(QString key)
 {
-    if (!callback.isCallable()){
-        qmlInfo(this) << "passing a invalid argument as callback";
-        return;
-    }
-    QJSValue back = callback;
-    QJSValueList list;
     leveldb::ReadOptions options;
     std::string value = "";
     if (m_opened && m_levelDB){
         leveldb::Status status = m_levelDB->Get(options,
                                                 leveldb::Slice(key.toStdString()),
                                                 &value);
-
-        list << callback.engine()->toScriptValue(static_cast<int>(parseStatusCode(status)));
-        list << callback.engine()->toScriptValue(QString::fromStdString(value));
-        back.call(list);
+        if (status.ok())
+            return jsonToVariant(QString::fromStdString(value));
     }
-    list<< callback.engine()->toScriptValue(static_cast<int>(Status::Undefined));
-    back.call(list);
+    return QVariant();
 }
 
-QLevelDB::Status QLevelDB::destroyDB(QUrl path)
+bool QLevelDB::destroyDB(QUrl path)
 {
     if (!path.isLocalFile())
         return Status::InvalidArgument;
@@ -145,27 +197,16 @@ QLevelDB::Status QLevelDB::destroyDB(QUrl path)
     }
     leveldb::Options options;
     leveldb::Status status = leveldb::DestroyDB(path.toLocalFile().toStdString(), options);
-    return parseStatusCode(status);
+    return status.ok();
 }
 
-QLevelDB::Status QLevelDB::repairDB(QUrl path)
+bool QLevelDB::repairDB(QUrl path)
 {
     if (!path.isLocalFile())
         return Status::InvalidArgument;
     leveldb::Options options;
     leveldb::Status status = leveldb::RepairDB(path.toLocalFile().toStdString(), options);
-    return parseStatusCode(status);
-}
-
-void QLevelDB::test(QJSValue testValue)
-{
-//    if (testValue.isVariant())
-//        qmlInfo(this) << "IS VARIANT: " << m_stringfy.call(QJSValueList() << testValue).toString();
-//    else if (testValue.isQObject())
-//        qmlInfo(this) << "IS QOBJECT: " << m_stringfy.call(QJSValueList() << testValue).toString();
-//    else if (testValue.isObject())
-//        qmlInfo(this) << "OBJECT:" << m_stringfy.call(QJSValueList() << testValue).toString();
-
+    return status.ok();
 }
 
 void QLevelDB::setStatus(QLevelDB::Status status)
@@ -194,8 +235,7 @@ void QLevelDB::setOpened(bool opened)
 
 bool QLevelDB::openDatabase(QString localPath)
 {
-    if (m_levelDB)
-        reset();
+    reset();
     leveldb::Options options = m_options.leveldbOptions();
     leveldb::Status status = leveldb::DB::Open(options,
                                                localPath.toStdString(),
@@ -212,6 +252,9 @@ void QLevelDB::reset()
 {
     if (m_levelDB)
         delete m_levelDB;
+
+    m_levelDB = nullptr;
+
     setStatus(Status::Undefined);
     setOpened(false);
     setStatusText(QString());
@@ -229,3 +272,4 @@ QLevelDB::Status QLevelDB::parseStatusCode(leveldb::Status &status)
         return Status::NotFound;
     return Status::Undefined;
 }
+

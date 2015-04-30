@@ -1,5 +1,5 @@
 #include "qleveldbbatch.h"
-
+#include "global.h"
 QLevelDBBatch::QLevelDBBatch(leveldb::DB *db, QObject *parent)
     : QObject(parent)
     , m_levelDB(db)
@@ -13,10 +13,11 @@ QLevelDBBatch* QLevelDBBatch::del(QString key)
     return this;
 }
 
-QLevelDBBatch* QLevelDBBatch::put(QString key, QString value)
+QLevelDBBatch* QLevelDBBatch::put(QString key, QVariant value)
 {
+    QString json = variantToJson(value);
     m_writeBatch.Put(leveldb::Slice(key.toStdString()),
-                     leveldb::Slice(value.toStdString()));
+                     leveldb::Slice(json.toStdString()));
     return this;
 }
 
