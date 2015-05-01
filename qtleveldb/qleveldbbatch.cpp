@@ -1,6 +1,6 @@
 #include "qleveldbbatch.h"
 #include "global.h"
-QLevelDBBatch::QLevelDBBatch(leveldb::DB *db, QObject *parent)
+QLevelDBBatch::QLevelDBBatch(QSharedPointer<leveldb::DB> db, QObject *parent)
     : QObject(parent)
     , m_levelDB(db)
 {
@@ -31,11 +31,11 @@ int QLevelDBBatch::write()
 {
     leveldb::WriteOptions options;
 
-    if(!m_levelDB)
+    if(m_levelDB.isNull())
         return static_cast<int>(QLevelDB::Status::NotFound);
 
     options.sync = true;
-    leveldb::Status status = m_levelDB->Write(options, &m_writeBatch);
+    leveldb::Status status = m_levelDB.data()->Write(options, &m_writeBatch);
     return static_cast<int>(parseStatusCode(status));
 }
 

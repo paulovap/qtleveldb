@@ -56,13 +56,14 @@ signals:
     void sourceChanged();
     void statusChanged();
     void statusTextChanged();
+    void propertyChanged(QString key, QVariant value);
 protected:
     void classBegin();
     void componentComplete();
 private:
     Q_DISABLE_COPY(QLevelDB)
     QLevelDBBatch *m_batch;
-    leveldb::DB *m_levelDB;
+    QSharedPointer<leveldb::DB> m_levelDB;
     QLevelDBOptions m_options;
     bool m_opened;
     QUrl m_source;
@@ -76,6 +77,7 @@ private:
     bool openDatabase(QString localPath);
     void reset();
     Status parseStatusCode(leveldb::Status &status);
+    void dispatchPropertyChange(QString key, QVariant value);
 };
 
 QML_DECLARE_TYPE(QLevelDB)

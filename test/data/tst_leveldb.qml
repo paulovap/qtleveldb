@@ -3,6 +3,7 @@ import QtTest 1.0
 import QtLevelDB 1.0
 
 TestCase {
+    id:testcase
     name: "LevelDB"
     property url source: Qt.resolvedUrl("test.db")
     function init() {
@@ -72,6 +73,24 @@ TestCase {
             createIfMissing: true
             errorIfExists: false
             paranoidChecks: false
+        }
+        onPropertyChanged: {
+            console.log(" Key: " + key)
+            console.log(" Val: " + value)
+        }
+    }
+    LevelDB{
+        id:db2
+        source:"fff.db"//testcase.source
+        options{
+            compressionType: Options.SnappyCompression
+            createIfMissing: true
+            errorIfExists: false
+            paranoidChecks: false
+        }
+        onPropertyChanged: {
+            console.log(" Key: " + key)
+            console.log(" Val: " + value)
         }
     }
 }

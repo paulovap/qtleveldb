@@ -29,6 +29,11 @@ Module {
         Property { name: "opened"; type: "bool"; isReadonly: true }
         Property { name: "source"; type: "QUrl" }
         Property { name: "options"; type: "QLevelDBOptions"; isReadonly: true; isPointer: true }
+        Signal {
+            name: "propertyChanged"
+            Parameter { name: "key"; type: "string" }
+            Parameter { name: "value"; type: "QVariant" }
+        }
         Method { name: "batch"; type: "QLevelDBBatch*" }
         Method {
             name: "del"
@@ -67,10 +72,6 @@ Module {
             name: "repairDB"
             type: "bool"
             Parameter { name: "path"; type: "QUrl" }
-        }
-        Method {
-            name: "test"
-            Parameter { name: "testValue"; type: "QJSValue" }
         }
     }
     Component {

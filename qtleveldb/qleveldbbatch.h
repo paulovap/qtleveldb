@@ -13,7 +13,7 @@ class QLevelDBBatch : public QObject, public QQmlParserStatus
     Q_OBJECT
     Q_INTERFACES(QQmlParserStatus)
 public:
-    explicit QLevelDBBatch(leveldb::DB *db, QObject *parent = 0);
+    explicit QLevelDBBatch(QSharedPointer<leveldb::DB> db, QObject *parent = 0);
 
     Q_INVOKABLE QLevelDBBatch* del(QString key);
     Q_INVOKABLE QLevelDBBatch* put(QString key, QVariant value);
@@ -27,7 +27,7 @@ signals:
 
 public slots:
 private:
-    leveldb::DB *m_levelDB;
+    QSharedPointer<leveldb::DB> m_levelDB;
     leveldb::WriteBatch m_writeBatch;
     QLevelDB::Status parseStatusCode(leveldb::Status &status);
 };
