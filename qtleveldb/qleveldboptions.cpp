@@ -1,6 +1,7 @@
 #include "qleveldboptions.h"
 QLevelDBOptions::QLevelDBOptions(QObject *parent) : QObject(parent)
 {
+    m_options.create_if_missing = true;
 }
 
 leveldb::Options QLevelDBOptions::leveldbOptions() const

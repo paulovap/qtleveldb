@@ -19,17 +19,17 @@ public:
     Q_INVOKABLE QLevelDBBatch* put(QString key, QVariant value);
     Q_INVOKABLE QLevelDBBatch* clear();
     //TODO: change it to LevelDB::Status
-    Q_INVOKABLE int write();
+    Q_INVOKABLE bool write();
+signals:
+    void batchWritten(QSet<QString> keys);
 protected:
     void classBegin();
     void componentComplete();
-signals:
 
-public slots:
 private:
     QSharedPointer<leveldb::DB> m_levelDB;
     leveldb::WriteBatch m_writeBatch;
-    QLevelDB::Status parseStatusCode(leveldb::Status &status);
+    QSet<QString> m_operations;
 };
 
 QML_DECLARE_TYPE(QLevelDBBatch)

@@ -50,6 +50,7 @@ public:
     Q_INVOKABLE bool putSync(QString key, QVariant value);
     Q_INVOKABLE bool destroyDB(QUrl path);
     Q_INVOKABLE bool repairDB(QUrl path);
+    void emitPropertyChange(QString key, QVariant value);
 
 signals:
     void openedChanged();
@@ -60,22 +61,25 @@ signals:
 protected:
     void classBegin();
     void componentComplete();
+    void reset();
+    QSharedPointer<leveldb::DB> m_levelDB;
+private slots:
+    void onBatchWritten(QSet<QString> keys);
 private:
     Q_DISABLE_COPY(QLevelDB)
     QLevelDBBatch *m_batch;
-    QSharedPointer<leveldb::DB> m_levelDB;
+
     QLevelDBOptions m_options;
+    bool m_initialized;
     bool m_opened;
     QUrl m_source;
     Status m_status;
     QString m_statusText;
-    QQmlEngine *m_engine;
-    QJSValue m_stringfy;
+
     void setStatus(Status status);
     void setStatusText(QString text);
     void setOpened(bool opened);
     bool openDatabase(QString localPath);
-    void reset();
     Status parseStatusCode(leveldb::Status &status);
     void dispatchPropertyChange(QString key, QVariant value);
 };

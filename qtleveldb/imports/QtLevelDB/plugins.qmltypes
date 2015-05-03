@@ -80,6 +80,10 @@ Module {
         exports: ["QtLevelDB/Batch 1.0"]
         isCreatable: false
         exportMetaObjectRevisions: [0]
+        Signal {
+            name: "batchWritten"
+            Parameter { name: "keys"; type: "QSet<QString>" }
+        }
         Method {
             name: "del"
             type: "QLevelDBBatch*"
@@ -92,7 +96,7 @@ Module {
             Parameter { name: "value"; type: "QVariant" }
         }
         Method { name: "clear"; type: "QLevelDBBatch*" }
-        Method { name: "write"; type: "int" }
+        Method { name: "write"; type: "bool" }
     }
     Component {
         name: "QLevelDBOptions"
@@ -114,9 +118,8 @@ Module {
     }
     Component {
         name: "QLevelDBSettings"
-        prototype: "QObject"
+        prototype: "QLevelDB"
         exports: ["QtLevelDB/Settings 1.0"]
         exportMetaObjectRevisions: [0]
-        Property { name: "source"; type: "QUrl" }
     }
 }

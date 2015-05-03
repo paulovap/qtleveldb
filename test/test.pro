@@ -8,7 +8,7 @@ CONFIG   += warn_on qmltestcase
 TEMPLATE = app
 IMPORTPATH += $$PWD/data
 #IMPORTPATH += $$OUT_PWD/../src/imports
-DEFINES += TESTS_SOURCE_DIR=\\\"$$PWD/data\\\"
+DEFINES += QUICK_TEST_SOURCE_DIR=\\\"$$PWD/data\\\"
 
 warning($$DEFINES)
 SOURCES += \

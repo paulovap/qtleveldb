@@ -11,42 +11,28 @@
 #include <QQmlEngine>
 #include <QtQml>
 #include <leveldb/db.h>
+#include "qleveldb.h"
 
-
-class QLevelDBSettings : public QObject, public QQmlParserStatus
+class QLevelDBSettings : public QLevelDB
 {
     Q_OBJECT
-    Q_PROPERTY(QUrl source READ source WRITE setSource NOTIFY sourceChanged)
-    Q_INTERFACES(QQmlParserStatus)
+
 public:
     explicit QLevelDBSettings(QObject *parent = 0);
-
-    QUrl source() const;
-    void setSource(QUrl source);
 protected:
     void classBegin();
     void componentComplete();
-signals:
-    void sourceChanged();
-public slots:
-
 private:
     Q_DISABLE_COPY(QLevelDBSettings)
 
     QList<QMetaObject::Connection> m_connections;
     QHash<int, QMetaProperty> m_connectedProperties;
-    leveldb::DB *m_levelDB;
-    bool m_opened;
-    QUrl m_source;
-    void reset();
-    bool openDatabase(QString localPath);
-
+private slots:
     void initProperties();
 private slots:
-    void onPropertyChanged();
+    void onMyPropertyChanged();
+    void onPropertyChanged(QString key, QVariant value);
 
-    QVariant getDB(QString key);
-    void putDB(QString key, QVariant value);
 };
 
 QML_DECLARE_TYPE(QLevelDBSettings)

@@ -7,7 +7,7 @@
 #include <QQmlEngine>
 
 static QHash<QString, QWeakPointer<leveldb::DB> > leveldbInstances;
-static QMultiHash<QString, QLevelDB*> instances;
+static QMultiHash<QString, QLevelDB*> qLeveldbInstances;
 /*!
   \qmltype LevelDB
   \inqmlmodule QtLevelDB
@@ -17,11 +17,10 @@ static QMultiHash<QString, QLevelDB*> instances;
 QLevelDB::QLevelDB(QObject *parent)
     : QObject(parent)
     , m_batch(nullptr)
+    , m_initialized(false)
     , m_opened(false)
     , m_status(Status::Undefined)
     , m_statusText("")
-    , m_engine(nullptr)
-    , m_stringfy()
 {
 }
 
@@ -32,15 +31,12 @@ QLevelDB::~QLevelDB()
 
 void QLevelDB::classBegin()
 {
-    m_engine = qmlEngine(this);
-    if (m_engine){
-        m_stringfy = m_engine->globalObject().property("JSON").property("stringify");
-    }
 }
 
 void QLevelDB::componentComplete()
 {
     openDatabase(m_source.toLocalFile());
+    m_initialized = true;
 }
 
 /*!
@@ -107,10 +103,12 @@ QString QLevelDB::statusText() const
 
 void QLevelDB::setSource(QUrl source)
 {
-    if(m_source != source){
+
+    if (m_source != source){
         m_source = source;
         emit sourceChanged();
-        openDatabase(source.toLocalFile());
+        if (m_initialized)
+            openDatabase(source.toLocalFile());
     }
 }
 
@@ -131,6 +129,7 @@ QLevelDBBatch* QLevelDB::batch()
     if (m_batch)
         m_batch->deleteLater();
     m_batch = new QLevelDBBatch(m_levelDB, this);
+    connect(m_batch, &QLevelDBBatch::batchWritten, this, &QLevelDB::onBatchWritten);
     return m_batch;
 }
 
@@ -147,6 +146,10 @@ bool QLevelDB::del(QString key)
 
 bool QLevelDB::put(QString key, QVariant value)
 {
+    QVariant oldValue = get(key);
+    //avoid inifine loops
+    if(oldValue == value)
+        return true;
     leveldb::WriteOptions options;
     QString json = variantToJson(value);
     if (m_opened && m_levelDB){
@@ -163,6 +166,10 @@ bool QLevelDB::put(QString key, QVariant value)
 
 bool QLevelDB::putSync(QString key, QVariant value)
 {
+    QVariant oldValue = get(key);
+    //avoid inifine loops
+    if(oldValue == value)
+        return true;
     leveldb::WriteOptions options;
     QString json = variantToJson(value);
     options.sync = true;
@@ -264,18 +271,31 @@ bool QLevelDB::openDatabase(QString localPath)
         setStatus(code);
     }
     if (m_opened){
-        instances.insertMulti(localPath, this);
+        qLeveldbInstances.insertMulti(localPath, this);
     }
     return m_opened;
 }
 
 void QLevelDB::reset()
 {
-    instances.remove(m_source.toLocalFile(), this);
     m_levelDB.clear();
+    QWeakPointer<leveldb::DB> pointer = leveldbInstances[m_source.toLocalFile()];
+    if (pointer.isNull())
+        leveldbInstances.remove(m_source.toLocalFile());
+
+    for (auto key : qLeveldbInstances.keys()){
+        qLeveldbInstances.remove(key, this);
+    }
     setStatus(Status::Undefined);
     setOpened(false);
     setStatusText(QString());
+}
+
+void QLevelDB::onBatchWritten(QSet<QString> keys)
+{
+    for (auto key : keys){
+        dispatchPropertyChange(key, get(key, QVariant()));
+    }
 }
 
 QLevelDB::Status QLevelDB::parseStatusCode(leveldb::Status &status)
@@ -294,9 +314,9 @@ QLevelDB::Status QLevelDB::parseStatusCode(leveldb::Status &status)
 void QLevelDB::dispatchPropertyChange(QString key, QVariant value)
 {
     QString local = m_source.toLocalFile();
-    QMultiHash<QString, QLevelDB*>::iterator i = instances.find(local);
-    while (i != instances.end() && i.key() == local) {
-        emit i.value()->propertyChanged(key, value);
+    QMultiHash<QString, QLevelDB*>::iterator i = qLeveldbInstances.find(local);
+    while (i != qLeveldbInstances.end() && i.key() == local) {
+       emit i.value()->propertyChanged(key, value);
         ++i;
     }
 }

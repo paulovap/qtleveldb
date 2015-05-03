@@ -1,6 +1,6 @@
 TEMPLATE = lib
 
-CONFIG +=qt plugin c++11
+CONFIG +=qt plugin c++14
 QT += core quick
 
 TARGET = qtleveldb
