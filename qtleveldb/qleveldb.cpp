@@ -255,6 +255,11 @@ bool QLevelDB::openDatabase(QString localPath)
             setStatus(Ok);
             setStatusText("ok");
     }else {
+        //create directories in path
+        QFileInfo fileInfo(localPath);
+        if(!fileInfo.dir().exists()){
+            fileInfo.dir().mkpath(fileInfo.dir().absolutePath());
+        }
         //else create a DB object
         leveldb::DB *db;
         leveldb::Options options = m_options.leveldbOptions();
