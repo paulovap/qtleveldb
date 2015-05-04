@@ -4,7 +4,7 @@
 #include <QStringBuilder>
 #include <QJsonDocument>
 #include <QJSValue>
-
+#include <QStandardPaths>
 #include "global.h"
 /*!
   \qmltype Settings
@@ -16,6 +16,7 @@
 QLevelDBSettings::QLevelDBSettings(QObject *parent)
     : QLevelDB(parent)
 {
+    setSource(QUrl::fromLocalFile(QStandardPaths::writableLocation(QStandardPaths::AppConfigLocation) + "/settings.db"));
     connect(this, &QLevelDBSettings::sourceChanged, this, &QLevelDBSettings::initProperties);
     connect(this, &QLevelDBSettings::propertyChanged, this, &QLevelDBSettings::onPropertyChanged);
 }
