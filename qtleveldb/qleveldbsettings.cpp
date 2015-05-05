@@ -16,7 +16,7 @@
 QLevelDBSettings::QLevelDBSettings(QObject *parent)
     : QLevelDB(parent)
 {
-    setSource(QUrl::fromLocalFile(QStandardPaths::writableLocation(QStandardPaths::AppConfigLocation) + "/settings.db"));
+    setSource(QUrl::fromLocalFile(QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation) + "/settings.db"));
     connect(this, &QLevelDBSettings::sourceChanged, this, &QLevelDBSettings::initProperties);
     connect(this, &QLevelDBSettings::propertyChanged, this, &QLevelDBSettings::onPropertyChanged);
 }
