@@ -47,10 +47,18 @@ void QLevelDBSettings::initProperties()
     for (int i = offset; i < count; ++i) {
         QMetaProperty property = mo->property(i);
 
+        if (!property.isWritable()){
+            //we ignore read only properties
+            continue;
+        }
         const QVariant value = get(property.name());
         const QVariant oldValue = property.read(this);
+
         if (value.isValid() && oldValue != value) {
             property.write(this, value);
+        }else if (oldValue.isValid()){
+            //qml static initialization
+            put(property.name(), oldValue);
         }
 
         if (property.hasNotifySignal()){
