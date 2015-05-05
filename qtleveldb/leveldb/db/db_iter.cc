@@ -14,6 +14,9 @@
 #include "util/mutexlock.h"
 #include "util/random.h"
 
+#ifdef OS_WIN
+typedef long ssize_t;
+#endif
 namespace leveldb {
 
 #if 0
