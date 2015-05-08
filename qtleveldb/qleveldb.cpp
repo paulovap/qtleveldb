@@ -2,7 +2,6 @@
 #include "qleveldbbatch.h"
 #include "global.h"
 #include <qqmlinfo.h>
-#include <qqmlengine.h>
 #include <QJsonDocument>
 #include <QQmlEngine>
 
@@ -103,7 +102,6 @@ QString QLevelDB::statusText() const
 
 void QLevelDB::setSource(QUrl source)
 {
-
     if (m_source != source){
         m_source = source;
         emit sourceChanged();
@@ -128,7 +126,7 @@ QLevelDBBatch* QLevelDB::batch()
 {
     if (m_batch)
         m_batch->deleteLater();
-    m_batch = new QLevelDBBatch(m_levelDB, this);
+    m_batch = new QLevelDBBatch(m_levelDB.toWeakRef(), this);
     connect(m_batch, &QLevelDBBatch::batchWritten, this, &QLevelDB::onBatchWritten);
     return m_batch;
 }
@@ -204,10 +202,12 @@ bool QLevelDB::destroyDB(QUrl path)
     if (!path.isLocalFile())
         return Status::InvalidArgument;
     if(m_source == path){
-        reset();
+        setSource(QUrl());
     }
     leveldb::Options options;
     leveldb::Status status = leveldb::DestroyDB(path.toLocalFile().toStdString(), options);
+    setStatus(parseStatusCode(status));
+    setStatusText(QString::fromStdString(status.ToString()));
     return status.ok();
 }
 
@@ -218,6 +218,15 @@ bool QLevelDB::repairDB(QUrl path)
     leveldb::Options options;
     leveldb::Status status = leveldb::RepairDB(path.toLocalFile().toStdString(), options);
     return status.ok();
+}
+
+QLevelDBReadStream *QLevelDB::readStream(const QString startKey, const QString endKey)
+{
+    QLevelDBReadStream *readStream = new QLevelDBReadStream(m_levelDB.toWeakRef(), this);
+    readStream->setEndKey(endKey);
+    readStream->setStartKey(startKey);
+    QQmlEngine::setObjectOwnership(readStream, QQmlEngine::JavaScriptOwnership);
+    return readStream;
 }
 
 void QLevelDB::setStatus(QLevelDB::Status status)

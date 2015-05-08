@@ -4,6 +4,7 @@
 #include "qleveldbbatch.h"
 #include "qleveldboptions.h"
 #include "qleveldbsettings.h"
+#include  "qleveldbreadstream.h"
 
 QT_BEGIN_NAMESPACE
 
@@ -20,6 +21,7 @@ public:
         qmlRegisterType<QLevelDBSettings>(uri, 1, 0, "Settings");
         qmlRegisterUncreatableType<QLevelDBOptions>(uri, 1, 0, "Options", QObject::tr("Cannot create separate instance of Options"));
         qmlRegisterUncreatableType<QLevelDBBatch>(uri, 1, 0, "Batch", QObject::tr("Cannot create separate instance of Batch"));
+        qmlRegisterUncreatableType<QLevelDBReadStream>(uri, 1, 0, "LevelDBReadStream", QObject::tr("Cannot create separate instance of LevelDBReadStream"));
     }
 };
 

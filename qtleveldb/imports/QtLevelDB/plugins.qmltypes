@@ -73,6 +73,18 @@ Module {
             type: "bool"
             Parameter { name: "path"; type: "QUrl" }
         }
+        Method {
+            name: "readStream"
+            type: "QLevelDBReadStream*"
+            Parameter { name: "startKey"; type: "string" }
+            Parameter { name: "endKey"; type: "string" }
+        }
+        Method {
+            name: "readStream"
+            type: "QLevelDBReadStream*"
+            Parameter { name: "startKey"; type: "string" }
+        }
+        Method { name: "readStream"; type: "QLevelDBReadStream*" }
     }
     Component {
         name: "QLevelDBBatch"
@@ -115,6 +127,27 @@ Module {
         Property { name: "errorIfExists"; type: "bool" }
         Property { name: "paranoidChecks"; type: "bool" }
         Property { name: "compressionType"; type: "CompressionType" }
+    }
+    Component {
+        name: "QLevelDBReadStream"
+        prototype: "QObject"
+        exports: ["QtLevelDB/LevelDBReadStream 1.0"]
+        isCreatable: false
+        exportMetaObjectRevisions: [0]
+        Property { name: "startKey"; type: "string" }
+        Property { name: "endKey"; type: "string" }
+        Signal {
+            name: "nextKeyValue"
+            Parameter { name: "key"; type: "string" }
+            Parameter { name: "value"; type: "QVariant" }
+        }
+        Method {
+            name: "start"
+            type: "bool"
+            Parameter { name: "callback"; type: "QJSValue" }
+        }
+        Method { name: "start"; type: "bool" }
+        Method { name: "stop" }
     }
     Component {
         name: "QLevelDBSettings"

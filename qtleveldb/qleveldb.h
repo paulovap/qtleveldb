@@ -7,6 +7,8 @@
 #include <QtQml>
 #include <QtQml/qqmlparserstatus.h>
 #include "qleveldboptions.h"
+#include "qleveldbreadstream.h"
+
 //#include "qleveldbbatch.h"
 
 class QLevelDBBatch;
@@ -44,14 +46,13 @@ public:
 
     Q_INVOKABLE QLevelDBBatch* batch();
     Q_INVOKABLE bool del(QString key);
-
     Q_INVOKABLE QVariant get(QString key, QVariant defaultValue = QVariant());
     Q_INVOKABLE bool put(QString key, QVariant value);
     Q_INVOKABLE bool putSync(QString key, QVariant value);
     Q_INVOKABLE bool destroyDB(QUrl path);
     Q_INVOKABLE bool repairDB(QUrl path);
-    void emitPropertyChange(QString key, QVariant value);
 
+    Q_INVOKABLE QLevelDBReadStream* readStream(const QString startKey =  QString(), const QString endKey = QString());
 signals:
     void openedChanged();
     void sourceChanged();

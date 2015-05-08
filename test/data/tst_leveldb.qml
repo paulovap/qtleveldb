@@ -76,4 +76,28 @@ import QtLevelDB 1.0
             compare(db.get("list"),["asdf"], "Wrong data")
             compare(db.get("object"),{"a": "b"}, "Wrong data")
         }
+
+        function test_read_stream(){
+            var data = {
+                "asdf":"asdf",
+                "string": "asdf2",
+                "list": ["asdf"],
+                "object": {"a": "b"},
+                "c": "c",
+                "d": "d"
+            }
+
+            db.source = "read_stream.db"
+            compare(db.opened, true, db.statusText)
+            var batch = db.batch()
+            Object.keys(data).forEach(function (key){
+                db.put(key, data[key])
+            })
+            batch.write()
+            db.readStream().start(function (key,value){
+               compare(value, data[key], "Inconsistent data")
+            })
+            db.source = ""
+            compare(db.destroyDB(db.source), true, db.statusText)
+        }
     }

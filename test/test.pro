@@ -10,7 +10,6 @@ IMPORTPATH += $$PWD/data
 #IMPORTPATH += $$OUT_PWD/../src/imports
 DEFINES += QUICK_TEST_SOURCE_DIR=\\\"$$PWD/data\\\"
 
-warning($$DEFINES)
 SOURCES += \
     tst_qtleveldb.cpp
 
