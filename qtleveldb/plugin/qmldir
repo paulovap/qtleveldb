@@ -1,4 +1,0 @@
-module QtLevelDB
-plugin qtleveldb
-typeinfo plugins.qmltypes
-

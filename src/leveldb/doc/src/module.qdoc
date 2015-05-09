@@ -1,0 +1,34 @@
+/*!
+    \module QtLevelDB
+    \title Qt LevelDB C++ Classes
+    \ingroup modules
+    \qtvariable leveldb
+    \since 5.5
+    \brief List of C++ classes that provide the Qt LevelDB functionality.
+
+    To use these classes in your application, use the following include
+    statement:
+
+    \code
+    #include <QtLevelDB/QtLevelDB>
+    \endcode
+
+    To link against the module, add this line to your \l qmake \c .pro file:
+
+    \code
+    QT += leveldb
+    \endcode
+*/
+
+/*!
+    \qmlmodule QtLevelDB 1.0
+    \title Qt LevelDB QML Types
+    \since 5.4
+    \brief List of QML types that provide LevelDB functionality.
+
+    The QML types are accessed by using:
+    \badcode
+    import QtLevelDB 1.0
+    \endcode
+*/
+

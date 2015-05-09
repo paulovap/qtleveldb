@@ -1,0 +1,54 @@
+include($QT_INSTALL_DOCS/global/qt-module-defaults.qdocconf)
+
+project                                             = QtLevelDB
+description                                         = Qt LevelDB Reference Documentation
+version                                             = $QT_VERSION
+
+examplesinstallpath                                 = leveldb
+
+qhp.projects                                        = QtLevelDB
+
+qhp.QtLevelDB.file                               = qtleveldb.qhp
+qhp.QtLevelDB.namespace                          = org.qt-project.qtleveldb.$QT_VERSION_TAG
+qhp.QtLevelDB.virtualFolder                      = qtleveldb
+qhp.QtLevelDB.indexTitle                         = Qt LevelDB
+qhp.QtLevelDB.indexRoot                          =
+
+qhp.QtLevelDB.filterAttributes                   = qtleveldb $QT_VERSION qtrefdoc
+qhp.QtLevelDB.customFilters.Qt.name              = QtLevelDB $QT_VERSION
+qhp.QtLevelDB.customFilters.Qt.filterAttributes  = qtleveldb $QT_VERSION
+
+qhp.QtLevelDB.subprojects                        = classes qml examples
+
+qhp.QtLevelDB.subprojects.classes.title          = C++ Classes
+qhp.QtLevelDB.subprojects.classes.indexTitle     = Qt LevelDB C++ Classes
+qhp.QtLevelDB.subprojects.classes.selectors      = class fake:headerfile
+qhp.QtLevelDB.subprojects.classes.sortPages      = true
+
+qhp.QtLevelDB.subprojects.qml.title              = QML Types
+qhp.QtLevelDB.subprojects.qml.indexTitle         = Qt LevelDB QML Types
+qhp.QtLevelDB.subprojects.qml.selectors          = qmlclass
+qhp.QtLevelDB.subprojects.qml.sortPages          = true
+
+qhp.QtLevelDB.subprojects.examples.title         = Examples
+qhp.QtLevelDB.subprojects.examples.indexTitle    = Qt LevelDB Examples
+qhp.QtLevelDB.subprojects.examples.selectors     = fake:example
+qhp.QtLevelDB.subprojects.examples.sortPages     = true
+
+tagfile                                             = ../../../doc/qtleveldb/qtleveldb.tags
+
+depends                                             += qtcore qtquick qtqml qmake qtdoc
+
+headerdirs                                          += .. \
+                                                       ../../imports
+
+sourcedirs                                          += .. \
+                                                       ../../imports
+
+
+exampledirs                                         += ../../../examples/leveldb
+examples.fileextensions                             += "*.html *.json"
+
+navigation.landingpage                              = "Qt LevelDB"
+navigation.cppclassespage                           = "Qt LevelDB C++ Classes"
+navigation.qmltypespage                             = "Qt LevelDB QML Types"

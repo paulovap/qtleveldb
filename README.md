@@ -5,7 +5,7 @@ This plugin provides a way to use LevelDB on QML. LevelDB is a fast key-value st
 
 There is two way to use it: Instancing a **LevelDB** object or **Settings** object.
 
-**LevelDB** type provides an API to access the standard LevelDB API: **put**, **get**, **del**, **batch**.
+**LevelDB** type provides an API to access the standard LevelDB API: **put**, **get**, **del**, **batch** and **readStream**.
 
 **Settings** type provides a high level API, automatic storing property changes in the database.
 

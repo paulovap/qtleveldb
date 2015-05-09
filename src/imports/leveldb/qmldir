@@ -1,0 +1,5 @@
+module QtLevelDB
+classname QLevelDBPlugin
+plugin declarative_leveldb
+typeinfo plugins.qmltypes
+

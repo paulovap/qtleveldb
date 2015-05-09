@@ -1,0 +1,19 @@
+/*!
+    \page qtleveldb-index.html
+    \since 5.5
+    \title Qt LevelDB
+    \brief API to read and write LevelDB databases.
+
+    The Qt LevelDB module provides a library to handle LevelDB databases in C++ and QML applications. 
+
+    \section1 Related Information
+
+    For more information on how to use this module, please refer to the following pages:
+
+    \list
+    \li \l{Qt LevelDB C++ Classes}{C++ API}
+    \li \l{Qt LevelDB QML Types}{QML API}
+    \li \l{Qt LevelDB Examples}{Examples} - show how use the API in practice
+    \endlist
+*/
+
