@@ -1,5 +1,5 @@
-#ifndef QLEVELDBSETTINGS_H
-#define QLEVELDBSETTINGS_H
+#ifndef QQMLLEVELDBSETTINGS_H
+#define QQMLLEVELDBSETTINGS_H
 
 #include <QObject>
 #include <QUrl>
@@ -11,26 +11,25 @@
 #include <QQmlEngine>
 #include <QtQml>
 #include <../3rdparty/leveldb/include/leveldb/db.h>
-#include <QtLevelDB/QLevelDB>
-#include <QtLevelDB/qleveldbglobal.h>
+#include <qqmlleveldb.h>
+#include <qleveldbglobal.h>
 
 QT_BEGIN_NAMESPACE
 
-class Q_LEVELDB_EXPORT QLevelDBSettings : public QLevelDB
+class Q_LEVELDB_EXPORT QQmlLevelDBSettings : public QQmlLevelDB
 {
     Q_OBJECT
 
 public:
-    explicit QLevelDBSettings(QObject *parent = 0);
+    explicit QQmlLevelDBSettings(QObject *parent = 0);
 protected:
     void classBegin();
     void componentComplete();
 private:
-    Q_DISABLE_COPY(QLevelDBSettings)
+    Q_DISABLE_COPY(QQmlLevelDBSettings)
 
     QList<QMetaObject::Connection> m_connections;
     QHash<int, QMetaProperty> m_connectedProperties;
-private slots:
     void initProperties();
 private slots:
     void onMyPropertyChanged();
@@ -39,6 +38,5 @@ private slots:
 };
 
 QT_END_NAMESPACE
-
-QML_DECLARE_TYPE(QLevelDBSettings)
-#endif // QLEVELDBSETTINGS_H
+QML_DECLARE_TYPE(QQmlLevelDBSettings)
+#endif // QQMLLEVELDBSETTINGS_H

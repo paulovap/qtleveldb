@@ -1,6 +1,5 @@
 #include "qleveldbglobal.h"
 #include "qleveldbreadstream.h"
-#include <QJSEngine>
 
 QT_BEGIN_NAMESPACE
 
@@ -12,17 +11,18 @@ QLevelDBReadStream::QLevelDBReadStream(QWeakPointer<leveldb::DB> db, QObject *pa
 
 }
 
-bool QLevelDBReadStream::start(QJSValue callback)
+QLevelDBReadStream::~QLevelDBReadStream()
 {
-    if (!callback.isUndefined() && !callback.isCallable())
-        return false;
+
+}
+
+bool QLevelDBReadStream::start()
+{
     if (m_db.isNull())
         return false;
     auto strongDB = m_db.toStrongRef();
 
     leveldb::ReadOptions options;
-
-
     leveldb::Iterator *it = strongDB.data()->NewIterator(options);
 
     if (!it)
@@ -35,15 +35,7 @@ bool QLevelDBReadStream::start(QJSValue callback)
     while(it->Valid() && !m_shouldStop){
         QString key = QString::fromStdString(it->key().ToString());
         QVariant value = jsonToVariant(QString::fromStdString(it->value().ToString()));
-
-        if (callback.isCallable()){
-            QJSValueList list;
-            list << callback.engine()->toScriptValue<QString>(key);
-            list << callback.engine()->toScriptValue<QVariant>(value);
-            callback.call(list);
-        }else{
-            emit nextKeyValue(key, value);
-        }
+        emit nextKeyValue(key, value);
         if (m_endKey.isNull() || m_endKey > key)
             it->Next();
         else

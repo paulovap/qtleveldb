@@ -12,30 +12,29 @@ PUBLIC_HEADERS += \
     $$PWD/qleveldb.h \
     $$PWD/qleveldbbatch.h \
     $$PWD/qleveldboptions.h \
-    $$PWD/qleveldbreadstream.h
+    $$PWD/qleveldbreadstream.h \
+    $$PWD/qleveldb.h
+
 PRIVATE_HEADERS += \
     $$PWD/qleveldbglobal.h
 
 SOURCES += \
-    $$PWD/qleveldbglobal.cpp \
     $$PWD/qleveldb.cpp \
     $$PWD/qleveldbbatch.cpp \
+    $$PWD/qleveldbglobal.cpp \
     $$PWD/qleveldboptions.cpp \
-    $$PWD/qleveldbsettings.cpp \
-    $$PWD/qleveldbreadstream.cpp
+    $$PWD/qleveldbreadstream.cpp \
+    $$PWD/qqmlleveldb.cpp \
+    $$PWD/qqmlleveldbsettings.cpp \
+    $$PWD/qqmlleveldbreadstream.cpp
 
 qtHaveModule(qml) {
     QT += qml
 
-#    SOURCES += \
-#        qqmlwebchannel.cpp \
-#        qqmlwebchannelattached.cpp
-
     PUBLIC_HEADERS += \
-        qleveldbsettings.h
-
-#    PRIVATE_HEADERS += \
-#        qqmlwebchannelattached_p.h
+        $$PWD/qqmlleveldb.h \
+        $$PWD/qqmlleveldbsettings.h \
+        $$PWD/qqmlleveldbreadstream.h
 }
 
 HEADERS += $$PUBLIC_HEADERS $$PRIVATE_HEADERS

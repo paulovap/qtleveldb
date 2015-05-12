@@ -1,115 +1,57 @@
-#include <qqmlinfo.h>
-#include <QJsonDocument>
-#include <QQmlEngine>
-
-#include "qleveldbglobal.h"
 #include "qleveldb.h"
 #include "qleveldbbatch.h"
 
 QT_BEGIN_NAMESPACE
 
-static QHash<QString, QWeakPointer<leveldb::DB> > leveldbInstances;
-static QMultiHash<QString, QLevelDB*> qLeveldbInstances;
-/*!
-  \qmltype LevelDB
-  \inqmlmodule QtLevelDB
-  \brief Low level API to access LevelDB database.
+static QHash<QString, QWeakPointer<leveldb::DB> > dbInstances;
+static QMultiHash<QString, QLevelDB*> qLevelDBInstances;
 
-*/
 QLevelDB::QLevelDB(QObject *parent)
     : QObject(parent)
     , m_batch(nullptr)
-    , m_initialized(false)
     , m_opened(false)
     , m_status(Status::Undefined)
-    , m_statusText("")
 {
+
 }
+
+QLevelDB::QLevelDB(QString filename, QObject *parent)
+    : QLevelDB(parent)
+{
+    setFilename(filename);
+}
+
 
 QLevelDB::~QLevelDB()
 {
-    reset();
+    close();
 }
 
-void QLevelDB::classBegin()
-{
-}
-
-void QLevelDB::componentComplete()
-{
-    openDatabase(m_source.toLocalFile());
-    m_initialized = true;
-}
-
-/*!
-  \qmlproperty boolean LevelDB::opened
-  \readonly
-  \brief show when the database is ready to do operations
-*/
-bool QLevelDB::opened() const
+bool QLevelDB::opened()
 {
     return m_opened;
 }
 
-/*!
-  \qmlproperty url LevelDB::source
-  \brief url that points to the leveldb database folder.
-
-  For now it's only possible to use local file paths.
-*/
-QUrl QLevelDB::source() const
-{
-    return m_source;
-}
-
-
-/*!
-  \qmlproperty enumeration LevelDB::status
-  \brief This property holds information error in case the database is unable to load.
-  \table
-  \header
-    \li {2, 1} \e {LevelDB::Status} is an enumeration:
-  \header
-    \li Type
-    \li Description
-  \row
-    \li Layer.Undefined (default)
-    \li Database is in a unkown state(probably unintialized)
-  \row
-    \li Layout.Ok
-    \li Operation runs ok
-  \row
-    \li Layout.NotFound
-    \li A value is not found for a Key, during get()
-  \row
-    \li Layout.InvalidArgument
-    \li TODO
-  \row
-    \li Layout.IOError
-    \li TODO
-  \endtable
-*/
-QLevelDB::Status QLevelDB::status() const
+QLevelDB::Status QLevelDB::status()
 {
     return m_status;
 }
 
-/*!
-  \qmlproperty string LevelDB::statusText
-  \brief String information about an error when it occurs
-*/
-QString QLevelDB::statusText() const
+QString QLevelDB::lastError()
 {
-    return m_statusText;
+    return m_lastError;
 }
 
-void QLevelDB::setSource(QUrl source)
+QString QLevelDB::filename()
 {
-    if (m_source != source){
-        m_source = source;
-        emit sourceChanged();
-        if (m_initialized)
-            openDatabase(source.toLocalFile());
+    return m_filename;
+}
+
+void QLevelDB::setFilename(const QString filename)
+{
+    if (m_filename != filename){
+        m_filename = filename;
+        emit filenameChanged();
     }
 }
 
@@ -119,12 +61,58 @@ QLevelDBOptions *QLevelDB::options()
     return &m_options;
 }
 
-/*!
-  \qmlmethod QLevelDBBatch* QLevelDB::batch()
-  \brief Return an batch item to do batch operations
+QLevelDB::Status QLevelDB::open()
+{
+    close();
 
-   The rayCast method is only useful with physics is enabled.
-*/
+    if (dbInstances.contains(m_filename) && !dbInstances[m_filename].isNull()){
+        //if there is an instance running, just grab the db
+            m_levelDB = dbInstances[m_filename].toStrongRef();
+            setOpened(true);
+            setStatus(Ok);
+            setLastError(QString());
+    }else {
+        //create directories in path
+        QFileInfo fileInfo(m_filename);
+        if(!fileInfo.dir().exists()){
+            fileInfo.dir().mkpath(fileInfo.dir().absolutePath());
+        }
+        //else create a DB object
+        leveldb::DB *db;
+        leveldb::Options options = m_options.leveldbOptions();
+        leveldb::Status status = leveldb::DB::Open(options,
+                                                   m_filename.toStdString(),
+                                                   &db);
+        if(status.ok()){
+            m_levelDB.reset(db);
+            dbInstances.insert(m_filename, m_levelDB.toWeakRef());
+        }
+        setOpened(status.ok());
+        setLastError(QString::fromStdString(status.ToString()));
+        Status code = parseStatusCode(status);
+        setStatus(code);
+    }
+    if (m_opened){
+        qLevelDBInstances.insertMulti(m_filename, this);
+    }
+    return m_status;
+}
+
+void QLevelDB::close()
+{
+    m_levelDB.clear();
+    QWeakPointer<leveldb::DB> pointer = dbInstances[m_filename];
+    if (pointer.isNull())
+        dbInstances.remove(m_filename);
+
+    for (auto key : qLevelDBInstances.keys()){
+        qLevelDBInstances.remove(key, this);
+    }
+    setStatus(Status::Undefined);
+    setOpened(false);
+    setLastError(QString());
+}
+
 QLevelDBBatch* QLevelDB::batch()
 {
     if (m_batch)
@@ -134,9 +122,7 @@ QLevelDBBatch* QLevelDB::batch()
     return m_batch;
 }
 
-/*!
- * \qmlmethod bool QLevelDB::del(QString key)
-*/
+
 bool QLevelDB::del(QString key)
 {
     leveldb::WriteOptions options;
@@ -200,26 +186,22 @@ QVariant QLevelDB::get(QString key, QVariant defaultValue)
     return defaultValue;
 }
 
-bool QLevelDB::destroyDB(QUrl path)
+bool QLevelDB::destroyDB(QString filename)
 {
-    if (!path.isLocalFile())
-        return Status::InvalidArgument;
-    if(m_source == path){
-        setSource(QUrl());
+    if(m_filename == filename){
+        setFilename(QString());
     }
     leveldb::Options options;
-    leveldb::Status status = leveldb::DestroyDB(path.toLocalFile().toStdString(), options);
+    leveldb::Status status = leveldb::DestroyDB(filename.toStdString(), options);
     setStatus(parseStatusCode(status));
-    setStatusText(QString::fromStdString(status.ToString()));
+    setLastError(QString::fromStdString(status.ToString()));
     return status.ok();
 }
 
-bool QLevelDB::repairDB(QUrl path)
+bool QLevelDB::repairDB(QString filename)
 {
-    if (!path.isLocalFile())
-        return Status::InvalidArgument;
     leveldb::Options options;
-    leveldb::Status status = leveldb::RepairDB(path.toLocalFile().toStdString(), options);
+    leveldb::Status status = leveldb::RepairDB(filename.toStdString(), options);
     return status.ok();
 }
 
@@ -240,11 +222,11 @@ void QLevelDB::setStatus(QLevelDB::Status status)
     }
 }
 
-void QLevelDB::setStatusText(QString text)
+void QLevelDB::setLastError(QString text)
 {
-    if (m_statusText != text){
-        m_statusText = text;
-        emit statusTextChanged();
+    if (m_lastError != text){
+        m_lastError = text;
+        emit lastErrorChanged();
     }
 }
 
@@ -254,58 +236,6 @@ void QLevelDB::setOpened(bool opened)
         m_opened = opened;
         emit openedChanged();
     }
-}
-
-bool QLevelDB::openDatabase(QString localPath)
-{
-    reset();
-
-    if (leveldbInstances.contains(localPath) && !leveldbInstances[localPath].isNull()){
-        //if there is an instance running, just grab the db
-            m_levelDB = leveldbInstances[localPath].toStrongRef();
-            setOpened(true);
-            setStatus(Ok);
-            setStatusText("ok");
-    }else {
-        //create directories in path
-        QFileInfo fileInfo(localPath);
-        if(!fileInfo.dir().exists()){
-            fileInfo.dir().mkpath(fileInfo.dir().absolutePath());
-        }
-        //else create a DB object
-        leveldb::DB *db;
-        leveldb::Options options = m_options.leveldbOptions();
-        leveldb::Status status = leveldb::DB::Open(options,
-                                                   localPath.toStdString(),
-                                                   &db);
-        if(status.ok()){
-            m_levelDB.reset(db);
-            leveldbInstances.insert(localPath, m_levelDB.toWeakRef());
-        }
-        setOpened(status.ok());
-        setStatusText(QString::fromStdString(status.ToString()));
-        Status code = parseStatusCode(status);
-        setStatus(code);
-    }
-    if (m_opened){
-        qLeveldbInstances.insertMulti(localPath, this);
-    }
-    return m_opened;
-}
-
-void QLevelDB::reset()
-{
-    m_levelDB.clear();
-    QWeakPointer<leveldb::DB> pointer = leveldbInstances[m_source.toLocalFile()];
-    if (pointer.isNull())
-        leveldbInstances.remove(m_source.toLocalFile());
-
-    for (auto key : qLeveldbInstances.keys()){
-        qLeveldbInstances.remove(key, this);
-    }
-    setStatus(Status::Undefined);
-    setOpened(false);
-    setStatusText(QString());
 }
 
 void QLevelDB::onBatchWritten(QSet<QString> keys)
@@ -330,13 +260,12 @@ QLevelDB::Status QLevelDB::parseStatusCode(leveldb::Status &status)
 
 void QLevelDB::dispatchPropertyChange(QString key, QVariant value)
 {
-    QString local = m_source.toLocalFile();
-    QMultiHash<QString, QLevelDB*>::iterator i = qLeveldbInstances.find(local);
-    while (i != qLeveldbInstances.end() && i.key() == local) {
-       emit i.value()->propertyChanged(key, value);
+    QMultiHash<QString, QLevelDB*>::iterator i = qLevelDBInstances.find(m_filename);
+    while (i != qLevelDBInstances.end() && i.key() == m_filename) {
+       emit i.value()->keyValueChanged(key, value);
         ++i;
     }
 }
 
+
 QT_END_NAMESPACE
-//#include "moc_qleveldb.cpp"

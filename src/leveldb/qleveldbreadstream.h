@@ -1,13 +1,14 @@
 #ifndef QLEVELDBREADSTREAM_H
 #define QLEVELDBREADSTREAM_H
-#include <QtLevelDB/qleveldbglobal.h>
 #include <QObject>
 #include <QVariant>
+#include <QJSValue>
 #include <qsharedpointer.h>
+#include <qleveldbglobal.h>
 #include <../3rdparty/leveldb/include/leveldb/iterator.h>
 #include <../3rdparty/leveldb/include/leveldb/db.h>
-#include <QJSValue>
-//TODO: expose to QML
+
+
 QT_BEGIN_NAMESPACE
 
 class Q_LEVELDB_EXPORT QLevelDBReadStream : public QObject
@@ -17,9 +18,9 @@ class Q_LEVELDB_EXPORT QLevelDBReadStream : public QObject
     Q_PROPERTY(QString endKey READ endKey WRITE setEndKey FINAL)
 public:
     explicit QLevelDBReadStream(QWeakPointer<leveldb::DB> db, QObject *parent = 0);
-
-    Q_INVOKABLE bool start(QJSValue callback = QJSValue());
-    Q_INVOKABLE void stop();
+    ~QLevelDBReadStream();
+    bool start();
+    void stop();
 
     QString startKey() const;
     void setStartKey(QString key);
@@ -29,6 +30,7 @@ signals:
     void nextKeyValue(QString key, QVariant value);
 public slots:
 private:
+    Q_DISABLE_COPY(QLevelDBReadStream)
     bool m_shouldStop;
     QString m_startKey;
     QString m_endKey;

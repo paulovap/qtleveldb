@@ -35,7 +35,7 @@ TestCase {
     SignalSpy{
         id:spy2
         target:settings2
-        signalName:"propertyChanged"
+        signalName:"keyValueChanged"
     }
 
     function init(){

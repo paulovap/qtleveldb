@@ -41,11 +41,9 @@ protected:
     void classBegin();
     void componentComplete();
 private:
-    //Q_DISABLE_COPY(QLevelDBOptions)
+    Q_DISABLE_COPY(QLevelDBOptions)
     leveldb::Options m_options;
 };
-
-//QML_DECLARE_TYPE(QLevelDBOptions)
 
 QT_END_NAMESPACE
 #endif // QLEVELDBOPTIONS_H

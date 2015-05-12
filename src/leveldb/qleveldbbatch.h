@@ -1,9 +1,10 @@
 #ifndef QLEVELDBBATCH_H
 #define QLEVELDBBATCH_H
-#include <QtLevelDB/qleveldbglobal.h>
+
+
 #include <QObject>
-#include <QtQml>
 #include <QQmlParserStatus>
+#include "qleveldbglobal.h"
 #include "qleveldb.h"
 #include <../3rdparty/leveldb/include/leveldb/write_batch.h>
 #include <../3rdparty/leveldb/include/leveldb/db.h>
@@ -29,12 +30,11 @@ protected:
     void componentComplete();
 
 private:
+    Q_DISABLE_COPY(QLevelDBBatch)
     QSharedPointer<leveldb::DB> m_levelDB;
     leveldb::WriteBatch m_writeBatch;
     QSet<QString> m_operations;
 };
-
-QML_DECLARE_TYPE(QLevelDBBatch)
 
 QT_END_NAMESPACE
 #endif // QLEVELDBBATCH_H

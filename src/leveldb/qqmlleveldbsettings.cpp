@@ -1,5 +1,5 @@
 #include "qleveldbglobal.h"
-#include "qleveldbsettings.h"
+#include "qqmlleveldbsettings.h"
 #include <QMetaObject>
 #include <QMetaMethod>
 #include <QStringBuilder>
@@ -16,26 +16,26 @@ QT_BEGIN_NAMESPACE
 
   This supose to behave the same ways as Settings in qt.labs.settings
 */
-QLevelDBSettings::QLevelDBSettings(QObject *parent)
-    : QLevelDB(parent)
+QQmlLevelDBSettings::QQmlLevelDBSettings(QObject *parent)
+    : QQmlLevelDB(parent)
 {
-    setSource(QUrl::fromLocalFile(QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation) + "/settings.db"));
-    connect(this, &QLevelDBSettings::sourceChanged, this, &QLevelDBSettings::initProperties);
-    connect(this, &QLevelDBSettings::propertyChanged, this, &QLevelDBSettings::onPropertyChanged);
+    setFilename(QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation) + QStringLiteral("/settings.db"));
+    connect(this, &QQmlLevelDBSettings::filenameChanged, this, &QQmlLevelDBSettings::initProperties);
+    connect(this, &QQmlLevelDBSettings::keyValueChanged, this, &QQmlLevelDBSettings::onPropertyChanged);
 }
 
 
-void QLevelDBSettings::classBegin()
+void QQmlLevelDBSettings::classBegin()
 {
 }
 
-void QLevelDBSettings::componentComplete()
+void QQmlLevelDBSettings::componentComplete()
 {
-    QLevelDB::componentComplete();
+    QQmlLevelDB::componentComplete();
     initProperties();
 }
 
-void QLevelDBSettings::initProperties()
+void QQmlLevelDBSettings::initProperties()
 {
     for(auto connection : m_connections){
         QObject::disconnect(connection);
@@ -54,14 +54,14 @@ void QLevelDBSettings::initProperties()
             //we ignore read only properties
             continue;
         }
-        const QVariant value = get(property.name());
+        const QVariant value = get(QString::fromLocal8Bit(property.name()));
         const QVariant oldValue = property.read(this);
 
         if (value.isValid() && oldValue != value) {
             property.write(this, value);
         }else if (oldValue.isValid()){
             //qml static initialization
-            put(property.name(), oldValue);
+            put(QString::fromLocal8Bit(property.name()), oldValue);
         }
 
         if (property.hasNotifySignal()){
@@ -76,17 +76,17 @@ void QLevelDBSettings::initProperties()
  * Updating database with the new property value.
  * TODO: synchronize all instances of Settings with the new value
  */
-void QLevelDBSettings::onMyPropertyChanged()
+void QQmlLevelDBSettings::onMyPropertyChanged()
 {
-    if (m_levelDB.isNull())
+    if (!opened())
         return;
     QMetaProperty property = m_connectedProperties[senderSignalIndex()];
-    QString propertyName = property.name();
+    QString propertyName = QString::fromLocal8Bit(property.name());
     QVariant value = property.read(this);
     put(propertyName, value);
 }
 
-void QLevelDBSettings::onPropertyChanged(QString key, QVariant value)
+void QQmlLevelDBSettings::onPropertyChanged(QString key, QVariant value)
 {
     Q_UNUSED(value);
     const QMetaObject *ob = metaObject();
@@ -96,4 +96,3 @@ void QLevelDBSettings::onPropertyChanged(QString key, QVariant value)
 }
 
 QT_END_NAMESPACE
-//#include "moc_qleveldbsettings.cpp"
