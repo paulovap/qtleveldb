@@ -37,7 +37,7 @@ void QQmlLevelDBReadStream::onNextKeyValue(QString key, QVariant value)
     if (m_callback.isCallable()){
         QJSValueList list;
         list << QJSValue(key);
-        list << m_jsEngine.toScriptValue<QVariant>(value);
+        list << m_callback.engine()->toScriptValue<QVariant>(value);
         m_callback.call(list);
     }
 }
