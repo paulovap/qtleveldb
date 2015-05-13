@@ -3,13 +3,16 @@
 
 #include <QObject>
 
-#include "../3rdparty/leveldb/include/leveldb/db.h"
 #include "qleveldbglobal.h"
 #include "qleveldboptions.h"
 #include "qleveldbreadstream.h"
 
 QT_BEGIN_NAMESPACE
 
+namespace leveldb {
+class DB;
+class Status;
+}
 class QLevelDBBatch;
 
 class Q_LEVELDB_EXPORT QLevelDB : public QObject

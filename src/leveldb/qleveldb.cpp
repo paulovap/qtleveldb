@@ -1,3 +1,5 @@
+#include "../../3rdparty/leveldb/include/leveldb/db.h"
+
 #include "qleveldb.h"
 #include "qleveldbbatch.h"
 

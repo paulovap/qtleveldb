@@ -4,12 +4,14 @@
 #include <QVariant>
 #include <QJSValue>
 #include <qsharedpointer.h>
-#include <qleveldbglobal.h>
-#include <../3rdparty/leveldb/include/leveldb/iterator.h>
-#include <../3rdparty/leveldb/include/leveldb/db.h>
-
+#include "qleveldbglobal.h"
 
 QT_BEGIN_NAMESPACE
+
+namespace leveldb {
+class DB;
+class Iterator;
+}
 
 class Q_LEVELDB_EXPORT QLevelDBReadStream : public QObject
 {

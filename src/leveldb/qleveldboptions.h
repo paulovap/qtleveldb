@@ -1,12 +1,16 @@
 #ifndef QLEVELDBOPTIONS_H
 #define QLEVELDBOPTIONS_H
-#include <QtLevelDB/qleveldbglobal.h>
+#include "qleveldbglobal.h"
 #include <QObject>
 #include <QQmlParserStatus>
 #include <QtQml>
-#include <../3rdparty/leveldb/include/leveldb/db.h>
 
 QT_BEGIN_NAMESPACE
+
+namespace leveldb {
+class DB;
+class Options;
+}
 
 class Q_LEVELDB_EXPORT QLevelDBOptions : public QObject, public QQmlParserStatus
 {
@@ -42,7 +46,7 @@ protected:
     void componentComplete();
 private:
     Q_DISABLE_COPY(QLevelDBOptions)
-    leveldb::Options m_options;
+    leveldb::Options *m_options;
 };
 
 QT_END_NAMESPACE

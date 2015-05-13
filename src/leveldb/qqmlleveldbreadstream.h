@@ -7,12 +7,15 @@
 #include <QWeakPointer>
 #include <qqmlparserstatus.h>
 #include <QtQml>
-#include <qleveldbglobal.h>
+
+#include "qleveldbglobal.h"
 #include "qleveldbreadstream.h"
-#include "../../3rdparty/leveldb/include/leveldb/db.h"
 
 QT_BEGIN_NAMESPACE
 
+namespace leveldb {
+class DB;
+}
 class Q_LEVELDB_EXPORT QQmlLevelDBReadStream : public QLevelDBReadStream, public QQmlParserStatus
 {
     Q_OBJECT

@@ -10,12 +10,14 @@
 #include <QQmlParserStatus>
 #include <QQmlEngine>
 #include <QtQml>
-#include <../3rdparty/leveldb/include/leveldb/db.h>
-#include <qqmlleveldb.h>
-#include <qleveldbglobal.h>
+
+#include "qqmlleveldb.h"
+#include "qleveldbglobal.h"
 
 QT_BEGIN_NAMESPACE
-
+namespace leveldb {
+class DB;
+}
 class Q_LEVELDB_EXPORT QQmlLevelDBSettings : public QQmlLevelDB
 {
     Q_OBJECT

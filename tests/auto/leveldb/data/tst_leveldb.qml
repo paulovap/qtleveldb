@@ -98,6 +98,6 @@ import QtLevelDB 1.0
                compare(value, data[key], "Inconsistent data")
             })
             db.source = ""
-            compare(db.destroyDB(db.source), true, db.statusText)
+            compare(db.destroyDB("read_stream.db"), true, db.statusText)
         }
     }

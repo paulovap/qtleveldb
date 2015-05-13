@@ -1,11 +1,11 @@
 #ifndef QQMLLEVELDB_H
 #define QQMLLEVELDB_H
-#include <QtLevelDB/qleveldbglobal.h>
 #include <QObject>
 #include <QUrl>
 #include <QtQml>
 #include <QtQml/qqmlparserstatus.h>
-#include "../3rdparty/leveldb/include/leveldb/db.h"
+
+#include "qleveldbglobal.h"
 #include "qleveldboptions.h"
 #include "qleveldbreadstream.h"
 #include "qleveldb.h"

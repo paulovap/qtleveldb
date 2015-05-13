@@ -1,3 +1,6 @@
+#include "../../3rdparty/leveldb/include/leveldb/db.h"
+#include "../../3rdparty/leveldb/include/leveldb/iterator.h"
+#include "../../3rdparty/leveldb/include/leveldb/options.h"
 #include "qleveldbglobal.h"
 #include "qleveldbreadstream.h"
 
