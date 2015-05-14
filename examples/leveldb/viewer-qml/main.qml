@@ -35,6 +35,7 @@ ApplicationWindow {
         onOpenedChanged: {
             console.log("leveldb opened")
             db.readStream().start(function (key, value){
+                model.clear()
                 model.append({"key":key, "value": JSON.stringify(value)})
             })
         }

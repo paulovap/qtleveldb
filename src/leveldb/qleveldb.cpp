@@ -8,6 +8,19 @@ QT_BEGIN_NAMESPACE
 static QHash<QString, QWeakPointer<leveldb::DB> > dbInstances;
 static QMultiHash<QString, QLevelDB*> qLevelDBInstances;
 
+/*!
+    \class QLevelDB
+    \inmodule QtLevelDB
+    \since 5.5
+
+    \brief The QLevelDB class enables access to a LevelDB database.
+
+    A QLevelDB classe can be used to insert or access data in a LevelDB database. 
+*/
+
+/*!
+    Constructs an new QLevelDB object.
+*/
 QLevelDB::QLevelDB(QObject *parent)
     : QObject(parent)
     , m_batch(nullptr)
@@ -17,6 +30,9 @@ QLevelDB::QLevelDB(QObject *parent)
 
 }
 
+/*!
+    Constructs an new QLevelDB object passing the filename of the database to be opened.
+*/
 QLevelDB::QLevelDB(QString filename, QObject *parent)
     : QLevelDB(parent)
 {
@@ -29,40 +45,64 @@ QLevelDB::~QLevelDB()
     close();
 }
 
+/*!
+    Indicates whether the database is already open or not.
+*/
 bool QLevelDB::opened()
 {
     return m_opened;
 }
 
+/*!
+    QLevelDB::Status of the last operation.
+*/
 QLevelDB::Status QLevelDB::status()
 {
     return m_status;
 }
 
+/*!
+    A text representing the last error in a operation.
+*/
 QString QLevelDB::lastError()
 {
     return m_lastError;
 }
 
+/*!
+    Path to the database files.
+*/
 QString QLevelDB::filename()
 {
     return m_filename;
 }
 
+/*!
+    Change the path to the database file. If there is a already a database opened,
+    it will be automatically closed.
+*/
 void QLevelDB::setFilename(const QString filename)
 {
     if (m_filename != filename){
         m_filename = filename;
         emit filenameChanged();
+        if (opened())
+            close();
     }
 }
 
+/*!
+    Options used when opening the database. For more details see QLevelDBOptions.
+*/
 QLevelDBOptions *QLevelDB::options()
 {
     leveldb::WriteOptions options;
     return &m_options;
 }
 
+/*!
+    Open the database. Return the results as QLevelDB::Status
+*/
 QLevelDB::Status QLevelDB::open()
 {
     close();
@@ -100,6 +140,9 @@ QLevelDB::Status QLevelDB::open()
     return m_status;
 }
 
+/*!
+    Close the database
+*/
 void QLevelDB::close()
 {
     m_levelDB.clear();
@@ -115,6 +158,9 @@ void QLevelDB::close()
     setLastError(QString());
 }
 
+/*!
+    Returns a QLevelDBBatch for bulk operations.
+*/
 QLevelDBBatch* QLevelDB::batch()
 {
     if (m_batch)
@@ -124,7 +170,9 @@ QLevelDBBatch* QLevelDB::batch()
     return m_batch;
 }
 
-
+/*!
+    Deletes a Key/Value from database.
+*/
 bool QLevelDB::del(QString key)
 {
     leveldb::WriteOptions options;
@@ -133,6 +181,9 @@ bool QLevelDB::del(QString key)
     return status.ok();
 }
 
+/*!
+    Add a Key/Value in database. If there is already a value, it will be overriden. This operation is asynchronous.
+*/
 bool QLevelDB::put(QString key, QVariant value)
 {
     QVariant oldValue = get(key);
@@ -153,6 +204,9 @@ bool QLevelDB::put(QString key, QVariant value)
     return false;
 }
 
+/*!
+    Add a Key/Value in database. If there is already a value, it will be overriden. This operation is synchronous.
+*/
 bool QLevelDB::putSync(QString key, QVariant value)
 {
     QVariant oldValue = get(key);
@@ -174,6 +228,9 @@ bool QLevelDB::putSync(QString key, QVariant value)
     return false;
 }
 
+/*!
+    Returns a value for a given key. An options defaultValue can be used in case there is no such key.
+*/
 QVariant QLevelDB::get(QString key, QVariant defaultValue)
 {
     leveldb::ReadOptions options;
@@ -188,6 +245,9 @@ QVariant QLevelDB::get(QString key, QVariant defaultValue)
     return defaultValue;
 }
 
+/*!
+    Delete the database files from the filesystem.
+*/
 bool QLevelDB::destroyDB(QString filename)
 {
     if(m_filename == filename){
@@ -200,6 +260,9 @@ bool QLevelDB::destroyDB(QString filename)
     return status.ok();
 }
 
+/*!
+    Execute LevelDB's repair operation on a database.
+*/
 bool QLevelDB::repairDB(QString filename)
 {
     leveldb::Options options;
@@ -207,6 +270,10 @@ bool QLevelDB::repairDB(QString filename)
     return status.ok();
 }
 
+/*!
+    Create a QLevelDBReadStream object to read a series of key/values. If no startKey or endKey
+    is set it will stream all inserted elements. The order of the stream is sorted by key.
+*/
 QLevelDBReadStream *QLevelDB::readStream(const QString startKey, const QString endKey)
 {
     QLevelDBReadStream *readStream = new QLevelDBReadStream(m_levelDB.toWeakRef(), this);
