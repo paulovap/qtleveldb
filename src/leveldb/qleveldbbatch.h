@@ -3,7 +3,6 @@
 
 
 #include <QObject>
-#include <QQmlParserStatus>
 #include "qleveldbglobal.h"
 #include "qleveldb.h"
 
@@ -14,10 +13,9 @@ class DB;
 class WriteBatch;
 }
 
-class Q_LEVELDB_EXPORT QLevelDBBatch : public QObject, public QQmlParserStatus
+class Q_LEVELDB_EXPORT QLevelDBBatch : public QObject
 {
     Q_OBJECT
-    Q_INTERFACES(QQmlParserStatus)
 public:
     explicit QLevelDBBatch(QWeakPointer<leveldb::DB> db, QObject *parent = 0);
     ~QLevelDBBatch();
@@ -28,10 +26,6 @@ public:
     Q_INVOKABLE bool write();
 signals:
     void batchWritten(QSet<QString> keys);
-protected:
-    void classBegin();
-    void componentComplete();
-
 private:
     Q_DISABLE_COPY(QLevelDBBatch)
     QSharedPointer<leveldb::DB> m_levelDB;

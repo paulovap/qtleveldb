@@ -2,7 +2,6 @@
 #define QLEVELDBREADSTREAM_H
 #include <QObject>
 #include <QVariant>
-#include <QJSValue>
 #include <qsharedpointer.h>
 #include "qleveldbglobal.h"
 

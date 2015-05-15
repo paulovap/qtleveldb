@@ -15,7 +15,7 @@ static QMultiHash<QString, QLevelDB*> qLevelDBInstances;
 
     \brief The QLevelDB class enables access to a LevelDB database.
 
-    A QLevelDB classe can be used to insert or access data in a LevelDB database. 
+    A QLevelDB classe can be used to insert or access data in a LevelDB database.
 */
 
 /*!
@@ -145,6 +145,9 @@ QLevelDB::Status QLevelDB::open()
 */
 void QLevelDB::close()
 {
+    delete m_batch;
+    m_batch = nullptr;
+
     m_levelDB.clear();
     QWeakPointer<leveldb::DB> pointer = dbInstances[m_filename];
     if (pointer.isNull())
@@ -164,7 +167,7 @@ void QLevelDB::close()
 QLevelDBBatch* QLevelDB::batch()
 {
     if (m_batch)
-        m_batch->deleteLater();
+        delete m_batch;
     m_batch = new QLevelDBBatch(m_levelDB.toWeakRef(), this);
     connect(m_batch, &QLevelDBBatch::batchWritten, this, &QLevelDB::onBatchWritten);
     return m_batch;
@@ -279,7 +282,6 @@ QLevelDBReadStream *QLevelDB::readStream(const QString startKey, const QString e
     QLevelDBReadStream *readStream = new QLevelDBReadStream(m_levelDB.toWeakRef(), this);
     readStream->setEndKey(endKey);
     readStream->setStartKey(startKey);
-    QQmlEngine::setObjectOwnership(readStream, QQmlEngine::JavaScriptOwnership);
     return readStream;
 }
 

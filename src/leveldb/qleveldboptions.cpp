@@ -57,15 +57,5 @@ void QLevelDBOptions::setCompressionType(QLevelDBOptions::CompressionType type)
                 leveldb::CompressionType::kNoCompression;
 }
 
-void QLevelDBOptions::classBegin()
-{
-
-}
-
-void QLevelDBOptions::componentComplete()
-{
-
-}
-
 QT_END_NAMESPACE
 //#include "moc_qleveldboptions.cpp"

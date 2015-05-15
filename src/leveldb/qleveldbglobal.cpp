@@ -186,10 +186,10 @@ QVariant jsonToVariant(QString json)
 QVariant jsonToVariant(QJsonObject object)
 {
     if (object.isEmpty()){
-        return QVariant(QJsonValue(QJsonValue::Undefined));
+        return QVariant();
     }
     if (object.value("type") == QString("primitive"))
-        return object.value("data");
+        return object.value("data").toVariant();
     else if (object.value("type") == QString("point")){
         QJsonObject data = object.value("data").toObject();
         return QVariant(QPoint(data.value("x").toInt(), data.value("y").toInt()));

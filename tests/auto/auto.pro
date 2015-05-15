@@ -1,8 +1,8 @@
 TEMPLATE = subdirs
 
-SUBDIRS += cmake leveldb
+SUBDIRS += cmake cpp
 
-#qtHaveModule(quick) {
-#    SUBDIRS += qml
-#}
+qtHaveModule(quick) {
+    SUBDIRS += qml
+}
 

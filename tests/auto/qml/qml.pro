@@ -10,8 +10,5 @@ TARGET = tst_leveldb
 SOURCES += \
     tst_leveldb.cpp
 
-HEADERS += \
-    tst_leveldb.h
-
 OTHER_FILES += \
     data/*

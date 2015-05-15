@@ -2,8 +2,6 @@
 #define QLEVELDBOPTIONS_H
 #include "qleveldbglobal.h"
 #include <QObject>
-#include <QQmlParserStatus>
-#include <QtQml>
 
 QT_BEGIN_NAMESPACE
 
@@ -12,10 +10,9 @@ class DB;
 class Options;
 }
 
-class Q_LEVELDB_EXPORT QLevelDBOptions : public QObject, public QQmlParserStatus
+class Q_LEVELDB_EXPORT QLevelDBOptions : public QObject
 {
     Q_OBJECT
-    Q_INTERFACES(QQmlParserStatus)
     Q_PROPERTY(bool createIfMissing READ createIfMissing WRITE setCreateIfMissing)
     Q_PROPERTY(bool errorIfExists READ errorIfExists WRITE setErrorIfExists)
     Q_PROPERTY(bool paranoidChecks READ paranoidChecks WRITE setParanoidChecks)
@@ -41,9 +38,6 @@ public:
     void setErrorIfExists(bool value);
     void setParanoidChecks(bool value);
     void setCompressionType(CompressionType type);
-protected:
-    void classBegin();
-    void componentComplete();
 private:
     Q_DISABLE_COPY(QLevelDBOptions)
     leveldb::Options *m_options;

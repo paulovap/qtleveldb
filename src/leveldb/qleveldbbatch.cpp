@@ -55,13 +55,5 @@ bool QLevelDBBatch::write()
     }
     return status.ok();
 }
-
-void QLevelDBBatch::classBegin()
-{
-}
-
-void QLevelDBBatch::componentComplete()
-{
-}
 QT_END_NAMESPACE
 //#include "moc_qleveldbbatch.cpp"
