@@ -64,6 +64,8 @@ bool QLevelDBReadStream::start()
     else
         it->Seek(leveldb::Slice(m_startKey.toStdString()));
 
+    emit streamStarted();
+
     while(it->Valid() && !m_shouldStop){
         QString key = QString::fromStdString(it->key().ToString());
         QVariant value = jsonToVariant(QString::fromStdString(it->value().ToString()));
@@ -74,6 +76,8 @@ bool QLevelDBReadStream::start()
             break;
     }
     delete it;
+
+    emit streamEnded();
     return true;
 }
 

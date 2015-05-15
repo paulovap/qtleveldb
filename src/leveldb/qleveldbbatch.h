@@ -3,6 +3,7 @@
 
 
 #include <QObject>
+#include <QSet>
 #include "qleveldbglobal.h"
 #include "qleveldb.h"
 

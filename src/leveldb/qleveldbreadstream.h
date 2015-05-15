@@ -27,6 +27,8 @@ public:
     QString startKey() const;
     QString endKey() const;
     signals:
+    void streamStarted();
+    void streamEnded();
     void nextKeyValue(QString key, QVariant value);
 public slots:
 private:
