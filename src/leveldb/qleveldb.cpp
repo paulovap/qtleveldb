@@ -121,7 +121,14 @@ QLevelDB::Status QLevelDB::open()
         }
         //else create a DB object
         leveldb::DB *db;
-        leveldb::Options options = m_options.leveldbOptions();
+        leveldb::Options options;
+
+        options.create_if_missing = m_options.createIfMissing();
+        options.error_if_exists = m_options.errorIfExists();
+        options.compression = static_cast<leveldb::CompressionType>(m_options.compressionType());
+        options.paranoid_checks = m_options.paranoidChecks();
+
+
         leveldb::Status status = leveldb::DB::Open(options,
                                                    m_filename.toStdString(),
                                                    &db);
@@ -162,7 +169,8 @@ void QLevelDB::close()
 }
 
 /*!
-    Returns a QLevelDBBatch for bulk operations.
+    Returns a QLevelDBBatch for bulk operations. QLevelDBBatch pointer returned will only
+    remain valid as long as QLevelDB::close() or QLevelDB::batch() is not called.
 */
 QLevelDBBatch* QLevelDB::batch()
 {
@@ -279,9 +287,7 @@ bool QLevelDB::repairDB(QString filename)
 */
 QLevelDBReadStream *QLevelDB::readStream(const QString startKey, const QString endKey)
 {
-    QLevelDBReadStream *readStream = new QLevelDBReadStream(m_levelDB.toWeakRef(), this);
-    readStream->setEndKey(endKey);
-    readStream->setStartKey(startKey);
+    QLevelDBReadStream *readStream = new QLevelDBReadStream(m_levelDB.toWeakRef(), startKey, endKey, this);
     return readStream;
 }
 

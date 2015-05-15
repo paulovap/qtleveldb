@@ -15,19 +15,18 @@ class Iterator;
 class Q_LEVELDB_EXPORT QLevelDBReadStream : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(QString startKey READ startKey WRITE setStartKey FINAL)
-    Q_PROPERTY(QString endKey READ endKey WRITE setEndKey FINAL)
+    Q_PROPERTY(QString startKey READ startKey FINAL)
+    Q_PROPERTY(QString endKey READ endKey FINAL)
 public:
     explicit QLevelDBReadStream(QWeakPointer<leveldb::DB> db, QObject *parent = 0);
+    QLevelDBReadStream(QWeakPointer<leveldb::DB> db, QString startKey, QString endKey = QString(), QObject *parent = 0);
     ~QLevelDBReadStream();
     bool start();
     void stop();
 
     QString startKey() const;
-    void setStartKey(QString key);
     QString endKey() const;
-    void setEndKey(QString value);
-signals:
+    signals:
     void nextKeyValue(QString key, QVariant value);
 public slots:
 private:

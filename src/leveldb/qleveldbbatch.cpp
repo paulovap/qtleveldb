@@ -6,6 +6,17 @@
 
 QT_BEGIN_NAMESPACE
 
+/*!
+    \class QLevelDBBatch
+    \inmodule QtLevelDB
+    \since 5.5
+
+    \brief Apply bulk operations in a LevelDB Database, rolling back in case of error.
+*/
+
+/*!
+    Constructs an new QLevelDBBatch object.
+*/
 QLevelDBBatch::QLevelDBBatch(QWeakPointer<leveldb::DB> db, QObject *parent)
     : QObject(parent)
     , m_levelDB(db)
@@ -20,6 +31,9 @@ QLevelDBBatch::~QLevelDBBatch()
         delete m_writeBatch;
 }
 
+/*!
+    Deletes a key/value.
+*/
 QLevelDBBatch* QLevelDBBatch::del(QString key)
 {
     m_operations.insert(key);
@@ -27,6 +41,9 @@ QLevelDBBatch* QLevelDBBatch::del(QString key)
     return this;
 }
 
+/*!
+    Inserts or update a key/value.
+*/
 QLevelDBBatch* QLevelDBBatch::put(QString key, QVariant value)
 {
     QString json = variantToJson(value);
@@ -36,6 +53,9 @@ QLevelDBBatch* QLevelDBBatch::put(QString key, QVariant value)
     return this;
 }
 
+/*!
+    Remove all peding operations.
+*/
 QLevelDBBatch* QLevelDBBatch::clear()
 {
     m_writeBatch->Clear();
@@ -43,6 +63,9 @@ QLevelDBBatch* QLevelDBBatch::clear()
     return this;
 }
 
+/*!
+    Apply all operations in database.
+*/
 bool QLevelDBBatch::write()
 {
     leveldb::WriteOptions options;

@@ -1,4 +1,5 @@
 #include "qqmlleveldbreadstream.h"
+#include <QtGlobal>
 #include <QJSValueList>
 #include <QQmlEngine>
 #include <QQmlContext>
@@ -7,6 +8,12 @@ QT_BEGIN_NAMESPACE
 
 QQmlLevelDBReadStream::QQmlLevelDBReadStream(QWeakPointer<leveldb::DB> db, QObject *parent)
     : QLevelDBReadStream(db, parent)
+{
+    connect(this, &QQmlLevelDBReadStream::nextKeyValue, this, &QQmlLevelDBReadStream::onNextKeyValue);
+}
+
+QQmlLevelDBReadStream::QQmlLevelDBReadStream(QWeakPointer<leveldb::DB> db, QString startKey, QString endKey, QObject *parent)
+    : QLevelDBReadStream(db, startKey, endKey, parent)
 {
     connect(this, &QQmlLevelDBReadStream::nextKeyValue, this, &QQmlLevelDBReadStream::onNextKeyValue);
 }
@@ -34,10 +41,13 @@ void QQmlLevelDBReadStream::componentComplete()
 
 void QQmlLevelDBReadStream::onNextKeyValue(QString key, QVariant value)
 {
+    QJSEngine *engine = qjsEngine(this);
+    if (!engine)
+        return;
     if (m_callback.isCallable()){
         QJSValueList list;
         list << QJSValue(key);
-        list << m_callback.engine()->toScriptValue<QVariant>(value);
+        list << engine->toScriptValue<QVariant>(value);
         m_callback.call(list);
     }
 }

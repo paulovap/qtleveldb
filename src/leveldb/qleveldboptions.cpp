@@ -3,58 +3,77 @@
 
 QT_BEGIN_NAMESPACE
 
+/*!
+    \class QLevelDBOptions
+    \inmodule QtLevelDB
+    \since 5.5
+
+    \brief The QLevelDBOptions manipulates options used when opening a LevelDB Database.
+*/
+
+/*!
+    Constructs an new QLevelDBOptions object.
+*/
 QLevelDBOptions::QLevelDBOptions(QObject *parent)
     : QObject(parent)
-    , m_options(new leveldb::Options())
+    , m_createIfMissing(true)
+    , m_errorIfExists(false)
+    , m_paranoidChecks(false)
+    , m_compressionType(CompressionType::SnappyCompression)
 {
-    m_options->create_if_missing = true;
 }
 
-leveldb::Options QLevelDBOptions::leveldbOptions() const
-{
-    return *m_options;
-}
+/*!
+    If true creates a new database if the specified one does no exist.
+*/
 bool QLevelDBOptions::createIfMissing() const
 {
-    return m_options->create_if_missing;
+    return m_createIfMissing;
 }
 
+/*!
+    If true QLevelDB::open() raises an error if database already exists
+*/
 bool QLevelDBOptions::errorIfExists() const
 {
-    return m_options->error_if_exists;
+    return m_errorIfExists;
 }
 
+/*!
+    Increase leveldb checks and raise an error as soon as it detects an internal corruption. In case of corruption
+    of data, QLevelDB::repairDB() might recover the data
+*/
 bool QLevelDBOptions::paranoidChecks() const
 {
-    return m_options->paranoid_checks;
+    return m_paranoidChecks;
 }
 
+/*!
+    Indicates whether snappy compression should be used of not
+*/
 QLevelDBOptions::CompressionType QLevelDBOptions::compressionType() const
 {
-    return m_options->compression == leveldb::CompressionType::kNoCompression ?
-                CompressionType::NoCompression : CompressionType::SnappyCompression;
+    return m_compressionType;
 }
 
 void QLevelDBOptions::setCreateIfMissing(bool value)
 {
-    m_options->create_if_missing = value;
+    m_createIfMissing = value;
 }
 
 void QLevelDBOptions::setErrorIfExists(bool value)
 {
-    m_options->error_if_exists = value;
+    m_errorIfExists = value;
 }
 
 void QLevelDBOptions::setParanoidChecks(bool value)
 {
-    m_options->paranoid_checks = value;
+    m_paranoidChecks = value;
 }
 
 void QLevelDBOptions::setCompressionType(QLevelDBOptions::CompressionType type)
 {
-    m_options->compression = type == CompressionType::SnappyCompression ?
-                leveldb::CompressionType::kSnappyCompression :
-                leveldb::CompressionType::kNoCompression;
+    m_compressionType = type;
 }
 
 QT_END_NAMESPACE

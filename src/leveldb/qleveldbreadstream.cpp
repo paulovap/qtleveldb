@@ -6,6 +6,17 @@
 
 QT_BEGIN_NAMESPACE
 
+/*!
+    \class QLevelDBReadStream
+    \inmodule QtLevelDB
+    \since 5.5
+
+    \brief Provides a way to scan the database, receiving a stream of key/values in a ordered manner.
+*/
+
+/*!
+    Constructs an new QLevelDBReadStream object.
+*/
 QLevelDBReadStream::QLevelDBReadStream(QWeakPointer<leveldb::DB> db, QObject *parent)
     : QObject(parent)
     , m_shouldStop(false)
@@ -14,11 +25,29 @@ QLevelDBReadStream::QLevelDBReadStream(QWeakPointer<leveldb::DB> db, QObject *pa
 
 }
 
+/*!
+    Constructs an new QLevelDBReadStream object. startKey and endKey indicate
+    the boundaries of the stream.
+*/
+QLevelDBReadStream::QLevelDBReadStream(QWeakPointer<leveldb::DB> db, QString startKey, QString endKey, QObject *parent)
+    : QObject(parent)
+    , m_shouldStop(false)
+    , m_startKey(startKey)
+    , m_endKey(endKey)
+    , m_db(db)
+{
+
+}
+
+
 QLevelDBReadStream::~QLevelDBReadStream()
 {
 
 }
 
+/*!
+    Start streaming key/value pairs. Theses pairs will be emited in the QLevelDBReadStream::nextKeyValue() signal.
+*/
 bool QLevelDBReadStream::start()
 {
     if (m_db.isNull())
@@ -48,29 +77,28 @@ bool QLevelDBReadStream::start()
     return true;
 }
 
+/*!
+    Stops key/value streaming.
+*/
 void QLevelDBReadStream::stop()
 {
     m_shouldStop = true;
 }
 
+/*!
+    First key that will be streamed.
+*/
 QString QLevelDBReadStream::startKey() const
 {
     return m_startKey;
 }
 
-void QLevelDBReadStream::setStartKey(QString key)
-{
-    m_startKey = key;
-}
-
+/*!
+    Last key that will be streamed.
+*/
 QString QLevelDBReadStream::endKey() const
 {
     return m_endKey;
-}
-
-void QLevelDBReadStream::setEndKey(QString key)
-{
-    m_endKey = key;
 }
 
 QT_END_NAMESPACE

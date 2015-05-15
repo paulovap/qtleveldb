@@ -28,7 +28,6 @@ public:
         SnappyCompression = 0x1
     };
 
-    leveldb::Options leveldbOptions() const;
     bool createIfMissing() const;
     bool errorIfExists() const;
     bool paranoidChecks() const;
@@ -40,7 +39,10 @@ public:
     void setCompressionType(CompressionType type);
 private:
     Q_DISABLE_COPY(QLevelDBOptions)
-    leveldb::Options *m_options;
+    bool m_createIfMissing;
+    bool m_errorIfExists;
+    bool m_paranoidChecks;
+    CompressionType m_compressionType;
 };
 
 QT_END_NAMESPACE

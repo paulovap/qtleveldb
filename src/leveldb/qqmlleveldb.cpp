@@ -36,12 +36,10 @@ void QQmlLevelDB::setSource(QUrl source)
             open();
     }
 }
-
+//TODO: maybe readStream should be owned by *this* and deleted when database is closed or source changed.
 QQmlLevelDBReadStream *QQmlLevelDB::readStream(QString startKey, QString endKey)
 {
-    QQmlLevelDBReadStream *readStream = new QQmlLevelDBReadStream(m_levelDB.toWeakRef(), this);
-    readStream->setEndKey(endKey);
-    readStream->setStartKey(startKey);
+    QQmlLevelDBReadStream *readStream = new QQmlLevelDBReadStream(m_levelDB.toWeakRef(), startKey, endKey, this);
     QQmlEngine::setObjectOwnership(readStream, QQmlEngine::JavaScriptOwnership);
     return readStream;
 }
