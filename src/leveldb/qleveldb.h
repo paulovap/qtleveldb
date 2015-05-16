@@ -18,11 +18,6 @@ class QLevelDBBatch;
 class Q_LEVELDB_EXPORT QLevelDB : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(QString filename READ filename NOTIFY filenameChanged)
-    Q_PROPERTY(Status status READ status NOTIFY statusChanged)
-    Q_PROPERTY(QString lastError READ lastError NOTIFY lastErrorChanged)
-    Q_PROPERTY(bool opened READ opened NOTIFY openedChanged)
-    Q_PROPERTY(QLevelDBOptions* options READ options)
     Q_ENUMS(Status)
 
 public:
@@ -50,13 +45,16 @@ public:
 
     QLevelDBReadStream* readStream(const QString startKey =  QString(), const QString endKey = QString());
 
-    Q_INVOKABLE QLevelDBBatch* batch();
-    Q_INVOKABLE bool del(QString key);
-    Q_INVOKABLE QVariant get(QString key, QVariant defaultValue = QVariant());
-    Q_INVOKABLE bool put(QString key, QVariant value);
-    Q_INVOKABLE bool putSync(QString key, QVariant value);
-    Q_INVOKABLE bool destroyDB(QString filename);
-    Q_INVOKABLE bool repairDB(QString filename);
+    void setFilename(QString filename);
+    QLevelDBBatch* batch();
+    bool del(QString key);
+    QVariant get(QString key, QVariant defaultValue = QVariant());
+    bool put(QString key, QVariant value);
+    bool putSync(QString key, QVariant value);
+    bool destroyDB(QString filename);
+    bool repairDB(QString filename);
+
+    QWeakPointer<leveldb::DB> dbNativeHandler();
 signals:
     void filenameChanged();
     void openedChanged();
@@ -66,7 +64,6 @@ signals:
 private slots:
     void onBatchWritten(QSet<QString> keys);
 protected:
-    void setFilename(QString filename);
     QSharedPointer<leveldb::DB> m_levelDB;
 private:
     Q_DISABLE_COPY(QLevelDB)

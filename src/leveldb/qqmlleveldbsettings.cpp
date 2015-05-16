@@ -19,8 +19,8 @@ QT_BEGIN_NAMESPACE
 QQmlLevelDBSettings::QQmlLevelDBSettings(QObject *parent)
     : QQmlLevelDB(parent)
 {
-    setFilename(QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation) + QStringLiteral("/settings.db"));
-    connect(this, &QQmlLevelDBSettings::filenameChanged, this, &QQmlLevelDBSettings::initProperties);
+    setSource(QUrl::fromLocalFile(QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation) + QStringLiteral("/settings.db")));
+    connect(this, &QQmlLevelDBSettings::sourceChanged, this, &QQmlLevelDBSettings::initProperties);
     connect(this, &QQmlLevelDBSettings::keyValueChanged, this, &QQmlLevelDBSettings::onPropertyChanged);
 }
 

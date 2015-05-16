@@ -105,7 +105,11 @@ QLevelDBOptions *QLevelDB::options()
 */
 QLevelDB::Status QLevelDB::open()
 {
-    close();
+    if (opened()){
+        setStatus(IOError);
+        setLastError("Database already opened");
+        return m_status;
+    }
 
     if (dbInstances.contains(m_filename) && !dbInstances[m_filename].isNull()){
         //if there is an instance running, just grab the db
@@ -268,7 +272,7 @@ bool QLevelDB::destroyDB(QString filename)
     leveldb::Status status = leveldb::DestroyDB(filename.toStdString(), options);
     setStatus(parseStatusCode(status));
     setLastError(QString::fromStdString(status.ToString()));
-    return status.ok();
+    return m_status;
 }
 
 /*!
@@ -279,6 +283,11 @@ bool QLevelDB::repairDB(QString filename)
     leveldb::Options options;
     leveldb::Status status = leveldb::RepairDB(filename.toStdString(), options);
     return status.ok();
+}
+
+QWeakPointer<leveldb::DB> QLevelDB::dbNativeHandler()
+{
+    return m_levelDB.toWeakRef();
 }
 
 /*!

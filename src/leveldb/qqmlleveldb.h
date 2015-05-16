@@ -15,20 +15,41 @@ QT_BEGIN_NAMESPACE
 
 class QLevelDBBatch;
 
-class Q_LEVELDB_EXPORT QQmlLevelDB : public QLevelDB, public QQmlParserStatus
+class Q_LEVELDB_EXPORT QQmlLevelDB : public QObject, public QQmlParserStatus
 {
     Q_OBJECT
     Q_PROPERTY(QUrl source READ source WRITE setSource NOTIFY sourceChanged)
+    Q_PROPERTY(QLevelDB::Status status READ status NOTIFY statusChanged)
+    Q_PROPERTY(QString lastError READ lastError NOTIFY lastErrorChanged)
+    Q_PROPERTY(bool opened READ opened NOTIFY openedChanged)
     Q_PROPERTY(QLevelDBOptions* options READ options)
     Q_INTERFACES(QQmlParserStatus)
+    Q_ENUM(QLevelDB::Status)
 public:
     explicit QQmlLevelDB(QObject *parent = nullptr);
 
     QUrl source();
     void setSource(QUrl source);
+
+    QLevelDB::Status status();
+    QString lastError();
+    bool opened();
+    QLevelDBOptions* options();
+
+    Q_INVOKABLE QLevelDBBatch* batch();
+    Q_INVOKABLE bool del(QString key);
+    Q_INVOKABLE QVariant get(QString key, QVariant defaultValue = QVariant());
+    Q_INVOKABLE bool put(QString key, QVariant value);
+    Q_INVOKABLE bool putSync(QString key, QVariant value);
+    Q_INVOKABLE bool destroyDB(QUrl url);
+    Q_INVOKABLE bool repairDB(QUrl url);
     Q_INVOKABLE QQmlLevelDBReadStream* readStream(QString startKey = QString(), QString endKey = QString());
 signals:
     void sourceChanged();
+    void statusChanged();
+    void lastErrorChanged();
+    void openedChanged();
+    void keyValueChanged(QString key, QVariant value);
 protected:
     void classBegin();
     void componentComplete();
@@ -36,6 +57,7 @@ private:
     Q_DISABLE_COPY(QQmlLevelDB)
     bool m_initialized;
     QUrl m_source;
+    QLevelDB m_leveldb;
 };
 
 QT_END_NAMESPACE

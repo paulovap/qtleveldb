@@ -2,6 +2,7 @@ import QtQuick 2.3
 import QtQuick.Controls 1.2
 import QtLevelDB 1.0
 import QtQuick.Dialogs 1.2
+
 ApplicationWindow {
     width: 640
     height:480
@@ -24,7 +25,7 @@ ApplicationWindow {
 
     FileDialog{
         id:fileDialog
-        folder: shortcuts.home
+        folder: fileDialog.shortcuts.home
         title:"Please Choose LevelDB folder"
         selectFolder: true
         onAccepted: db.source = fileDialog.fileUrls[0]

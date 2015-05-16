@@ -33,9 +33,9 @@ import QtLevelDB 1.0
         }
 
         function test_destroy() {
-            db.source = Qt.resolvedUrl("test2.db")
+            db.source = "test2.db"
             compare(db.opened, true, db.statusText)
-            compare(db.destroyDB(Qt.resolvedUrl("test2.db")), true)
+            compare(db.destroyDB("test2.db"), true)
         }
 
         // TODO: add this test, but remove "lost" folder at the end
@@ -93,7 +93,7 @@ import QtLevelDB 1.0
             Object.keys(data).forEach(function (key){
                 db.put(key, data[key])
             })
-            batch.write()
+            compare(batch.write(), true, db.statusText)
             db.readStream().start(function (key,value){
                compare(value, data[key], "Inconsistent data")
             })
