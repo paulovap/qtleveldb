@@ -1,5 +1,5 @@
-#include <QtQml/qqmlextensionplugin.h>
-#include <QtQml>
+#include <qqml.h>
+#include <QtQml/QQmlExtensionPlugin>
 #include <qleveldbbatch.h>
 #include <qleveldboptions.h>
 #include <qqmlleveldbreadstream.h>
@@ -11,9 +11,9 @@ QT_BEGIN_NAMESPACE
 class QtLevelDBPlugin : public QQmlExtensionPlugin
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA(IID "org.qt-project.Qt.QQmlExtensionInterface/1.0")
+    Q_PLUGIN_METADATA(IID "org.qt-project.Qt.QQmlExtensionInterface")
 public:
-    virtual void registerTypes(const char *uri) Q_DECL_OVERRIDE
+    void registerTypes(const char *uri)
     {
         Q_ASSERT(QLatin1String(uri) == QLatin1String("QtLevelDB"));
 

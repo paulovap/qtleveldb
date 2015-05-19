@@ -69,8 +69,10 @@ bool QLevelDBReadStream::start()
     while(it->Valid() && !m_shouldStop){
         QString key = QString::fromStdString(it->key().ToString());
         QVariant value = jsonToVariant(QString::fromStdString(it->value().ToString()));
+
         emit nextKeyValue(key, value);
-        if (m_endKey.isNull() || m_endKey > key)
+
+        if (m_endKey.isEmpty() || m_endKey != key)
             it->Next();
         else
             break;

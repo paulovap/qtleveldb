@@ -25,7 +25,6 @@ ApplicationWindow {
 
     FileDialog{
         id:fileDialog
-        folder: fileDialog.shortcuts.home
         title:"Please Choose LevelDB folder"
         selectFolder: true
         onAccepted: db.source = fileDialog.fileUrls[0]
