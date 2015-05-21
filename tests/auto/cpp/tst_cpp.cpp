@@ -105,6 +105,13 @@ void CppTest::test_readStream()
     QSignalSpy spy(stream, SIGNAL(nextKeyValue(QString,QVariant)));
     stream->start();
     QCOMPARE(spy.count(), 3);
+    stream->deleteLater();
+
+    int countKeys = 0;
+    stream = m_leveldb->readStream();
+    stream->start([&countKeys](QString key, QVariant value){
+        countKeys++; return true;});
+    QCOMPARE(countKeys, 3);
 }
 
 QTEST_MAIN(CppTest)

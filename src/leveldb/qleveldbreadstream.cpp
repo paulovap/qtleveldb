@@ -83,6 +83,40 @@ bool QLevelDBReadStream::start()
     return true;
 }
 
+bool QLevelDBReadStream::start(std::function<bool (QString, QVariant)> callback)
+{
+    if (m_db.isNull())
+        return false;
+    auto strongDB = m_db.toStrongRef();
+
+    leveldb::ReadOptions options;
+    leveldb::Iterator *it = strongDB.data()->NewIterator(options);
+
+    if (!it)
+        return false;
+    if (m_startKey.isEmpty())
+        it->SeekToFirst();
+    else
+        it->Seek(leveldb::Slice(m_startKey.toStdString()));
+
+    while(it->Valid() && !m_shouldStop){
+        QString key = QString::fromStdString(it->key().ToString());
+        QVariant value = jsonToVariant(QString::fromStdString(it->value().ToString()));
+
+        bool shouldContinue = callback(key, value);
+
+        if (!shouldContinue)
+            break;
+
+        if (m_endKey.isEmpty() || m_endKey != key)
+            it->Next();
+        else
+            break;
+    }
+    delete it;
+    return true;
+}
+
 /*!
     Stops key/value streaming.
 */

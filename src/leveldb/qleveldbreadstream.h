@@ -3,6 +3,7 @@
 #include <QObject>
 #include <QVariant>
 #include <qsharedpointer.h>
+#include <functional>
 #include "qleveldbglobal.h"
 
 QT_BEGIN_NAMESPACE
@@ -22,6 +23,7 @@ public:
     QLevelDBReadStream(QWeakPointer<leveldb::DB> db, QString startKey, QString endKey = QString(), QObject *parent = 0);
     ~QLevelDBReadStream();
     bool start();
+    bool start(std::function<bool (QString key, QVariant value)> callback);
     void stop();
 
     QString startKey() const;
