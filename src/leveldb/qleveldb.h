@@ -43,7 +43,7 @@ public:
     Status open();
     void close();
 
-    QLevelDBReadStream* readStream(const QString startKey =  QString(), const QString endKey = QString());
+    QLevelDBReadStream* readStream(const QString startKey =  QString(), const int length = -1);
 
     void setFilename(QString filename);
     QLevelDBBatch* batch();

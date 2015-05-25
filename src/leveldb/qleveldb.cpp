@@ -294,9 +294,9 @@ QWeakPointer<leveldb::DB> QLevelDB::dbNativeHandler()
     Create a QLevelDBReadStream object to read a series of key/values. If no startKey or endKey
     is set it will stream all inserted elements. The order of the stream is sorted by key.
 */
-QLevelDBReadStream *QLevelDB::readStream(const QString startKey, const QString endKey)
+QLevelDBReadStream *QLevelDB::readStream(const QString startKey, const int length)
 {
-    QLevelDBReadStream *readStream = new QLevelDBReadStream(m_levelDB.toWeakRef(), startKey, endKey, this);
+    QLevelDBReadStream *readStream = new QLevelDBReadStream(m_levelDB.toWeakRef(), startKey, length, this);
     return readStream;
 }
 

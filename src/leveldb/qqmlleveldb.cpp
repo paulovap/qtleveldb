@@ -96,9 +96,9 @@ bool QQmlLevelDB::repairDB(QUrl url)
     return m_leveldb.repairDB(url.toLocalFile());
 }
 //TODO: maybe readStream should be owned by *this* and deleted when database is closed or source changed.
-QQmlLevelDBReadStream *QQmlLevelDB::readStream(QString startKey, QString endKey)
+QQmlLevelDBReadStream *QQmlLevelDB::readStream(QString startKey, int length)
 {
-    QQmlLevelDBReadStream *readStream = new QQmlLevelDBReadStream(m_leveldb.dbNativeHandler(), startKey, endKey, this);
+    QQmlLevelDBReadStream *readStream = new QQmlLevelDBReadStream(m_leveldb.dbNativeHandler(), startKey, length, this);
     QQmlEngine::setObjectOwnership(readStream, QQmlEngine::JavaScriptOwnership);
     return readStream;
 }

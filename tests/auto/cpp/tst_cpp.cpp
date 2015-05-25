@@ -40,6 +40,8 @@ void CppTest::initTestCase()
 
 void CppTest::cleanupTestCase()
 {
+    m_leveldb->close();
+    m_leveldb->destroyDB("test.db");
 }
 
 void CppTest::init()
@@ -96,22 +98,24 @@ void CppTest::test_readStream()
     QVERIFY2(m_leveldb->opened(), "unable to open database");
 
     bool result = m_leveldb->batch()
-            ->put("d", dataMap)
-            ->put("c", dataList)
-            ->put("a", "asdf")
+            ->put("/comics/", dataMap)
+            ->put("/comics/~", dataList)
+            ->put("/collection/", "asdf")
+            ->put("/collection/~", "asdf")
             ->write();
     QVERIFY(result);
     QLevelDBReadStream *stream = m_leveldb->readStream();
     QSignalSpy spy(stream, SIGNAL(nextKeyValue(QString,QVariant)));
     stream->start();
-    QCOMPARE(spy.count(), 3);
+    QCOMPARE(spy.count(), 4);
     stream->deleteLater();
 
     int countKeys = 0;
-    stream = m_leveldb->readStream();
+    stream = m_leveldb->readStream("/collection/", 2);
     stream->start([&countKeys](QString key, QVariant value){
+        qDebug() << "Key: " << key;
         countKeys++; return true;});
-    QCOMPARE(countKeys, 3);
+    QCOMPARE(countKeys, 2);
 }
 
 QTEST_MAIN(CppTest)

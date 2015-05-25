@@ -43,7 +43,7 @@ public:
     Q_INVOKABLE bool putSync(QString key, QVariant value);
     Q_INVOKABLE bool destroyDB(QUrl url);
     Q_INVOKABLE bool repairDB(QUrl url);
-    Q_INVOKABLE QQmlLevelDBReadStream* readStream(QString startKey = QString(), QString endKey = QString());
+    Q_INVOKABLE QQmlLevelDBReadStream* readStream(QString startKey = QString(), int length = -1);
 signals:
     void sourceChanged();
     void statusChanged();

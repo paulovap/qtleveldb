@@ -11,23 +11,22 @@ QT_BEGIN_NAMESPACE
 namespace leveldb {
 class DB;
 class Iterator;
+class Comparator;
 }
 
 class Q_LEVELDB_EXPORT QLevelDBReadStream : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(QString startKey READ startKey FINAL)
-    Q_PROPERTY(QString endKey READ endKey FINAL)
 public:
     explicit QLevelDBReadStream(QWeakPointer<leveldb::DB> db, QObject *parent = 0);
-    QLevelDBReadStream(QWeakPointer<leveldb::DB> db, QString startKey, QString endKey = QString(), QObject *parent = 0);
+    QLevelDBReadStream(QWeakPointer<leveldb::DB> db, QString startKey, int length = -1, QObject *parent = 0);
     ~QLevelDBReadStream();
     bool start();
     bool start(std::function<bool (QString key, QVariant value)> callback);
     void stop();
 
     QString startKey() const;
-    QString endKey() const;
     signals:
     void streamStarted();
     void streamEnded();
@@ -37,8 +36,9 @@ private:
     Q_DISABLE_COPY(QLevelDBReadStream)
     bool m_shouldStop;
     QString m_startKey;
-    QString m_endKey;
+    int m_length;
     QWeakPointer<leveldb::DB> m_db;
+    const leveldb::Comparator* m_byteWiseComparator;
 };
 
 QT_END_NAMESPACE

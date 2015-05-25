@@ -12,8 +12,8 @@ QQmlLevelDBReadStream::QQmlLevelDBReadStream(QWeakPointer<leveldb::DB> db, QObje
     connect(this, &QQmlLevelDBReadStream::nextKeyValue, this, &QQmlLevelDBReadStream::onNextKeyValue);
 }
 
-QQmlLevelDBReadStream::QQmlLevelDBReadStream(QWeakPointer<leveldb::DB> db, QString startKey, QString endKey, QObject *parent)
-    : QLevelDBReadStream(db, startKey, endKey, parent)
+QQmlLevelDBReadStream::QQmlLevelDBReadStream(QWeakPointer<leveldb::DB> db, QString startKey, int length, QObject *parent)
+    : QLevelDBReadStream(db, startKey, length, parent)
 {
     connect(this, &QQmlLevelDBReadStream::nextKeyValue, this, &QQmlLevelDBReadStream::onNextKeyValue);
 }
