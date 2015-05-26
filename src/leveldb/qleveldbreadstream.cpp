@@ -59,9 +59,10 @@ bool QLevelDBReadStream::start()
     emit streamStarted();
     start([this](QString key, QVariant value){
         emit nextKeyValue(key, value);
-        return true;
+        return !m_shouldStop;
     });
     emit streamEnded();
+    m_shouldStop = false;
     return true;
 }
 
@@ -69,8 +70,8 @@ bool QLevelDBReadStream::start(std::function<bool (QString, QVariant)> callback)
 {
     if (m_db.isNull())
         return false;
-    //    if (m_length == 0)
-    //        return true;
+    if (m_length == 0)
+        return true;
 
     auto strongDB = m_db.toStrongRef();
 
@@ -80,37 +81,24 @@ bool QLevelDBReadStream::start(std::function<bool (QString, QVariant)> callback)
 
     if (!it)
         return false;
-    it->SeekToFirst();
-    bool start = false;
-    while(it->Valid() && !m_shouldStop){
+
+    if (!m_startKey.isEmpty())
+        it->Seek(leveldb::Slice(m_startKey.toStdString()));
+    else
+        it->SeekToFirst();
+
+    for ( ;it->Valid(); it->Next()){
 
         QString key = QString::fromStdString(it->key().ToString());
         QVariant value = jsonToVariant(QString::fromStdString(it->value().ToString()));
 
-        if (!start && !m_startKey.isEmpty()){
-            //FIXME: this is a hack. Right now seek for a key is not
-            // working need to figure out why and fix it. This operation
-            // is slow right now and it reads the entire database.
-            if(key == m_startKey){
-                start = true;
-            }else{
-                it->Next();
-                continue;
-            }
-        }
-
         length--;
         bool shouldContinue = callback(key, value);
 
-        if (!shouldContinue)
-            break;
-
-        if (m_length == -1 || (m_length != -1 && length >= 1)){
-            it->Next();
-        }
-        else
+        if (!shouldContinue || (m_length != -1 && length <= 0))
             break;
     }
+
     delete it;
     return true;
 }

@@ -101,21 +101,28 @@ void CppTest::test_readStream()
             ->put("/comics/", dataMap)
             ->put("/comics/~", dataList)
             ->put("/collection/", "asdf")
+            ->put("/comics/abc", "asdf")
             ->put("/collection/~", "asdf")
+            ->put("/comics/a", "asdf")
+            ->put("/comics/AA", "asdf")
+
             ->write();
     QVERIFY(result);
     QLevelDBReadStream *stream = m_leveldb->readStream();
     QSignalSpy spy(stream, SIGNAL(nextKeyValue(QString,QVariant)));
     stream->start();
-    QCOMPARE(spy.count(), 4);
+    QCOMPARE(spy.count(), 7);
     stream->deleteLater();
 
-    int countKeys = 0;
-    stream = m_leveldb->readStream("/collection/", 2);
-    stream->start([&countKeys](QString key, QVariant value){
-        qDebug() << "Key: " << key;
-        countKeys++; return true;});
-    QCOMPARE(countKeys, 2);
+    QStringList sequenceKeys, toCompareKeys;
+    sequenceKeys << "/comics/" << "/comics/AA" << "/comics/a" << "/comics/abc" << "/comics/~";
+    stream = m_leveldb->readStream("/comics/");
+    stream->start([&toCompareKeys](QString key, QVariant value){
+        Q_UNUSED(value);
+        qDebug() << "key:" << key;
+        toCompareKeys << key;
+        return true;});
+    QCOMPARE(sequenceKeys, toCompareKeys);
 }
 
 QTEST_MAIN(CppTest)

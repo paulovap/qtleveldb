@@ -34,9 +34,9 @@ public:
 public slots:
 private:
     Q_DISABLE_COPY(QLevelDBReadStream)
-    bool m_shouldStop;
     QString m_startKey;
     int m_length;
+    int m_shouldStop;
     QWeakPointer<leveldb::DB> m_db;
     const leveldb::Comparator* m_byteWiseComparator;
 };
