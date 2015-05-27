@@ -21,8 +21,8 @@ QT_BEGIN_NAMESPACE
 */
 QLevelDBReadStream::QLevelDBReadStream(QWeakPointer<leveldb::DB> db, QObject *parent)
     : QObject(parent)
-    , m_shouldStop(false)
     , m_length(-1)
+    , m_shouldStop(false)
     , m_db(db)
     , m_byteWiseComparator(leveldb::BytewiseComparator())
 {
@@ -35,9 +35,9 @@ QLevelDBReadStream::QLevelDBReadStream(QWeakPointer<leveldb::DB> db, QObject *pa
 */
 QLevelDBReadStream::QLevelDBReadStream(QWeakPointer<leveldb::DB> db, QString startKey, int length, QObject *parent)
     : QObject(parent)
-    , m_shouldStop(false)
     , m_startKey(startKey)
     , m_length(length)
+    , m_shouldStop(false)
     , m_db(db)
 
 
@@ -120,4 +120,3 @@ QString QLevelDBReadStream::startKey() const
 }
 
 QT_END_NAMESPACE
-//#include "moc_qleveldbreadstream.cpp"
