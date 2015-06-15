@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- qleveldboptions.cpp -->
+  <title>QLevelDBOptions Class | Qt LevelDB 5.5</title>
+  <link rel="stylesheet" type="text/css" href="style/offline.css" />
+</head>
+<body>
+<div class="header" id="qtdocheader">
+    <div class="main">
+    <div class="main-rounded">
+        <div class="navigationbar">
+        <ul>
+<li><a href="../qtdoc/index.html">Qt 5.5</a></li>
+<li><a href="qtleveldb-index.html">Qt LevelDB</a></li>
+<li><a href="qtleveldb-module.html">C++ Classes</a></li>
+<li>QLevelDBOptions</li>
+<li id="buildversion">Qt 5.5.0 Reference Documentation</li>
+    </ul>
+    </div>
+</div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#public-types">Public Types</a></li>
+<li class="level1"><a href="#properties">Properties</a></li>
+<li class="level1"><a href="#public-functions">Public Functions</a></li>
+<li class="level1"><a href="#details">Detailed Description</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QLevelDBOptions Class</h1>
+<!-- $$$QLevelDBOptions-brief -->
+<p>The <a href="qleveldboptions.html">QLevelDBOptions</a> manipulates options used when opening a <a href="qml-qtleveldb-leveldb.html">LevelDB</a> Database. <a href="#details">More...</a></p>
+<!-- @@@QLevelDBOptions -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign"> <span class="preprocessor">#include &lt;QLevelDBOptions&gt;</span>
+</td></tr><tr><td class="memItemLeft rightAlign topAlign"> qmake:</td><td class="memItemRight bottomAlign"> QT += leveldb</td></tr><tr><td class="memItemLeft rightAlign topAlign"> Since:</td><td class="memItemRight bottomAlign">  Qt 5.5</td></tr><tr><td class="memItemLeft rightAlign topAlign"> Inherits:</td><td class="memItemRight bottomAlign"> <a href="../qtcore/qobject.html">QObject</a></td></tr></table></div><ul>
+<li><a href="qleveldboptions-members.html">List of all members, including inherited members</a></li>
+</ul>
+<a name="public-types"></a>
+<h2 id="public-types">Public Types</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> enum </td><td class="memItemRight bottomAlign"><b><a href="qleveldboptions.html#CompressionType-enum">CompressionType</a></b> { NoCompression, SnappyCompression }</td></tr>
+</table></div>
+<a name="properties"></a>
+<h2 id="properties">Properties</h2>
+<ul>
+<li class="fn"><b><a href="qleveldboptions.html#compressionType-prop">compressionType</a></b> : CompressionType</li>
+<li class="fn"><b><a href="qleveldboptions.html#createIfMissing-prop">createIfMissing</a></b> : bool</li>
+<li class="fn"><b><a href="qleveldboptions.html#errorIfExists-prop">errorIfExists</a></b> : bool</li>
+<li class="fn"><b><a href="qleveldboptions.html#paranoidChecks-prop">paranoidChecks</a></b> : bool</li>
+</ul>
+<ul>
+<li class="fn">1 property inherited from <a href="../qtcore/qobject.html#properties">QObject</a></li>
+</ul>
+<a name="public-functions"></a>
+<h2 id="public-functions">Public Functions</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qleveldboptions.html#QLevelDBOptions">QLevelDBOptions</a></b>(QObject *<i> parent</i> = 0)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> CompressionType </td><td class="memItemRight bottomAlign"><b><a href="qleveldboptions.html#compressionType-prop">compressionType</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qleveldboptions.html#createIfMissing-prop">createIfMissing</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qleveldboptions.html#errorIfExists-prop">errorIfExists</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qleveldboptions.html#paranoidChecks-prop">paranoidChecks</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qleveldboptions.html#compressionType-prop">setCompressionType</a></b>(CompressionType<i> type</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qleveldboptions.html#createIfMissing-prop">setCreateIfMissing</a></b>(bool<i> value</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qleveldboptions.html#errorIfExists-prop">setErrorIfExists</a></b>(bool<i> value</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qleveldboptions.html#paranoidChecks-prop">setParanoidChecks</a></b>(bool<i> value</i>)</td></tr>
+</table></div>
+<ul>
+<li class="fn">31 public functions inherited from <a href="../qtcore/qobject.html#public-functions">QObject</a></li>
+</ul>
+<h3>Additional Inherited Members</h3>
+<ul>
+<li class="fn">1 public slot inherited from <a href="../qtcore/qobject.html#public-slots">QObject</a></li>
+<li class="fn">2 signals inherited from <a href="../qtcore/qobject.html#signals">QObject</a></li>
+<li class="fn">1 public variable inherited from <a href="../qtcore/qobject.html#public-variables">QObject</a></li>
+<li class="fn">10 static public members inherited from <a href="../qtcore/qobject.html#static-public-members">QObject</a></li>
+<li class="fn">9 protected functions inherited from <a href="../qtcore/qobject.html#protected-functions">QObject</a></li>
+<li class="fn">2 protected variables inherited from <a href="../qtcore/qobject.html#protected-variables">QObject</a></li>
+</ul>
+<a name="details"></a>
+<!-- $$$QLevelDBOptions-description -->
+<div class="descr">
+<h2 id="details">Detailed Description</h2>
+<p>The <a href="qleveldboptions.html">QLevelDBOptions</a> manipulates options used when opening a <a href="qml-qtleveldb-leveldb.html">LevelDB</a> Database.</p>
+</div>
+<!-- @@@QLevelDBOptions -->
+<div class="types">
+<h2>Member Type Documentation</h2>
+<!-- $$$CompressionType$$$NoCompression$$$SnappyCompression -->
+<h3 class="fn" id="CompressionType-enum"><a name="CompressionType-enum"></a>enum QLevelDBOptions::<span class="name">CompressionType</span></h3>
+<!-- @@@CompressionType -->
+</div>
+<div class="prop">
+<h2>Property Documentation</h2>
+<!-- $$$compressionType-prop$$$compressionType$$$setCompressionTypeCompressionType -->
+<h3 class="fn" id="compressionType-prop"><a name="compressionType-prop"></a><span class="name">compressionType</span> : <span class="type"><a href="qleveldboptions.html#CompressionType-enum">CompressionType</a></span></h3>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft topAlign rightAlign"> CompressionType </td><td class="memItemRight bottomAlign"><span class="name"><b>compressionType</b></span>() const</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b>setCompressionType</b></span>(CompressionType<i> type</i>)</td></tr>
+</table></div>
+<!-- @@@compressionType -->
+<!-- $$$createIfMissing-prop$$$createIfMissing$$$setCreateIfMissingbool -->
+<h3 class="fn" id="createIfMissing-prop"><a name="createIfMissing-prop"></a><span class="name">createIfMissing</span> : <span class="type">bool</span></h3>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft topAlign rightAlign"> bool </td><td class="memItemRight bottomAlign"><span class="name"><b>createIfMissing</b></span>() const</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b>setCreateIfMissing</b></span>(bool<i> value</i>)</td></tr>
+</table></div>
+<!-- @@@createIfMissing -->
+<!-- $$$errorIfExists-prop$$$errorIfExists$$$setErrorIfExistsbool -->
+<h3 class="fn" id="errorIfExists-prop"><a name="errorIfExists-prop"></a><span class="name">errorIfExists</span> : <span class="type">bool</span></h3>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft topAlign rightAlign"> bool </td><td class="memItemRight bottomAlign"><span class="name"><b>errorIfExists</b></span>() const</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b>setErrorIfExists</b></span>(bool<i> value</i>)</td></tr>
+</table></div>
+<!-- @@@errorIfExists -->
+<!-- $$$paranoidChecks-prop$$$paranoidChecks$$$setParanoidChecksbool -->
+<h3 class="fn" id="paranoidChecks-prop"><a name="paranoidChecks-prop"></a><span class="name">paranoidChecks</span> : <span class="type">bool</span></h3>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft topAlign rightAlign"> bool </td><td class="memItemRight bottomAlign"><span class="name"><b>paranoidChecks</b></span>() const</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b>setParanoidChecks</b></span>(bool<i> value</i>)</td></tr>
+</table></div>
+<!-- @@@paranoidChecks -->
+</div>
+<div class="func">
+<h2>Member Function Documentation</h2>
+<!-- $$$QLevelDBOptions[overload1]$$$QLevelDBOptionsQObject* -->
+<h3 class="fn" id="QLevelDBOptions"><a name="QLevelDBOptions"></a>QLevelDBOptions::<span class="name">QLevelDBOptions</span>(<span class="type"><a href="../qtcore/qobject.html#QObject">QObject</a></span> *<i> parent</i> = 0)</h3>
+<p>Constructs an new <a href="qleveldboptions.html">QLevelDBOptions</a> object.</p>
+<!-- @@@QLevelDBOptions -->
+</div>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2015 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- qleveldbreadstream.cpp -->
+  <title>QLevelDBReadStream Class | Qt LevelDB 5.5</title>
+  <link rel="stylesheet" type="text/css" href="style/offline.css" />
+</head>
+<body>
+<div class="header" id="qtdocheader">
+    <div class="main">
+    <div class="main-rounded">
+        <div class="navigationbar">
+        <ul>
+<li><a href="../qtdoc/index.html">Qt 5.5</a></li>
+<li><a href="qtleveldb-index.html">Qt LevelDB</a></li>
+<li><a href="qtleveldb-module.html">C++ Classes</a></li>
+<li>QLevelDBReadStream</li>
+<li id="buildversion">Qt 5.5.0 Reference Documentation</li>
+    </ul>
+    </div>
+</div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#properties">Properties</a></li>
+<li class="level1"><a href="#public-functions">Public Functions</a></li>
+<li class="level1"><a href="#signals">Signals</a></li>
+<li class="level1"><a href="#details">Detailed Description</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QLevelDBReadStream Class</h1>
+<!-- $$$QLevelDBReadStream-brief -->
+<p>Provides a way to scan the database, receiving a stream of key/values in a ordered manner. <a href="#details">More...</a></p>
+<!-- @@@QLevelDBReadStream -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign"> <span class="preprocessor">#include &lt;QLevelDBReadStream&gt;</span>
+</td></tr><tr><td class="memItemLeft rightAlign topAlign"> qmake:</td><td class="memItemRight bottomAlign"> QT += leveldb</td></tr><tr><td class="memItemLeft rightAlign topAlign"> Since:</td><td class="memItemRight bottomAlign">  Qt 5.5</td></tr><tr><td class="memItemLeft rightAlign topAlign"> Inherits:</td><td class="memItemRight bottomAlign"> <a href="../qtcore/qobject.html">QObject</a></td></tr></table></div><ul>
+<li><a href="qleveldbreadstream-members.html">List of all members, including inherited members</a></li>
+</ul>
+<a name="properties"></a>
+<h2 id="properties">Properties</h2>
+<ul>
+<li class="fn"><b><a href="qleveldbreadstream.html#startKey-prop">startKey</a></b> : const QString</li>
+</ul>
+<ul>
+<li class="fn">1 property inherited from <a href="../qtcore/qobject.html#properties">QObject</a></li>
+</ul>
+<a name="public-functions"></a>
+<h2 id="public-functions">Public Functions</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qleveldbreadstream.html#QLevelDBReadStream">QLevelDBReadStream</a></b>(QWeakPointer&lt;leveldb::DB&gt;<i> db</i>, QObject *<i> parent</i> = 0)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qleveldbreadstream.html#QLevelDBReadStream-2">QLevelDBReadStream</a></b>(QWeakPointer&lt;leveldb::DB&gt;<i> db</i>, QString<i> startKey</i>, int<i> length</i> = -1, QObject *<i> parent</i> = 0)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qleveldbreadstream.html#dtor.QLevelDBReadStream">~QLevelDBReadStream</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qleveldbreadstream.html#start">start</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qleveldbreadstream.html#start-2">start</a></b>(std::function&lt;bool( QString key, QVariant value ) &gt;<i> callback</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QString </td><td class="memItemRight bottomAlign"><b><a href="qleveldbreadstream.html#startKey-prop">startKey</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qleveldbreadstream.html#stop">stop</a></b>()</td></tr>
+</table></div>
+<ul>
+<li class="fn">31 public functions inherited from <a href="../qtcore/qobject.html#public-functions">QObject</a></li>
+</ul>
+<a name="signals"></a>
+<h2 id="signals">Signals</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qleveldbreadstream.html#nextKeyValue">nextKeyValue</a></b>(QString<i> key</i>, QVariant<i> value</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qleveldbreadstream.html#streamEnded">streamEnded</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qleveldbreadstream.html#streamStarted">streamStarted</a></b>()</td></tr>
+</table></div>
+<ul>
+<li class="fn">2 signals inherited from <a href="../qtcore/qobject.html#signals">QObject</a></li>
+</ul>
+<h3>Additional Inherited Members</h3>
+<ul>
+<li class="fn">1 public slot inherited from <a href="../qtcore/qobject.html#public-slots">QObject</a></li>
+<li class="fn">1 public variable inherited from <a href="../qtcore/qobject.html#public-variables">QObject</a></li>
+<li class="fn">10 static public members inherited from <a href="../qtcore/qobject.html#static-public-members">QObject</a></li>
+<li class="fn">9 protected functions inherited from <a href="../qtcore/qobject.html#protected-functions">QObject</a></li>
+<li class="fn">2 protected variables inherited from <a href="../qtcore/qobject.html#protected-variables">QObject</a></li>
+</ul>
+<a name="details"></a>
+<!-- $$$QLevelDBReadStream-description -->
+<div class="descr">
+<h2 id="details">Detailed Description</h2>
+<p>Provides a way to scan the database, receiving a stream of key/values in a ordered manner.</p>
+</div>
+<!-- @@@QLevelDBReadStream -->
+<div class="prop">
+<h2>Property Documentation</h2>
+<!-- $$$startKey-prop$$$startKey -->
+<h3 class="fn" id="startKey-prop"><a name="startKey-prop"></a><span class="name">startKey</span> : const <span class="type"><a href="../qtcore/qstring.html">QString</a></span></h3>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft topAlign rightAlign"> QString </td><td class="memItemRight bottomAlign"><span class="name"><b>startKey</b></span>() const</td></tr>
+</table></div>
+<!-- @@@startKey -->
+</div>
+<div class="func">
+<h2>Member Function Documentation</h2>
+<!-- $$$QLevelDBReadStream[overload1]$$$QLevelDBReadStreamQWeakPointer<leveldb::DB>QObject* -->
+<h3 class="fn" id="QLevelDBReadStream"><a name="QLevelDBReadStream"></a>QLevelDBReadStream::<span class="name">QLevelDBReadStream</span>(<span class="type"><a href="../qtcore/qweakpointer.html">QWeakPointer</a></span>&lt;<span class="type">leveldb::DB</span>&gt;<i> db</i>, <span class="type"><a href="../qtcore/qobject.html#QObject">QObject</a></span> *<i> parent</i> = 0)</h3>
+<p>Constructs an new <a href="qleveldbreadstream.html">QLevelDBReadStream</a> object.</p>
+<!-- @@@QLevelDBReadStream -->
+<!-- $$$QLevelDBReadStream$$$QLevelDBReadStreamQWeakPointer<leveldb::DB>QStringintQObject* -->
+<h3 class="fn" id="QLevelDBReadStream-2"><a name="QLevelDBReadStream-2"></a>QLevelDBReadStream::<span class="name">QLevelDBReadStream</span>(<span class="type"><a href="../qtcore/qweakpointer.html">QWeakPointer</a></span>&lt;<span class="type">leveldb::DB</span>&gt;<i> db</i>, <span class="type"><a href="../qtcore/qstring.html">QString</a></span><i> startKey</i>, <span class="type">int</span><i> length</i> = -1, <span class="type"><a href="../qtcore/qobject.html#QObject">QObject</a></span> *<i> parent</i> = 0)</h3>
+<p>Constructs an new <a href="qleveldbreadstream.html">QLevelDBReadStream</a> object. <a href="qleveldbreadstream.html#startKey-prop">startKey</a> and endKey indicate the boundaries of the stream.</p>
+<!-- @@@QLevelDBReadStream -->
+<!-- $$$~QLevelDBReadStream[overload1]$$$~QLevelDBReadStream -->
+<h3 class="fn" id="dtor.QLevelDBReadStream"><a name="dtor.QLevelDBReadStream"></a>QLevelDBReadStream::<span class="name">~QLevelDBReadStream</span>()</h3>
+<!-- @@@~QLevelDBReadStream -->
+<!-- $$$nextKeyValue[overload1]$$$nextKeyValueQStringQVariant -->
+<h3 class="fn" id="nextKeyValue"><a name="nextKeyValue"></a><code>[signal] </code><span class="type">void</span> QLevelDBReadStream::<span class="name">nextKeyValue</span>(<span class="type"><a href="../qtcore/qstring.html">QString</a></span><i> key</i>, <span class="type"><a href="../qtcore/qvariant.html">QVariant</a></span><i> value</i>)</h3>
+<!-- @@@nextKeyValue -->
+<!-- $$$start[overload1]$$$start -->
+<h3 class="fn" id="start"><a name="start"></a><span class="type">bool</span> QLevelDBReadStream::<span class="name">start</span>()</h3>
+<p>Start streaming key/value pairs. Theses pairs will be emited in the <a href="qleveldbreadstream.html#nextKeyValue">QLevelDBReadStream::nextKeyValue</a>() signal.</p>
+<!-- @@@start -->
+<!-- $$$start$$$startstd::function<bool(QStringkey,QVariantvalue)> -->
+<h3 class="fn" id="start-2"><a name="start-2"></a><span class="type">bool</span> QLevelDBReadStream::<span class="name">start</span>(<span class="type">std::function</span>&lt;<span class="type">bool</span>( <span class="type"><a href="../qtcore/qstring.html">QString</a></span> <span class="type">key</span>, <span class="type"><a href="../qtcore/qvariant.html">QVariant</a></span> <span class="type">value</span> ) &gt;<i> callback</i>)</h3>
+<!-- @@@start -->
+<!-- $$$stop[overload1]$$$stop -->
+<h3 class="fn" id="stop"><a name="stop"></a><span class="type">void</span> QLevelDBReadStream::<span class="name">stop</span>()</h3>
+<p>Stops key/value streaming.</p>
+<!-- @@@stop -->
+<!-- $$$streamEnded[overload1]$$$streamEnded -->
+<h3 class="fn" id="streamEnded"><a name="streamEnded"></a><code>[signal] </code><span class="type">void</span> QLevelDBReadStream::<span class="name">streamEnded</span>()</h3>
+<!-- @@@streamEnded -->
+<!-- $$$streamStarted[overload1]$$$streamStarted -->
+<h3 class="fn" id="streamStarted"><a name="streamStarted"></a><code>[signal] </code><span class="type">void</span> QLevelDBReadStream::<span class="name">streamStarted</span>()</h3>
+<!-- @@@streamStarted -->
+</div>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2015 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- qqmlleveldb.cpp -->
+  <title>LevelDB QML Type | Qt LevelDB 5.5</title>
+  <link rel="stylesheet" type="text/css" href="style/offline.css" />
+</head>
+<body>
+<div class="header" id="qtdocheader">
+    <div class="main">
+    <div class="main-rounded">
+        <div class="navigationbar">
+        <ul>
+<li><a href="../qtdoc/index.html">Qt 5.5</a></li>
+<li><a href="qtleveldb-index.html">Qt LevelDB</a></li>
+<li><a href="qtleveldb-qmlmodule.html">QML Types</a></li>
+<li>LevelDB QML Type</li>
+<li id="buildversion">Qt 5.5.0 Reference Documentation</li>
+    </ul>
+    </div>
+</div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#properties">Properties</a></li>
+<li class="level1"><a href="#details">Detailed Description</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">LevelDB QML Type</h1>
+<span class="subtitle"></span>
+<!-- $$$LevelDB-brief -->
+<p>Low level API to access <a href="qml-qtleveldb-leveldb.html">LevelDB</a> database. <a href="#details">More...</a></p>
+<!-- @@@LevelDB -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> Import Statement:</td><td class="memItemRight bottomAlign"> import QtLevelDB 1.0</td></tr><tr><td class="memItemLeft rightAlign topAlign"> Since:</td><td class="memItemRight bottomAlign">  Qt 1.0</td></tr></table></div><ul>
+<li><a href="qml-qtleveldb-leveldb-members.html">List of all members, including inherited members</a></li>
+</ul>
+<a name="properties"></a>
+<h2 id="properties">Properties</h2>
+<ul>
+<li class="fn"><b><b><a href="qml-qtleveldb-leveldb.html#batch-prop">batch</a></b></b> : QLevelDBBatch*</li>
+<li class="fn"><b><b><a href="qml-qtleveldb-leveldb.html#lastError-prop">lastError</a></b></b> : string</li>
+<li class="fn"><b><b><a href="qml-qtleveldb-leveldb.html#opened-prop">opened</a></b></b> : bool</li>
+<li class="fn"><b><b><a href="qml-qtleveldb-leveldb.html#options-prop">options</a></b></b> : QLevelDBOptions*</li>
+<li class="fn"><b><b><a href="qml-qtleveldb-leveldb.html#source-prop">source</a></b></b> : url</li>
+<li class="fn"><b><b><a href="qml-qtleveldb-leveldb.html#status-prop">status</a></b></b> : LevelDB::Status</li>
+</ul>
+<!-- $$$LevelDB-description -->
+<a name="details"></a>
+<h2 id="details">Detailed Description</h2>
+</p>
+<!-- @@@LevelDB -->
+<h2>Property Documentation</h2>
+<!-- $$$batch -->
+<div class="qmlitem"><div class="qmlproto"><div class="table"><table class="qmlname"><tr valign="top" class="odd" id="batch-prop"><td class="tblQmlPropNode"><p><a name="batch-prop"></a><span class="name">batch</span> : <span class="type"><a href="qleveldbbatch.html">QLevelDBBatch</a></span>*</p></td></tr></table></div></div><div class="qmldoc"><p>Return batch object for bulk operations.</p>
+</div></div><!-- @@@batch -->
+<br/>
+<!-- $$$lastError -->
+<div class="qmlitem"><div class="qmlproto"><div class="table"><table class="qmlname"><tr valign="top" class="odd" id="lastError-prop"><td class="tblQmlPropNode"><p><a name="lastError-prop"></a><span class="name">lastError</span> : <span class="type">string</span></p></td></tr></table></div></div><div class="qmldoc"><p>A string that indicates the status result of the last operation.</p>
+</div></div><!-- @@@lastError -->
+<br/>
+<!-- $$$opened -->
+<div class="qmlitem"><div class="qmlproto"><div class="table"><table class="qmlname"><tr valign="top" class="odd" id="opened-prop"><td class="tblQmlPropNode"><p><a name="opened-prop"></a><span class="name">opened</span> : <span class="type">bool</span></p></td></tr></table></div></div><div class="qmldoc"><p>Indicate wheter the database is open or not.</p>
+</div></div><!-- @@@opened -->
+<br/>
+<!-- $$$options -->
+<div class="qmlitem"><div class="qmlproto"><div class="table"><table class="qmlname"><tr valign="top" class="odd" id="options-prop"><td class="tblQmlPropNode"><p><a name="options-prop"></a><span class="name">options</span> : <span class="type"><a href="qleveldboptions.html">QLevelDBOptions</a></span>*</p></td></tr></table></div></div><div class="qmldoc"><p>This property holds the configuration used to open the database. It cannot be changed once the database it opened</p>
+</div></div><!-- @@@options -->
+<br/>
+<!-- $$$source -->
+<div class="qmlitem"><div class="qmlproto"><div class="table"><table class="qmlname"><tr valign="top" class="odd" id="source-prop"><td class="tblQmlPropNode"><p><a name="source-prop"></a><span class="name">source</span> : <span class="type"><a href="../qtqml/qml-url.html">url</a></span></p></td></tr></table></div></div><div class="qmldoc"><p>This property specifies the URL of datavase. The URL must point to a local file that contains LeveldDB's data.</p>
+</div></div><!-- @@@source -->
+<br/>
+<!-- $$$status -->
+<div class="qmlitem"><div class="qmlproto"><div class="table"><table class="qmlname"><tr valign="top" class="odd" id="status-prop"><td class="tblQmlPropNode"><p><a name="status-prop"></a><span class="name">status</span> : <span class="type">LevelDB::Status</span></p></td></tr></table></div></div><div class="qmldoc"><p>A enum that indicates the status result of the last operation.</p>
+</div></div><!-- @@@status -->
+<br/>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2015 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

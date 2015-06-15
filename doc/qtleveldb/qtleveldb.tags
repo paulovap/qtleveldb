@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tagfile>
+    <compound kind="class">
+        <name>QLevelDB</name>
+        <filename>qleveldb.html</filename>
+        <base>QObject</base>
+        <member kind="enum">
+            <name>Status</name>
+            <anchor>Status-enum</anchor>
+            <arglist></arglist>
+        </member>
+        <member name="Undefined">
+            <anchor>Status-enum</anchor>
+            <arglist></arglist>
+        </member>
+        <member name="Ok">
+            <anchor>Status-enum</anchor>
+            <arglist></arglist>
+        </member>
+        <member name="NotFound">
+            <anchor>Status-enum</anchor>
+            <arglist></arglist>
+        </member>
+        <member name="Corruption">
+            <anchor>Status-enum</anchor>
+            <arglist></arglist>
+        </member>
+        <member name="NotSupported">
+            <anchor>Status-enum</anchor>
+            <arglist></arglist>
+        </member>
+        <member name="InvalidArgument">
+            <anchor>Status-enum</anchor>
+            <arglist></arglist>
+        </member>
+        <member name="IOError">
+            <anchor>Status-enum</anchor>
+            <arglist></arglist>
+        </member>
+        <member kind="function" protection="public" virtualness="non" static="no">
+            <type></type>
+            <name>QLevelDB</name>
+            <anchorfile>qleveldb.html</anchorfile>
+            <anchor>QLevelDB</anchor>
+            <arglist>(QObject *parent)</arglist>
+        </member>
+        <member kind="function" protection="public" virtualness="non" static="no">
+            <type></type>
+            <name>QLevelDB</name>
+            <anchorfile>qleveldb.html</anchorfile>
+            <anchor>QLevelDB-2</anchor>
+            <arglist>(QString filename, QObject *parent)</arglist>
+        </member>
+        <member kind="function" protection="public" virtualness="non" static="no">
+            <type></type>
+            <name>~QLevelDB</name>
+            <anchorfile>qleveldb.html</anchorfile>
+            <anchor>dtor.QLevelDB</anchor>
+            <arglist>()</arglist>
+        </member>
+        <member kind="function" protection="public" virtualness="non" static="no">
+            <type>QString</type>
+            <name>filename</name>
+            <anchorfile>qleveldb.html</anchorfile>
+            <anchor>filename</anchor>
+            <arglist>()</arglist>
+        </member>
+        <member kind="function" protection="public" virtualness="non" static="no">
+            <type>bool</type>
+            <name>opened</name>
+            <anchorfile>qleveldb.html</anchorfile>
+            <anchor>opened</anchor>
+            <arglist>()</arglist>
+        </member>
+        <member kind="function" protection="public" virtualness="non" static="no">
+            <type>Status</type>
+            <name>status</name>
+            <anchorfile>qleveldb.html</anchorfile>
+            <anchor>status</anchor>
+            <arglist>()</arglist>
+        </member>
+        <member kind="function" protection="public" virtualness="non" static="no">
+            <type>QString</type>
+            <name>lastError</name>
+            <anchorfile>qleveldb.html</anchorfile>
+            <anchor>lastError</anchor>
+            <arglist>()</arglist>
+        </member>
+        <member kind="function" protection="public" virtualness="non" static="no">
+            <type>QLevelDBOptions *</type>
+            <name>options</name>
+            <anchorfile>qleveldb.html</anchorfile>
+            <anchor>options</anchor>
+            <arglist>()</arglist>
+        </member>
+        <member kind="function" protection="public" virtualness="non" static="no">
+            <type>Status</type>
+            <name>open</name>
+            <anchorfile>qleveldb.html</anchorfile>
+            <anchor>open</anchor>
+            <arglist>()</arglist>
+        </member>
+        <member kind="function" protection="public" virtualness="non" static="no">
+            <type>void</type>
+            <name>close</name>
+            <anchorfile>qleveldb.html</anchorfile>
+            <anchor>close</anchor>
+            <arglist>()</arglist>
+        </member>
+        <member kind="function" protection="public" virtualness="non" static="no">
+            <type>QLevelDBReadStream *</type>
+            <name>readStream</name>
+            <anchorfile>qleveldb.html</anchorfile>
+            <anchor>readStream</anchor>
+            <arglist>(const QString startKey, const int length)</arglist>
+        </member>
+        <member kind="function" protection="public" virtualness="non" static="no">
+            <type>void</type>
+            <name>setFilename</name>
+            <anchorfile>qleveldb.html</anchorfile>
+            <anchor>setFilename</anchor>
+            <arglist>(QString filename)</arglist>
+        </member>
+        <member kind="function" protection="public" virtualness="non" static="no">
+            <type>QLevelDBBatch *</type>
+            <name>batch</name>
+            <anchorfile>qleveldb.html</anchorfile>
+            <anchor>batch</anchor>
+            <arglist>()</arglist>
+        </member>
+        <member kind="function" protection="public" virtualness="non" static="no">
+            <type>bool</type>
+            <name>del</name>
+            <anchorfile>qleveldb.html</anchorfile>
+            <anchor>del</anchor>
+            <arglist>(QString key)</arglist>
+        </member>
+        <member kind="function" protection="public" virtualness="non" static="no">
+            <type>QVariant</type>
+            <name>get</name>
+            <anchorfile>qleveldb.html</anchorfile>
+            <anchor>get</anchor>
+            <arglist>(QString key, QVariant defaultValue)</arglist>
+        </member>
+        <member kind="function" protection="public" virtualness="non" static="no">
+            <type>bool</type>
+            <name>put</name>
+            <anchorfile>qleveldb.html</anchorfile>
+            <anchor>put</anchor>
+            <arglist>(QString key, QVariant value)</arglist>
+        </member>
+        <member kind="function" protection="public" virtualness="non" static="no">
+            <type>bool</type>
+            <name>putSync</name>
+            <anchorfile>qleveldb.html</anchorfile>
+            <anchor>putSync</anchor>
+            <arglist>(QString key, QVariant value)</arglist>
+        </member>
+        <member kind="function" protection="public" virtualness="non" static="no">
+            <type>bool</type>
+            <name>destroyDB</name>
+            <anchorfile>qleveldb.html</anchorfile>
+            <anchor>destroyDB</anchor>
+            <arglist>(QString filename)</arglist>
+        </member>
+        <member kind="function" protection="public" virtualness="non" static="no">
+            <type>bool</type>
+            <name>repairDB</name>
+            <anchorfile>qleveldb.html</anchorfile>
+            <anchor>repairDB</anchor>
+            <arglist>(QString filename)</arglist>
+        </member>
+        <member kind="function" protection="public" virtualness="non" static="no">
+            <type>QWeakPointer&lt;leveldb::DB&gt;</type>
+            <name>dbNativeHandler</name>
+            <anchorfile>qleveldb.html</anchorfile>
+            <anchor>dbNativeHandler</anchor>
+            <arglist>()</arglist>
+        </member>
+        <member kind="function" protection="public" virtualness="non" static="no">
+            <type>void</type>
+            <name>filenameChanged</name>
+            <anchorfile>qleveldb.html</anchorfile>
+            <anchor>filenameChanged</anchor>
+            <arglist>()</arglist>
+        </member>
+        <member kind="function" protection="public" virtualness="non" static="no">
+            <type>void</type>
+            <name>openedChanged</name>
+            <anchorfile>qleveldb.html</anchorfile>
+            <anchor>openedChanged</anchor>
+            <arglist>()</arglist>
+        </member>
+        <member kind="function" protection="public" virtualness="non" static="no">
+            <type>void</type>
+            <name>statusChanged</name>
+            <anchorfile>qleveldb.html</anchorfile>
+            <anchor>statusChanged</anchor>
+            <arglist>()</arglist>
+        </member>
+        <member kind="function" protection="public" virtualness="non" static="no">
+            <type>void</type>
+            <name>lastErrorChanged</name>
+            <anchorfile>qleveldb.html</anchorfile>
+            <anchor>lastErrorChanged</anchor>
+            <arglist>()</arglist>
+        </member>
+        <member kind="function" protection="public" virtualness="non" static="no">
+            <type>void</type>
+            <name>keyValueChanged</name>
+            <anchorfile>qleveldb.html</anchorfile>
+            <anchor>keyValueChanged</anchor>
+            <arglist>(QString key, QVariant value)</arglist>
+        </member>
+    </compound>
+    <compound kind="class">
+        <name>QLevelDBBatch</name>
+        <filename>qleveldbbatch.html</filename>
+        <base>QObject</base>
+        <member kind="function" protection="public" virtualness="non" static="no">
+            <type></type>
+            <name>QLevelDBBatch</name>
+            <anchorfile>qleveldbbatch.html</anchorfile>
+            <anchor>QLevelDBBatch</anchor>
+            <arglist>(QWeakPointer&lt;leveldb::DB&gt; db, QObject *parent)</arglist>
+        </member>
+        <member kind="function" protection="public" virtualness="non" static="no">
+            <type></type>
+            <name>~QLevelDBBatch</name>
+            <anchorfile>qleveldbbatch.html</anchorfile>
+            <anchor>dtor.QLevelDBBatch</anchor>
+            <arglist>()</arglist>
+        </member>
+        <member kind="function" protection="public" virtualness="non" static="no">
+            <type>QLevelDBBatch *</type>
+            <name>del</name>
+            <anchorfile>qleveldbbatch.html</anchorfile>
+            <anchor>del</anchor>
+            <arglist>(QString key)</arglist>
+        </member>
+        <member kind="function" protection="public" virtualness="non" static="no">
+            <type>QLevelDBBatch *</type>
+            <name>put</name>
+            <anchorfile>qleveldbbatch.html</anchorfile>
+            <anchor>put</anchor>
+            <arglist>(QString key, QVariant value)</arglist>
+        </member>
+        <member kind="function" protection="public" virtualness="non" static="no">
+            <type>QLevelDBBatch *</type>
+            <name>clear</name>
+            <anchorfile>qleveldbbatch.html</anchorfile>
+            <anchor>clear</anchor>
+            <arglist>()</arglist>
+        </member>
+        <member kind="function" protection="public" virtualness="non" static="no">
+            <type>bool</type>
+            <name>write</name>
+            <anchorfile>qleveldbbatch.html</anchorfile>
+            <anchor>write</anchor>
+            <arglist>()</arglist>
+        </member>
+        <member kind="function" protection="public" virtualness="non" static="no">
+            <type>void</type>
+            <name>batchWritten</name>
+            <anchorfile>qleveldbbatch.html</anchorfile>
+            <anchor>batchWritten</anchor>
+            <arglist>(QSet&lt;QString&gt; keys)</arglist>
+        </member>
+    </compound>
+    <compound kind="class">
+        <name>QLevelDBOptions</name>
+        <filename>qleveldboptions.html</filename>
+        <base>QObject</base>
+        <member kind="property" type="bool">
+            <name>createIfMissing</name>
+            <anchorfile>qleveldboptions.html</anchorfile>
+            <anchor>createIfMissing-prop</anchor>
+            <arglist></arglist>
+        </member>
+        <member kind="property" type="bool">
+            <name>errorIfExists</name>
+            <anchorfile>qleveldboptions.html</anchorfile>
+            <anchor>errorIfExists-prop</anchor>
+            <arglist></arglist>
+        </member>
+        <member kind="property" type="bool">
+            <name>paranoidChecks</name>
+            <anchorfile>qleveldboptions.html</anchorfile>
+            <anchor>paranoidChecks-prop</anchor>
+            <arglist></arglist>
+        </member>
+        <member kind="property" type="CompressionType">
+            <name>compressionType</name>
+            <anchorfile>qleveldboptions.html</anchorfile>
+            <anchor>compressionType-prop</anchor>
+            <arglist></arglist>
+        </member>
+        <member kind="function" protection="public" virtualness="non" static="no">
+            <type></type>
+            <name>QLevelDBOptions</name>
+            <anchorfile>qleveldboptions.html</anchorfile>
+            <anchor>QLevelDBOptions</anchor>
+            <arglist>(QObject *parent)</arglist>
+        </member>
+        <member kind="enum">
+            <name>CompressionType</name>
+            <anchor>CompressionType-enum</anchor>
+            <arglist></arglist>
+        </member>
+        <member name="NoCompression">
+            <anchor>CompressionType-enum</anchor>
+            <arglist></arglist>
+        </member>
+        <member name="SnappyCompression">
+            <anchor>CompressionType-enum</anchor>
+            <arglist></arglist>
+        </member>
+        <member kind="function" protection="public" virtualness="non" static="no">
+            <type>bool</type>
+            <name>createIfMissing</name>
+            <anchorfile>qleveldboptions.html</anchorfile>
+            <anchor>createIfMissing-prop</anchor>
+            <arglist>() const</arglist>
+        </member>
+        <member kind="function" protection="public" virtualness="non" static="no">
+            <type>bool</type>
+            <name>errorIfExists</name>
+            <anchorfile>qleveldboptions.html</anchorfile>
+            <anchor>errorIfExists-prop</anchor>
+            <arglist>() const</arglist>
+        </member>
+        <member kind="function" protection="public" virtualness="non" static="no">
+            <type>bool</type>
+            <name>paranoidChecks</name>
+            <anchorfile>qleveldboptions.html</anchorfile>
+            <anchor>paranoidChecks-prop</anchor>
+            <arglist>() const</arglist>
+        </member>
+        <member kind="function" protection="public" virtualness="non" static="no">
+            <type>CompressionType</type>
+            <name>compressionType</name>
+            <anchorfile>qleveldboptions.html</anchorfile>
+            <anchor>compressionType-prop</anchor>
+            <arglist>() const</arglist>
+        </member>
+        <member kind="function" protection="public" virtualness="non" static="no">
+            <type>void</type>
+            <name>setCreateIfMissing</name>
+            <anchorfile>qleveldboptions.html</anchorfile>
+            <anchor>createIfMissing-prop</anchor>
+            <arglist>(bool value)</arglist>
+        </member>
+        <member kind="function" protection="public" virtualness="non" static="no">
+            <type>void</type>
+            <name>setErrorIfExists</name>
+            <anchorfile>qleveldboptions.html</anchorfile>
+            <anchor>errorIfExists-prop</anchor>
+            <arglist>(bool value)</arglist>
+        </member>
+        <member kind="function" protection="public" virtualness="non" static="no">
+            <type>void</type>
+            <name>setParanoidChecks</name>
+            <anchorfile>qleveldboptions.html</anchorfile>
+            <anchor>paranoidChecks-prop</anchor>
+            <arglist>(bool value)</arglist>
+        </member>
+        <member kind="function" protection="public" virtualness="non" static="no">
+            <type>void</type>
+            <name>setCompressionType</name>
+            <anchorfile>qleveldboptions.html</anchorfile>
+            <anchor>compressionType-prop</anchor>
+            <arglist>(CompressionType type)</arglist>
+        </member>
+    </compound>
+    <compound kind="class">
+        <name>QLevelDBReadStream</name>
+        <filename>qleveldbreadstream.html</filename>
+        <base>QObject</base>
+        <member kind="property" type="QString">
+            <name>startKey</name>
+            <anchorfile>qleveldbreadstream.html</anchorfile>
+            <anchor>startKey-prop</anchor>
+            <arglist></arglist>
+        </member>
+        <member kind="function" protection="public" virtualness="non" static="no">
+            <type></type>
+            <name>QLevelDBReadStream</name>
+            <anchorfile>qleveldbreadstream.html</anchorfile>
+            <anchor>QLevelDBReadStream</anchor>
+            <arglist>(QWeakPointer&lt;leveldb::DB&gt; db, QObject *parent)</arglist>
+        </member>
+        <member kind="function" protection="public" virtualness="non" static="no">
+            <type></type>
+            <name>QLevelDBReadStream</name>
+            <anchorfile>qleveldbreadstream.html</anchorfile>
+            <anchor>QLevelDBReadStream-2</anchor>
+            <arglist>(QWeakPointer&lt;leveldb::DB&gt; db, QString startKey, int length, QObject *parent)</arglist>
+        </member>
+        <member kind="function" protection="public" virtualness="non" static="no">
+            <type></type>
+            <name>~QLevelDBReadStream</name>
+            <anchorfile>qleveldbreadstream.html</anchorfile>
+            <anchor>dtor.QLevelDBReadStream</anchor>
+            <arglist>()</arglist>
+        </member>
+        <member kind="function" protection="public" virtualness="non" static="no">
+            <type>bool</type>
+            <name>start</name>
+            <anchorfile>qleveldbreadstream.html</anchorfile>
+            <anchor>start</anchor>
+            <arglist>()</arglist>
+        </member>
+        <member kind="function" protection="public" virtualness="non" static="no">
+            <type>bool</type>
+            <name>start</name>
+            <anchorfile>qleveldbreadstream.html</anchorfile>
+            <anchor>start-2</anchor>
+            <arglist>(std::function&lt;bool( QString key, QVariant value ) &gt; callback)</arglist>
+        </member>
+        <member kind="function" protection="public" virtualness="non" static="no">
+            <type>void</type>
+            <name>stop</name>
+            <anchorfile>qleveldbreadstream.html</anchorfile>
+            <anchor>stop</anchor>
+            <arglist>()</arglist>
+        </member>
+        <member kind="function" protection="public" virtualness="non" static="no">
+            <type>QString</type>
+            <name>startKey</name>
+            <anchorfile>qleveldbreadstream.html</anchorfile>
+            <anchor>startKey-prop</anchor>
+            <arglist>() const</arglist>
+        </member>
+        <member kind="function" protection="public" virtualness="non" static="no">
+            <type>void</type>
+            <name>streamStarted</name>
+            <anchorfile>qleveldbreadstream.html</anchorfile>
+            <anchor>streamStarted</anchor>
+            <arglist>()</arglist>
+        </member>
+        <member kind="function" protection="public" virtualness="non" static="no">
+            <type>void</type>
+            <name>streamEnded</name>
+            <anchorfile>qleveldbreadstream.html</anchorfile>
+            <anchor>streamEnded</anchor>
+            <arglist>()</arglist>
+        </member>
+        <member kind="function" protection="public" virtualness="non" static="no">
+            <type>void</type>
+            <name>nextKeyValue</name>
+            <anchorfile>qleveldbreadstream.html</anchorfile>
+            <anchor>nextKeyValue</anchor>
+            <arglist>(QString key, QVariant value)</arglist>
+        </member>
+    </compound>
+    <compound kind="class">
+        <name>QtLevelDB.LevelDB</name>
+        <filename>qml-qtleveldb-leveldb.html</filename>
+    </compound>
+    <compound kind="class">
+        <name>QtLevelDB.Settings</name>
+        <filename>qml-qtleveldb-settings.html</filename>
+    </compound>
+</tagfile>

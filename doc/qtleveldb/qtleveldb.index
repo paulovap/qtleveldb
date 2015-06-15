@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE QDOCINDEX>
+<INDEX url="http://doc.qt.io/qt-5" title="Qt LevelDB Reference Documentation" version="5.5.0" project="QtLevelDB">
+    <namespace threadsafety="unspecified" name="" status="commendable" access="public" module="qtleveldb">
+        <page name="qtleveldb-index.html" href="qtleveldb-index.html" status="commendable" location="index.qdoc" filepath="/home/paulo/proj/qtleveldb/src/leveldb/doc/src/index.qdoc" lineno="1" since="5.5" subtype="page" title="Qt LevelDB" fulltitle="Qt LevelDB" subtitle="" module="QtLevelDB" brief="API to read and write LevelDB databases">
+            <contents name="related-information" title="Related Information" level="1"/>
+        </page>
+        <class threadsafety="unspecified" name="QLevelDB" href="qleveldb.html" status="commendable" access="public" location="qleveldb.h" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qleveldb.h" lineno="18" since="5.5" bases="QObject" module="QtLevelDB" brief="Enables access to a LevelDB database">
+            <function threadsafety="unspecified" name="dbNativeHandler" fullname="QLevelDB::dbNativeHandler" href="qleveldb.html#dbNativeHandler" status="commendable" access="public" location="qleveldb.cpp" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qleveldb.cpp" lineno="288" virtual="non" meta="plain" const="false" static="false" overload="false" type="QWeakPointer&lt;leveldb::DB&gt;" signature="QWeakPointer&lt;leveldb::DB&gt; dbNativeHandler()"/>
+            <function threadsafety="unspecified" name="dispatchPropertyChange" fullname="QLevelDB::dispatchPropertyChange" href="qleveldb.html#dispatchPropertyChange" status="commendable" access="private" location="qleveldb.cpp" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qleveldb.cpp" lineno="347" virtual="non" meta="plain" const="false" static="false" overload="false" type="void" signature="void dispatchPropertyChange(QString key, QVariant value)">
+                <parameter left="QString" right="" name="key" default=""/>
+                <parameter left="QVariant" right="" name="value" default=""/>
+            </function>
+            <function threadsafety="unspecified" name="parseStatusCode" fullname="QLevelDB::parseStatusCode" href="qleveldb.html#parseStatusCode" status="commendable" access="private" location="qleveldb.cpp" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qleveldb.cpp" lineno="334" virtual="non" meta="plain" const="false" static="false" overload="false" type="Status" signature="Status parseStatusCode(leveldb::Status &amp;status)">
+                <parameter left="leveldb::Status &amp;" right="" name="status" default=""/>
+            </function>
+            <function threadsafety="unspecified" name="setOpened" fullname="QLevelDB::setOpened" href="qleveldb.html#setOpened" status="commendable" access="private" location="qleveldb.cpp" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qleveldb.cpp" lineno="319" virtual="non" meta="plain" const="false" static="false" overload="false" type="void" signature="void setOpened(bool opened)">
+                <parameter left="bool" right="" name="opened" default=""/>
+            </function>
+            <function threadsafety="unspecified" name="setLastError" fullname="QLevelDB::setLastError" href="qleveldb.html#setLastError" status="commendable" access="private" location="qleveldb.cpp" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qleveldb.cpp" lineno="311" virtual="non" meta="plain" const="false" static="false" overload="false" type="void" signature="void setLastError(QString text)">
+                <parameter left="QString" right="" name="text" default=""/>
+            </function>
+            <function threadsafety="unspecified" name="setStatus" fullname="QLevelDB::setStatus" href="qleveldb.html#setStatus" status="commendable" access="private" location="qleveldb.cpp" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qleveldb.cpp" lineno="303" virtual="non" meta="plain" const="false" static="false" overload="false" type="void" signature="void setStatus(Status status)">
+                <parameter left="Status" right="" name="status" default=""/>
+            </function>
+            <function threadsafety="unspecified" name="onBatchWritten" fullname="QLevelDB::onBatchWritten" href="qleveldb.html#onBatchWritten" status="commendable" access="private" location="qleveldb.cpp" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qleveldb.cpp" lineno="327" virtual="non" meta="slot" const="false" static="false" overload="false" type="void" signature="void onBatchWritten(QSet&lt;QString&gt; keys)">
+                <parameter left="QSet&lt;QString&gt;" right="" name="keys" default=""/>
+            </function>
+            <function threadsafety="unspecified" name="~QLevelDB" fullname="QLevelDB::~QLevelDB" href="qleveldb.html#dtor.QLevelDB" status="commendable" access="public" location="qleveldb.cpp" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qleveldb.cpp" lineno="43" virtual="non" meta="destructor" const="false" static="false" overload="false" type="" signature="~QLevelDB()"/>
+            <enum threadsafety="unspecified" name="Status" fullname="QLevelDB::Status" href="qleveldb.html#Status-enum" status="commendable" access="public" location="qleveldb.h" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qleveldb.h" lineno="24">
+                <value name="Undefined" value="-1"/>
+                <value name="Ok" value="0"/>
+                <value name="NotFound" value="1"/>
+                <value name="Corruption" value="2"/>
+                <value name="NotSupported" value="3"/>
+                <value name="InvalidArgument" value="4"/>
+                <value name="IOError" value="5"/>
+            </enum>
+            <function threadsafety="unspecified" name="QLevelDB" fullname="QLevelDB::QLevelDB" href="qleveldb.html#QLevelDB" status="commendable" access="public" location="qleveldb.h" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qleveldb.h" lineno="33" virtual="non" meta="constructor" const="false" static="false" overload="false" type="" signature="QLevelDB(QObject *parent)">
+                <parameter left="QObject *" right="" name="parent" default="0"/>
+            </function>
+            <function threadsafety="unspecified" name="QLevelDB" fullname="QLevelDB::QLevelDB" href="qleveldb.html#QLevelDB-2" status="commendable" access="public" location="qleveldb.h" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qleveldb.h" lineno="34" virtual="non" meta="constructor" const="false" static="false" overload="true" overload-number="2" type="" signature="QLevelDB(QString filename, QObject *parent)">
+                <parameter left="QString" right="" name="filename" default=""/>
+                <parameter left="QObject *" right="" name="parent" default="0"/>
+            </function>
+            <function threadsafety="unspecified" name="batch" fullname="QLevelDB::batch" href="qleveldb.html#batch" status="commendable" access="public" location="qleveldb.h" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qleveldb.h" lineno="49" virtual="non" meta="plain" const="false" static="false" overload="false" type="QLevelDBBatch *" signature="QLevelDBBatch * batch()"/>
+            <function threadsafety="unspecified" name="close" fullname="QLevelDB::close" href="qleveldb.html#close" status="commendable" access="public" location="qleveldb.h" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qleveldb.h" lineno="44" virtual="non" meta="plain" const="false" static="false" overload="false" type="void" signature="void close()"/>
+            <function threadsafety="unspecified" name="del" fullname="QLevelDB::del" href="qleveldb.html#del" status="commendable" access="public" location="qleveldb.h" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qleveldb.h" lineno="50" virtual="non" meta="plain" const="false" static="false" overload="false" type="bool" signature="bool del(QString key)">
+                <parameter left="QString" right="" name="key" default=""/>
+            </function>
+            <function threadsafety="unspecified" name="destroyDB" fullname="QLevelDB::destroyDB" href="qleveldb.html#destroyDB" status="commendable" access="public" location="qleveldb.h" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qleveldb.h" lineno="54" virtual="non" meta="plain" const="false" static="false" overload="false" type="bool" signature="bool destroyDB(QString filename)">
+                <parameter left="QString" right="" name="filename" default=""/>
+            </function>
+            <function threadsafety="unspecified" name="filename" fullname="QLevelDB::filename" href="qleveldb.html#filename" status="commendable" access="public" location="qleveldb.h" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qleveldb.h" lineno="37" virtual="non" meta="plain" const="false" static="false" overload="false" type="QString" signature="QString filename()"/>
+            <function threadsafety="unspecified" name="filenameChanged" fullname="QLevelDB::filenameChanged" href="qleveldb.html#filenameChanged" status="commendable" access="public" location="qleveldb.h" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qleveldb.h" lineno="59" virtual="non" meta="signal" const="false" static="false" overload="false" type="void" signature="void filenameChanged()"/>
+            <function threadsafety="unspecified" name="get" fullname="QLevelDB::get" href="qleveldb.html#get" status="commendable" access="public" location="qleveldb.h" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qleveldb.h" lineno="51" virtual="non" meta="plain" const="false" static="false" overload="false" type="QVariant" signature="QVariant get(QString key, QVariant defaultValue)">
+                <parameter left="QString" right="" name="key" default=""/>
+                <parameter left="QVariant" right="" name="defaultValue" default="QVariant()"/>
+            </function>
+            <function threadsafety="unspecified" name="keyValueChanged" fullname="QLevelDB::keyValueChanged" href="qleveldb.html#keyValueChanged" status="commendable" access="public" location="qleveldb.h" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qleveldb.h" lineno="63" virtual="non" meta="signal" const="false" static="false" overload="false" type="void" signature="void keyValueChanged(QString key, QVariant value)">
+                <parameter left="QString" right="" name="key" default=""/>
+                <parameter left="QVariant" right="" name="value" default=""/>
+            </function>
+            <function threadsafety="unspecified" name="lastError" fullname="QLevelDB::lastError" href="qleveldb.html#lastError" status="commendable" access="public" location="qleveldb.h" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qleveldb.h" lineno="40" virtual="non" meta="plain" const="false" static="false" overload="false" type="QString" signature="QString lastError()"/>
+            <function threadsafety="unspecified" name="lastErrorChanged" fullname="QLevelDB::lastErrorChanged" href="qleveldb.html#lastErrorChanged" status="commendable" access="public" location="qleveldb.h" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qleveldb.h" lineno="62" virtual="non" meta="signal" const="false" static="false" overload="false" type="void" signature="void lastErrorChanged()"/>
+            <function threadsafety="unspecified" name="open" fullname="QLevelDB::open" href="qleveldb.html#open" status="commendable" access="public" location="qleveldb.h" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qleveldb.h" lineno="43" virtual="non" meta="plain" const="false" static="false" overload="false" type="Status" signature="Status open()"/>
+            <function threadsafety="unspecified" name="opened" fullname="QLevelDB::opened" href="qleveldb.html#opened" status="commendable" access="public" location="qleveldb.h" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qleveldb.h" lineno="38" virtual="non" meta="plain" const="false" static="false" overload="false" type="bool" signature="bool opened()"/>
+            <function threadsafety="unspecified" name="openedChanged" fullname="QLevelDB::openedChanged" href="qleveldb.html#openedChanged" status="commendable" access="public" location="qleveldb.h" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qleveldb.h" lineno="60" virtual="non" meta="signal" const="false" static="false" overload="false" type="void" signature="void openedChanged()"/>
+            <function threadsafety="unspecified" name="options" fullname="QLevelDB::options" href="qleveldb.html#options" status="commendable" access="public" location="qleveldb.h" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qleveldb.h" lineno="41" virtual="non" meta="plain" const="false" static="false" overload="false" type="QLevelDBOptions *" signature="QLevelDBOptions * options()"/>
+            <function threadsafety="unspecified" name="put" fullname="QLevelDB::put" href="qleveldb.html#put" status="commendable" access="public" location="qleveldb.h" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qleveldb.h" lineno="52" virtual="non" meta="plain" const="false" static="false" overload="false" type="bool" signature="bool put(QString key, QVariant value)">
+                <parameter left="QString" right="" name="key" default=""/>
+                <parameter left="QVariant" right="" name="value" default=""/>
+            </function>
+            <function threadsafety="unspecified" name="putSync" fullname="QLevelDB::putSync" href="qleveldb.html#putSync" status="commendable" access="public" location="qleveldb.h" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qleveldb.h" lineno="53" virtual="non" meta="plain" const="false" static="false" overload="false" type="bool" signature="bool putSync(QString key, QVariant value)">
+                <parameter left="QString" right="" name="key" default=""/>
+                <parameter left="QVariant" right="" name="value" default=""/>
+            </function>
+            <function threadsafety="unspecified" name="readStream" fullname="QLevelDB::readStream" href="qleveldb.html#readStream" status="commendable" access="public" location="qleveldb.h" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qleveldb.h" lineno="46" virtual="non" meta="plain" const="false" static="false" overload="false" type="QLevelDBReadStream *" signature="QLevelDBReadStream * readStream(const QString startKey, const int length)">
+                <parameter left="const QString" right="" name="startKey" default="QString()"/>
+                <parameter left="const int" right="" name="length" default="-1"/>
+            </function>
+            <function threadsafety="unspecified" name="repairDB" fullname="QLevelDB::repairDB" href="qleveldb.html#repairDB" status="commendable" access="public" location="qleveldb.h" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qleveldb.h" lineno="55" virtual="non" meta="plain" const="false" static="false" overload="false" type="bool" signature="bool repairDB(QString filename)">
+                <parameter left="QString" right="" name="filename" default=""/>
+            </function>
+            <function threadsafety="unspecified" name="setFilename" fullname="QLevelDB::setFilename" href="qleveldb.html#setFilename" status="commendable" access="public" location="qleveldb.h" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qleveldb.h" lineno="48" virtual="non" meta="plain" const="false" static="false" overload="false" type="void" signature="void setFilename(QString filename)">
+                <parameter left="QString" right="" name="filename" default=""/>
+            </function>
+            <function threadsafety="unspecified" name="status" fullname="QLevelDB::status" href="qleveldb.html#status" status="commendable" access="public" location="qleveldb.h" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qleveldb.h" lineno="39" virtual="non" meta="plain" const="false" static="false" overload="false" type="Status" signature="Status status()"/>
+            <function threadsafety="unspecified" name="statusChanged" fullname="QLevelDB::statusChanged" href="qleveldb.html#statusChanged" status="commendable" access="public" location="qleveldb.h" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qleveldb.h" lineno="61" virtual="non" meta="signal" const="false" static="false" overload="false" type="void" signature="void statusChanged()"/>
+            <variable threadsafety="unspecified" name="m_levelDB" fullname="QLevelDB::m_levelDB" href="qleveldb.html#m_levelDB-var" status="commendable" access="protected" location="qleveldb.h" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qleveldb.h" lineno="67" type="QSharedPointer&lt;leveldb::DB&gt;" static="false"/>
+        </class>
+        <class threadsafety="unspecified" name="QLevelDBBatch" href="qleveldbbatch.html" status="commendable" access="public" location="qleveldbbatch.h" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qleveldbbatch.h" lineno="17" since="5.5" bases="QObject" module="QtLevelDB" brief="Apply bulk operations in a LevelDB Database, rolling back in case of error">
+            <function threadsafety="unspecified" name="~QLevelDBBatch" fullname="QLevelDBBatch::~QLevelDBBatch" href="qleveldbbatch.html#dtor.QLevelDBBatch" status="commendable" access="public" location="qleveldbbatch.cpp" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qleveldbbatch.cpp" lineno="28" virtual="non" meta="destructor" const="false" static="false" overload="false" type="" signature="~QLevelDBBatch()"/>
+            <function threadsafety="unspecified" name="QLevelDBBatch" fullname="QLevelDBBatch::QLevelDBBatch" href="qleveldbbatch.html#QLevelDBBatch" status="commendable" access="public" location="qleveldbbatch.h" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qleveldbbatch.h" lineno="21" virtual="non" meta="constructor" const="false" static="false" overload="false" type="" signature="QLevelDBBatch(QWeakPointer&lt;leveldb::DB&gt; db, QObject *parent)">
+                <parameter left="QWeakPointer&lt;leveldb::DB&gt;" right="" name="db" default=""/>
+                <parameter left="QObject *" right="" name="parent" default="0"/>
+            </function>
+            <function threadsafety="unspecified" name="batchWritten" fullname="QLevelDBBatch::batchWritten" href="qleveldbbatch.html#batchWritten" status="commendable" access="public" location="qleveldbbatch.h" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qleveldbbatch.h" lineno="29" virtual="non" meta="signal" const="false" static="false" overload="false" type="void" signature="void batchWritten(QSet&lt;QString&gt; keys)">
+                <parameter left="QSet&lt;QString&gt;" right="" name="keys" default=""/>
+            </function>
+            <function threadsafety="unspecified" name="clear" fullname="QLevelDBBatch::clear" href="qleveldbbatch.html#clear" status="commendable" access="public" location="qleveldbbatch.h" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qleveldbbatch.h" lineno="25" virtual="non" meta="plain" const="false" static="false" overload="false" type="QLevelDBBatch *" signature="QLevelDBBatch * clear()"/>
+            <function threadsafety="unspecified" name="del" fullname="QLevelDBBatch::del" href="qleveldbbatch.html#del" status="commendable" access="public" location="qleveldbbatch.h" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qleveldbbatch.h" lineno="23" virtual="non" meta="plain" const="false" static="false" overload="false" type="QLevelDBBatch *" signature="QLevelDBBatch * del(QString key)">
+                <parameter left="QString" right="" name="key" default=""/>
+            </function>
+            <function threadsafety="unspecified" name="put" fullname="QLevelDBBatch::put" href="qleveldbbatch.html#put" status="commendable" access="public" location="qleveldbbatch.h" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qleveldbbatch.h" lineno="24" virtual="non" meta="plain" const="false" static="false" overload="false" type="QLevelDBBatch *" signature="QLevelDBBatch * put(QString key, QVariant value)">
+                <parameter left="QString" right="" name="key" default=""/>
+                <parameter left="QVariant" right="" name="value" default=""/>
+            </function>
+            <function threadsafety="unspecified" name="write" fullname="QLevelDBBatch::write" href="qleveldbbatch.html#write" status="commendable" access="public" location="qleveldbbatch.h" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qleveldbbatch.h" lineno="27" virtual="non" meta="plain" const="false" static="false" overload="false" type="bool" signature="bool write()"/>
+        </class>
+        <class threadsafety="unspecified" name="QLevelDBOptions" href="qleveldboptions.html" status="commendable" access="public" location="qleveldboptions.h" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qleveldboptions.h" lineno="13" since="5.5" bases="QObject" module="QtLevelDB" brief="Manipulates options used when opening a LevelDB Database">
+            <function threadsafety="unspecified" name="setCompressionType" fullname="QLevelDBOptions::setCompressionType" href="qleveldboptions.html#compressionType-prop" status="commendable" access="public" location="qleveldboptions.cpp" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qleveldboptions.cpp" lineno="74" virtual="non" meta="plain" const="false" static="false" overload="false" associated-property="compressionType" type="void" signature="void setCompressionType(CompressionType type)">
+                <parameter left="CompressionType" right="" name="type" default=""/>
+            </function>
+            <function threadsafety="unspecified" name="setCreateIfMissing" fullname="QLevelDBOptions::setCreateIfMissing" href="qleveldboptions.html#createIfMissing-prop" status="commendable" access="public" location="qleveldboptions.cpp" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qleveldboptions.cpp" lineno="59" virtual="non" meta="plain" const="false" static="false" overload="false" associated-property="createIfMissing" type="void" signature="void setCreateIfMissing(bool value)">
+                <parameter left="bool" right="" name="value" default=""/>
+            </function>
+            <function threadsafety="unspecified" name="setErrorIfExists" fullname="QLevelDBOptions::setErrorIfExists" href="qleveldboptions.html#errorIfExists-prop" status="commendable" access="public" location="qleveldboptions.cpp" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qleveldboptions.cpp" lineno="64" virtual="non" meta="plain" const="false" static="false" overload="false" associated-property="errorIfExists" type="void" signature="void setErrorIfExists(bool value)">
+                <parameter left="bool" right="" name="value" default=""/>
+            </function>
+            <function threadsafety="unspecified" name="setParanoidChecks" fullname="QLevelDBOptions::setParanoidChecks" href="qleveldboptions.html#paranoidChecks-prop" status="commendable" access="public" location="qleveldboptions.cpp" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qleveldboptions.cpp" lineno="69" virtual="non" meta="plain" const="false" static="false" overload="false" associated-property="paranoidChecks" type="void" signature="void setParanoidChecks(bool value)">
+                <parameter left="bool" right="" name="value" default=""/>
+            </function>
+            <enum threadsafety="unspecified" name="CompressionType" fullname="QLevelDBOptions::CompressionType" href="qleveldboptions.html#CompressionType-enum" status="commendable" access="public" location="qleveldboptions.h" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qleveldboptions.h" lineno="26">
+                <value name="NoCompression" value="0x0"/>
+                <value name="SnappyCompression" value="0x1"/>
+            </enum>
+            <function threadsafety="unspecified" name="QLevelDBOptions" fullname="QLevelDBOptions::QLevelDBOptions" href="qleveldboptions.html#QLevelDBOptions" status="commendable" access="public" location="qleveldboptions.h" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qleveldboptions.h" lineno="24" virtual="non" meta="constructor" const="false" static="false" overload="false" type="" signature="QLevelDBOptions(QObject *parent)">
+                <parameter left="QObject *" right="" name="parent" default="0"/>
+            </function>
+            <function threadsafety="unspecified" name="compressionType" fullname="QLevelDBOptions::compressionType" href="qleveldboptions.html#compressionType-prop" status="commendable" access="public" location="qleveldboptions.h" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qleveldboptions.h" lineno="34" virtual="non" meta="plain" const="true" static="false" overload="false" associated-property="compressionType" type="CompressionType" signature="CompressionType compressionType() const"/>
+            <function threadsafety="unspecified" name="createIfMissing" fullname="QLevelDBOptions::createIfMissing" href="qleveldboptions.html#createIfMissing-prop" status="commendable" access="public" location="qleveldboptions.h" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qleveldboptions.h" lineno="31" virtual="non" meta="plain" const="true" static="false" overload="false" associated-property="createIfMissing" type="bool" signature="bool createIfMissing() const"/>
+            <function threadsafety="unspecified" name="errorIfExists" fullname="QLevelDBOptions::errorIfExists" href="qleveldboptions.html#errorIfExists-prop" status="commendable" access="public" location="qleveldboptions.h" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qleveldboptions.h" lineno="32" virtual="non" meta="plain" const="true" static="false" overload="false" associated-property="errorIfExists" type="bool" signature="bool errorIfExists() const"/>
+            <function threadsafety="unspecified" name="paranoidChecks" fullname="QLevelDBOptions::paranoidChecks" href="qleveldboptions.html#paranoidChecks-prop" status="commendable" access="public" location="qleveldboptions.h" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qleveldboptions.h" lineno="33" virtual="non" meta="plain" const="true" static="false" overload="false" associated-property="paranoidChecks" type="bool" signature="bool paranoidChecks() const"/>
+            <property threadsafety="unspecified" name="compressionType" fullname="QLevelDBOptions::compressionType" href="qleveldboptions.html#compressionType-prop" status="commendable" access="public" location="qleveldboptions.h" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qleveldboptions.h" lineno="19" type="CompressionType">
+                <getter name="compressionType"/>
+                <setter name="setCompressionType"/>
+            </property>
+            <property threadsafety="unspecified" name="createIfMissing" fullname="QLevelDBOptions::createIfMissing" href="qleveldboptions.html#createIfMissing-prop" status="commendable" access="public" location="qleveldboptions.h" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qleveldboptions.h" lineno="16" type="bool">
+                <getter name="createIfMissing"/>
+                <setter name="setCreateIfMissing"/>
+            </property>
+            <property threadsafety="unspecified" name="errorIfExists" fullname="QLevelDBOptions::errorIfExists" href="qleveldboptions.html#errorIfExists-prop" status="commendable" access="public" location="qleveldboptions.h" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qleveldboptions.h" lineno="17" type="bool">
+                <getter name="errorIfExists"/>
+                <setter name="setErrorIfExists"/>
+            </property>
+            <property threadsafety="unspecified" name="paranoidChecks" fullname="QLevelDBOptions::paranoidChecks" href="qleveldboptions.html#paranoidChecks-prop" status="commendable" access="public" location="qleveldboptions.h" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qleveldboptions.h" lineno="18" type="bool">
+                <getter name="paranoidChecks"/>
+                <setter name="setParanoidChecks"/>
+            </property>
+        </class>
+        <class threadsafety="unspecified" name="QLevelDBReadStream" href="qleveldbreadstream.html" status="commendable" access="public" location="qleveldbreadstream.h" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qleveldbreadstream.h" lineno="17" since="5.5" bases="QObject" module="QtLevelDB" brief="Provides a way to scan the database, receiving a stream of key/values in a ordered manner">
+            <function threadsafety="unspecified" name="~QLevelDBReadStream" fullname="QLevelDBReadStream::~QLevelDBReadStream" href="qleveldbreadstream.html#dtor.QLevelDBReadStream" status="commendable" access="public" location="qleveldbreadstream.cpp" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qleveldbreadstream.cpp" lineno="48" virtual="non" meta="destructor" const="false" static="false" overload="false" type="" signature="~QLevelDBReadStream()"/>
+            <function threadsafety="unspecified" name="QLevelDBReadStream" fullname="QLevelDBReadStream::QLevelDBReadStream" href="qleveldbreadstream.html#QLevelDBReadStream" status="commendable" access="public" location="qleveldbreadstream.h" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qleveldbreadstream.h" lineno="22" virtual="non" meta="constructor" const="false" static="false" overload="false" type="" signature="QLevelDBReadStream(QWeakPointer&lt;leveldb::DB&gt; db, QObject *parent)">
+                <parameter left="QWeakPointer&lt;leveldb::DB&gt;" right="" name="db" default=""/>
+                <parameter left="QObject *" right="" name="parent" default="0"/>
+            </function>
+            <function threadsafety="unspecified" name="QLevelDBReadStream" fullname="QLevelDBReadStream::QLevelDBReadStream" href="qleveldbreadstream.html#QLevelDBReadStream-2" status="commendable" access="public" location="qleveldbreadstream.h" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qleveldbreadstream.h" lineno="23" virtual="non" meta="constructor" const="false" static="false" overload="true" overload-number="2" type="" signature="QLevelDBReadStream(QWeakPointer&lt;leveldb::DB&gt; db, QString startKey, int length, QObject *parent)">
+                <parameter left="QWeakPointer&lt;leveldb::DB&gt;" right="" name="db" default=""/>
+                <parameter left="QString" right="" name="startKey" default=""/>
+                <parameter left="int" right="" name="length" default="-1"/>
+                <parameter left="QObject *" right="" name="parent" default="0"/>
+            </function>
+            <function threadsafety="unspecified" name="nextKeyValue" fullname="QLevelDBReadStream::nextKeyValue" href="qleveldbreadstream.html#nextKeyValue" status="commendable" access="public" location="qleveldbreadstream.h" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qleveldbreadstream.h" lineno="33" virtual="non" meta="signal" const="false" static="false" overload="false" type="void" signature="void nextKeyValue(QString key, QVariant value)">
+                <parameter left="QString" right="" name="key" default=""/>
+                <parameter left="QVariant" right="" name="value" default=""/>
+            </function>
+            <function threadsafety="unspecified" name="start" fullname="QLevelDBReadStream::start" href="qleveldbreadstream.html#start" status="commendable" access="public" location="qleveldbreadstream.h" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qleveldbreadstream.h" lineno="25" virtual="non" meta="plain" const="false" static="false" overload="false" type="bool" signature="bool start()"/>
+            <function threadsafety="unspecified" name="start" fullname="QLevelDBReadStream::start" href="qleveldbreadstream.html#start-2" status="commendable" access="public" location="qleveldbreadstream.h" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qleveldbreadstream.h" lineno="26" virtual="non" meta="plain" const="false" static="false" overload="true" overload-number="2" type="bool" signature="bool start(std::function&lt;bool( QString key, QVariant value ) &gt; callback)">
+                <parameter left="std::function&lt;bool( QString key, QVariant value ) &gt;" right="" name="callback" default=""/>
+            </function>
+            <function threadsafety="unspecified" name="startKey" fullname="QLevelDBReadStream::startKey" href="qleveldbreadstream.html#startKey-prop" status="commendable" access="public" location="qleveldbreadstream.h" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qleveldbreadstream.h" lineno="29" virtual="non" meta="plain" const="true" static="false" overload="false" associated-property="startKey" type="QString" signature="QString startKey() const"/>
+            <function threadsafety="unspecified" name="stop" fullname="QLevelDBReadStream::stop" href="qleveldbreadstream.html#stop" status="commendable" access="public" location="qleveldbreadstream.h" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qleveldbreadstream.h" lineno="27" virtual="non" meta="plain" const="false" static="false" overload="false" type="void" signature="void stop()"/>
+            <function threadsafety="unspecified" name="streamEnded" fullname="QLevelDBReadStream::streamEnded" href="qleveldbreadstream.html#streamEnded" status="commendable" access="public" location="qleveldbreadstream.h" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qleveldbreadstream.h" lineno="32" virtual="non" meta="signal" const="false" static="false" overload="false" type="void" signature="void streamEnded()"/>
+            <function threadsafety="unspecified" name="streamStarted" fullname="QLevelDBReadStream::streamStarted" href="qleveldbreadstream.html#streamStarted" status="commendable" access="public" location="qleveldbreadstream.h" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qleveldbreadstream.h" lineno="31" virtual="non" meta="signal" const="false" static="false" overload="false" type="void" signature="void streamStarted()"/>
+            <property threadsafety="unspecified" name="startKey" fullname="QLevelDBReadStream::startKey" href="qleveldbreadstream.html#startKey-prop" status="commendable" access="public" location="qleveldbreadstream.h" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qleveldbreadstream.h" lineno="20" type="QString">
+                <getter name="startKey"/>
+            </property>
+        </class>
+        <qmlclass threadsafety="unspecified" name="LevelDB" fullname="QtLevelDB.LevelDB" href="qml-qtleveldb-leveldb.html" status="commendable" access="public" location="qqmlleveldb.cpp" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qqmlleveldb.cpp" lineno="11" since="1.0" title="LevelDB" fulltitle="LevelDB" subtitle="" brief="Low level API to access LevelDB database">
+            <qmlproperty threadsafety="unspecified" name="batch" fullname="QtLevelDB.LevelDB.batch" href="qml-qtleveldb-leveldb.html#batch-prop" status="commendable" access="public" location="qqmlleveldb.cpp" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qqmlleveldb.cpp" lineno="91" type="QLevelDBBatch*" attached="false" writable="true"/>
+            <qmlproperty threadsafety="unspecified" name="lastError" fullname="QtLevelDB.LevelDB.lastError" href="qml-qtleveldb-leveldb.html#lastError-prop" status="commendable" access="public" location="qqmlleveldb.cpp" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qqmlleveldb.cpp" lineno="60" type="string" attached="false" writable="true"/>
+            <qmlproperty threadsafety="unspecified" name="opened" fullname="QtLevelDB.LevelDB.opened" href="qml-qtleveldb-leveldb.html#opened-prop" status="commendable" access="public" location="qqmlleveldb.cpp" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qqmlleveldb.cpp" lineno="70" type="bool" attached="false" writable="true"/>
+            <qmlproperty threadsafety="unspecified" name="options" fullname="QtLevelDB.LevelDB.options" href="qml-qtleveldb-leveldb.html#options-prop" status="commendable" access="public" location="qqmlleveldb.cpp" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qqmlleveldb.cpp" lineno="80" type="QLevelDBOptions*" attached="false" writable="true"/>
+            <qmlproperty threadsafety="unspecified" name="source" fullname="QtLevelDB.LevelDB.source" href="qml-qtleveldb-leveldb.html#source-prop" status="commendable" access="public" location="qqmlleveldb.cpp" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qqmlleveldb.cpp" lineno="28" type="url" attached="false" writable="true"/>
+            <qmlproperty threadsafety="unspecified" name="status" fullname="QtLevelDB.LevelDB.status" href="qml-qtleveldb-leveldb.html#status-prop" status="commendable" access="public" location="qqmlleveldb.cpp" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qqmlleveldb.cpp" lineno="50" type="LevelDB::Status" attached="false" writable="true"/>
+        </qmlclass>
+        <class threadsafety="unspecified" name="QQmlLevelDBReadStream" href="qqmlleveldbreadstream.html" status="internal" access="private" location="qqmlleveldbreadstream.h" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qqmlleveldbreadstream.h" lineno="18" bases="QLevelDBReadStream,QQmlParserStatus">
+            <function threadsafety="unspecified" name="QQmlLevelDBReadStream" fullname="QQmlLevelDBReadStream::QQmlLevelDBReadStream" href="qqmlleveldbreadstream.html#QQmlLevelDBReadStream" status="commendable" access="public" location="qqmlleveldbreadstream.cpp" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qqmlleveldbreadstream.cpp" lineno="9" virtual="non" meta="constructor" const="false" static="false" overload="false" type="" signature="QQmlLevelDBReadStream(QWeakPointer&lt;leveldb::DB&gt; db, QObject *parent)">
+                <parameter left="QWeakPointer&lt;leveldb::DB&gt;" right="" name="db" default=""/>
+                <parameter left="QObject *" right="" name="parent" default="0"/>
+            </function>
+            <function threadsafety="unspecified" name="QQmlLevelDBReadStream" fullname="QQmlLevelDBReadStream::QQmlLevelDBReadStream" href="qqmlleveldbreadstream.html#QQmlLevelDBReadStream-2" status="commendable" access="public" location="qqmlleveldbreadstream.cpp" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qqmlleveldbreadstream.cpp" lineno="15" virtual="non" meta="constructor" const="false" static="false" overload="true" overload-number="2" type="" signature="QQmlLevelDBReadStream(QWeakPointer&lt;leveldb::DB&gt; db, QString startKey, int length, QObject *parent)">
+                <parameter left="QWeakPointer&lt;leveldb::DB&gt;" right="" name="db" default=""/>
+                <parameter left="QString" right="" name="startKey" default=""/>
+                <parameter left="int" right="" name="length" default=""/>
+                <parameter left="QObject *" right="" name="parent" default="0"/>
+            </function>
+            <function threadsafety="unspecified" name="classBegin" fullname="QQmlLevelDBReadStream::classBegin" href="qqmlleveldbreadstream.html#classBegin" status="commendable" access="protected" location="qqmlleveldbreadstream.cpp" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qqmlleveldbreadstream.cpp" lineno="32" virtual="impure" meta="plain" const="false" static="false" overload="false" type="void" signature="void classBegin()"/>
+            <function threadsafety="unspecified" name="componentComplete" fullname="QQmlLevelDBReadStream::componentComplete" href="qqmlleveldbreadstream.html#componentComplete" status="commendable" access="protected" location="qqmlleveldbreadstream.cpp" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qqmlleveldbreadstream.cpp" lineno="37" virtual="impure" meta="plain" const="false" static="false" overload="false" type="void" signature="void componentComplete()"/>
+            <function threadsafety="unspecified" name="onNextKeyValue" fullname="QQmlLevelDBReadStream::onNextKeyValue" href="qqmlleveldbreadstream.html#onNextKeyValue" status="commendable" access="private" location="qqmlleveldbreadstream.cpp" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qqmlleveldbreadstream.cpp" lineno="42" virtual="non" meta="slot" const="false" static="false" overload="false" type="void" signature="void onNextKeyValue(QString key, QVariant value)">
+                <parameter left="QString" right="" name="key" default=""/>
+                <parameter left="QVariant" right="" name="value" default=""/>
+            </function>
+            <function threadsafety="unspecified" name="start" fullname="QQmlLevelDBReadStream::start" href="qqmlleveldbreadstream.html#start" status="commendable" access="public" location="qqmlleveldbreadstream.cpp" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qqmlleveldbreadstream.cpp" lineno="21" virtual="non" meta="plain" const="false" static="false" overload="false" type="void" signature="void start(QJSValue callback)">
+                <parameter left="QJSValue" right="" name="callback" default=""/>
+            </function>
+            <function threadsafety="unspecified" name="stop" fullname="QQmlLevelDBReadStream::stop" href="qqmlleveldbreadstream.html#stop" status="commendable" access="public" location="qqmlleveldbreadstream.cpp" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qqmlleveldbreadstream.cpp" lineno="27" virtual="non" meta="plain" const="false" static="false" overload="false" type="void" signature="void stop()"/>
+        </class>
+        <function threadsafety="unspecified" name="QML_DECLARE_TYPE" status="internal" access="private" location="qqmlleveldbsettings.h" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qqmlleveldbsettings.h" lineno="43" virtual="non" meta="plain" const="false" static="false" overload="true" overload-number="3" type="" signature="QML_DECLARE_TYPE(QQmlLevelDBSettings )">
+            <parameter left="QQmlLevelDBSettings" right="" name="" default=""/>
+        </function>
+        <class threadsafety="unspecified" name="QQmlLevelDBSettings" href="qqmlleveldbsettings.html" status="internal" access="private" location="qqmlleveldbsettings.h" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qqmlleveldbsettings.h" lineno="21" bases="QObject,QQmlParserStatus">
+            <function threadsafety="unspecified" name="QQmlLevelDBSettings" fullname="QQmlLevelDBSettings::QQmlLevelDBSettings" href="qqmlleveldbsettings.html#QQmlLevelDBSettings" status="commendable" access="public" location="qqmlleveldbsettings.cpp" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qqmlleveldbsettings.cpp" lineno="19" virtual="non" meta="constructor" const="false" static="false" overload="false" type="" signature="QQmlLevelDBSettings(QObject *parent)">
+                <parameter left="QObject *" right="" name="parent" default="0"/>
+            </function>
+            <function threadsafety="unspecified" name="classBegin" fullname="QQmlLevelDBSettings::classBegin" href="qqmlleveldbsettings.html#classBegin" status="commendable" access="protected" location="qqmlleveldbsettings.cpp" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qqmlleveldbsettings.cpp" lineno="28" virtual="impure" meta="plain" const="false" static="false" overload="false" type="void" signature="void classBegin()"/>
+            <function threadsafety="unspecified" name="componentComplete" fullname="QQmlLevelDBSettings::componentComplete" href="qqmlleveldbsettings.html#componentComplete" status="commendable" access="protected" location="qqmlleveldbsettings.cpp" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qqmlleveldbsettings.cpp" lineno="32" virtual="impure" meta="plain" const="false" static="false" overload="false" type="void" signature="void componentComplete()"/>
+            <function threadsafety="unspecified" name="initProperties" fullname="QQmlLevelDBSettings::initProperties" href="qqmlleveldbsettings.html#initProperties" status="commendable" access="private" location="qqmlleveldbsettings.cpp" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qqmlleveldbsettings.cpp" lineno="38" virtual="non" meta="plain" const="false" static="false" overload="false" type="void" signature="void initProperties()"/>
+            <function threadsafety="unspecified" name="onMyPropertyChanged" fullname="QQmlLevelDBSettings::onMyPropertyChanged" href="qqmlleveldbsettings.html#onMyPropertyChanged" status="commendable" access="private" location="qqmlleveldbsettings.cpp" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qqmlleveldbsettings.cpp" lineno="79" virtual="non" meta="slot" const="false" static="false" overload="false" type="void" signature="void onMyPropertyChanged()"/>
+            <function threadsafety="unspecified" name="onPropertyChanged" fullname="QQmlLevelDBSettings::onPropertyChanged" href="qqmlleveldbsettings.html#onPropertyChanged" status="commendable" access="private" location="qqmlleveldbsettings.cpp" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qqmlleveldbsettings.cpp" lineno="89" virtual="non" meta="slot" const="false" static="false" overload="false" type="void" signature="void onPropertyChanged(QString key, QVariant value)">
+                <parameter left="QString" right="" name="key" default=""/>
+                <parameter left="QVariant" right="" name="value" default=""/>
+            </function>
+        </class>
+        <function threadsafety="unspecified" name="QML_DECLARE_TYPE" status="internal" access="private" location="qqmlleveldbreadstream.h" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qqmlleveldbreadstream.h" lineno="40" virtual="non" meta="plain" const="false" static="false" overload="true" overload-number="2" type="" signature="QML_DECLARE_TYPE(QQmlLevelDBReadStream )">
+            <parameter left="QQmlLevelDBReadStream" right="" name="" default=""/>
+        </function>
+        <namespace threadsafety="unspecified" name="leveldb" href="leveldb.html" status="internal" access="private" location="qleveldb.h" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qleveldb.h" lineno="12"/>
+        <function threadsafety="unspecified" name="QML_DECLARE_TYPE" status="internal" access="private" location="qqmlleveldb.h" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qqmlleveldb.h" lineno="64" virtual="non" meta="plain" const="false" static="false" overload="false" type="" signature="QML_DECLARE_TYPE(QQmlLevelDB )">
+            <parameter left="QQmlLevelDB" right="" name="" default=""/>
+        </function>
+        <class threadsafety="unspecified" name="QQmlLevelDB" href="qqmlleveldb.html" status="internal" access="private" location="qqmlleveldb.h" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qqmlleveldb.h" lineno="18" bases="QObject,QQmlParserStatus">
+            <function threadsafety="unspecified" name="QQmlLevelDB" fullname="QQmlLevelDB::QQmlLevelDB" href="qqmlleveldb.html#QQmlLevelDB" status="commendable" access="public" location="qqmlleveldb.cpp" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qqmlleveldb.cpp" lineno="17" virtual="non" meta="constructor" const="false" static="false" overload="false" type="" signature="QQmlLevelDB(QObject *parent)">
+                <parameter left="QObject *" right="" name="parent" default="nullptr"/>
+            </function>
+            <function threadsafety="unspecified" name="batch" fullname="QQmlLevelDB::batch" href="qqmlleveldb.html#batch" status="commendable" access="public" location="qqmlleveldb.cpp" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qqmlleveldb.cpp" lineno="96" virtual="non" meta="plain" const="false" static="false" overload="false" type="QLevelDBBatch *" signature="QLevelDBBatch * batch()"/>
+            <function threadsafety="unspecified" name="classBegin" fullname="QQmlLevelDB::classBegin" href="qqmlleveldb.html#classBegin" status="commendable" access="protected" location="qqmlleveldb.cpp" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qqmlleveldb.cpp" lineno="138" virtual="impure" meta="plain" const="false" static="false" overload="false" type="void" signature="void classBegin()"/>
+            <function threadsafety="unspecified" name="componentComplete" fullname="QQmlLevelDB::componentComplete" href="qqmlleveldb.html#componentComplete" status="commendable" access="protected" location="qqmlleveldb.cpp" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qqmlleveldb.cpp" lineno="142" virtual="impure" meta="plain" const="false" static="false" overload="false" type="void" signature="void componentComplete()"/>
+            <function threadsafety="unspecified" name="del" fullname="QQmlLevelDB::del" href="qqmlleveldb.html#del" status="commendable" access="public" location="qqmlleveldb.cpp" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qqmlleveldb.cpp" lineno="101" virtual="non" meta="plain" const="false" static="false" overload="false" type="bool" signature="bool del(QString key)">
+                <parameter left="QString" right="" name="key" default=""/>
+            </function>
+            <function threadsafety="unspecified" name="destroyDB" fullname="QQmlLevelDB::destroyDB" href="qqmlleveldb.html#destroyDB" status="commendable" access="public" location="qqmlleveldb.cpp" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qqmlleveldb.cpp" lineno="121" virtual="non" meta="plain" const="false" static="false" overload="false" type="bool" signature="bool destroyDB(QUrl url)">
+                <parameter left="QUrl" right="" name="url" default=""/>
+            </function>
+            <function threadsafety="unspecified" name="get" fullname="QQmlLevelDB::get" href="qqmlleveldb.html#get" status="commendable" access="public" location="qqmlleveldb.cpp" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qqmlleveldb.cpp" lineno="106" virtual="non" meta="plain" const="false" static="false" overload="false" type="QVariant" signature="QVariant get(QString key, QVariant defaultValue)">
+                <parameter left="QString" right="" name="key" default=""/>
+                <parameter left="QVariant" right="" name="defaultValue" default="QVariant()"/>
+            </function>
+            <function threadsafety="unspecified" name="lastError" fullname="QQmlLevelDB::lastError" href="qqmlleveldb.html#lastError-prop" status="commendable" access="public" location="qqmlleveldb.cpp" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qqmlleveldb.cpp" lineno="65" virtual="non" meta="plain" const="false" static="false" overload="false" associated-property="lastError" type="QString" signature="QString lastError()"/>
+            <function threadsafety="unspecified" name="opened" fullname="QQmlLevelDB::opened" href="qqmlleveldb.html#opened-prop" status="commendable" access="public" location="qqmlleveldb.cpp" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qqmlleveldb.cpp" lineno="75" virtual="non" meta="plain" const="false" static="false" overload="false" associated-property="opened" type="bool" signature="bool opened()"/>
+            <function threadsafety="unspecified" name="options" fullname="QQmlLevelDB::options" href="qqmlleveldb.html#options-prop" status="commendable" access="public" location="qqmlleveldb.cpp" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qqmlleveldb.cpp" lineno="86" virtual="non" meta="plain" const="false" static="false" overload="false" associated-property="options" type="QLevelDBOptions *" signature="QLevelDBOptions * options()"/>
+            <function threadsafety="unspecified" name="put" fullname="QQmlLevelDB::put" href="qqmlleveldb.html#put" status="commendable" access="public" location="qqmlleveldb.cpp" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qqmlleveldb.cpp" lineno="111" virtual="non" meta="plain" const="false" static="false" overload="false" type="bool" signature="bool put(QString key, QVariant value)">
+                <parameter left="QString" right="" name="key" default=""/>
+                <parameter left="QVariant" right="" name="value" default=""/>
+            </function>
+            <function threadsafety="unspecified" name="putSync" fullname="QQmlLevelDB::putSync" href="qqmlleveldb.html#putSync" status="commendable" access="public" location="qqmlleveldb.cpp" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qqmlleveldb.cpp" lineno="116" virtual="non" meta="plain" const="false" static="false" overload="false" type="bool" signature="bool putSync(QString key, QVariant value)">
+                <parameter left="QString" right="" name="key" default=""/>
+                <parameter left="QVariant" right="" name="value" default=""/>
+            </function>
+            <function threadsafety="unspecified" name="readStream" fullname="QQmlLevelDB::readStream" href="qqmlleveldb.html#readStream" status="commendable" access="public" location="qqmlleveldb.cpp" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qqmlleveldb.cpp" lineno="131" virtual="non" meta="plain" const="false" static="false" overload="false" type="QQmlLevelDBReadStream *" signature="QQmlLevelDBReadStream * readStream(QString startKey, int length)">
+                <parameter left="QString" right="" name="startKey" default="QString()"/>
+                <parameter left="int" right="" name="length" default="-1"/>
+            </function>
+            <function threadsafety="unspecified" name="repairDB" fullname="QQmlLevelDB::repairDB" href="qqmlleveldb.html#repairDB" status="commendable" access="public" location="qqmlleveldb.cpp" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qqmlleveldb.cpp" lineno="126" virtual="non" meta="plain" const="false" static="false" overload="false" type="bool" signature="bool repairDB(QUrl url)">
+                <parameter left="QUrl" right="" name="url" default=""/>
+            </function>
+            <function threadsafety="unspecified" name="setSource" fullname="QQmlLevelDB::setSource" href="qqmlleveldb.html#source-prop" status="commendable" access="public" location="qqmlleveldb.cpp" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qqmlleveldb.cpp" lineno="39" virtual="non" meta="plain" const="false" static="false" overload="false" associated-property="source" type="void" signature="void setSource(QUrl source)">
+                <parameter left="QUrl" right="" name="source" default=""/>
+            </function>
+            <function threadsafety="unspecified" name="source" fullname="QQmlLevelDB::source" href="qqmlleveldb.html#source-prop" status="commendable" access="public" location="qqmlleveldb.cpp" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qqmlleveldb.cpp" lineno="34" virtual="non" meta="plain" const="false" static="false" overload="false" associated-property="source" type="QUrl" signature="QUrl source()"/>
+            <function threadsafety="unspecified" name="status" fullname="QQmlLevelDB::status" href="qqmlleveldb.html#status-prop" status="commendable" access="public" location="qqmlleveldb.cpp" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qqmlleveldb.cpp" lineno="55" virtual="non" meta="plain" const="false" static="false" overload="false" associated-property="status" type="QLevelDB::Status" signature="QLevelDB::Status status()"/>
+            <function threadsafety="unspecified" name="keyValueChanged" fullname="QQmlLevelDB::keyValueChanged" href="qqmlleveldb.html#keyValueChanged" status="commendable" access="public" location="qqmlleveldb.h" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qqmlleveldb.h" lineno="52" virtual="non" meta="signal" const="false" static="false" overload="false" type="void" signature="void keyValueChanged(QString key, QVariant value)">
+                <parameter left="QString" right="" name="key" default=""/>
+                <parameter left="QVariant" right="" name="value" default=""/>
+            </function>
+            <function threadsafety="unspecified" name="lastErrorChanged" fullname="QQmlLevelDB::lastErrorChanged" href="qqmlleveldb.html#lastError-prop" status="commendable" access="public" location="qqmlleveldb.h" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qqmlleveldb.h" lineno="50" virtual="non" meta="signal" const="false" static="false" overload="false" associated-property="lastError" type="void" signature="void lastErrorChanged()"/>
+            <function threadsafety="unspecified" name="openedChanged" fullname="QQmlLevelDB::openedChanged" href="qqmlleveldb.html#opened-prop" status="commendable" access="public" location="qqmlleveldb.h" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qqmlleveldb.h" lineno="51" virtual="non" meta="signal" const="false" static="false" overload="false" associated-property="opened" type="void" signature="void openedChanged()"/>
+            <function threadsafety="unspecified" name="sourceChanged" fullname="QQmlLevelDB::sourceChanged" href="qqmlleveldb.html#source-prop" status="commendable" access="public" location="qqmlleveldb.h" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qqmlleveldb.h" lineno="48" virtual="non" meta="signal" const="false" static="false" overload="false" associated-property="source" type="void" signature="void sourceChanged()"/>
+            <function threadsafety="unspecified" name="statusChanged" fullname="QQmlLevelDB::statusChanged" href="qqmlleveldb.html#status-prop" status="commendable" access="public" location="qqmlleveldb.h" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qqmlleveldb.h" lineno="49" virtual="non" meta="signal" const="false" static="false" overload="false" associated-property="status" type="void" signature="void statusChanged()"/>
+            <property threadsafety="unspecified" name="lastError" fullname="QQmlLevelDB::lastError" href="qqmlleveldb.html#lastError-prop" status="commendable" access="public" location="qqmlleveldb.h" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qqmlleveldb.h" lineno="23" type="QString">
+                <getter name="lastError"/>
+                <notifier name="lastErrorChanged"/>
+            </property>
+            <property threadsafety="unspecified" name="opened" fullname="QQmlLevelDB::opened" href="qqmlleveldb.html#opened-prop" status="commendable" access="public" location="qqmlleveldb.h" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qqmlleveldb.h" lineno="24" type="bool">
+                <getter name="opened"/>
+                <notifier name="openedChanged"/>
+            </property>
+            <property threadsafety="unspecified" name="options" fullname="QQmlLevelDB::options" href="qqmlleveldb.html#options-prop" status="commendable" access="public" location="qqmlleveldb.h" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qqmlleveldb.h" lineno="25" type="QLevelDBOptions *">
+                <getter name="options"/>
+            </property>
+            <property threadsafety="unspecified" name="source" fullname="QQmlLevelDB::source" href="qqmlleveldb.html#source-prop" status="commendable" access="public" location="qqmlleveldb.h" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qqmlleveldb.h" lineno="21" type="QUrl">
+                <getter name="source"/>
+                <setter name="setSource"/>
+                <notifier name="sourceChanged"/>
+            </property>
+            <property threadsafety="unspecified" name="status" fullname="QQmlLevelDB::status" href="qqmlleveldb.html#status-prop" status="commendable" access="public" location="qqmlleveldb.h" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qqmlleveldb.h" lineno="22" type="QLevelDB::Status">
+                <getter name="status"/>
+                <notifier name="statusChanged"/>
+            </property>
+        </class>
+        <function threadsafety="unspecified" name="jsonToVariant" status="internal" access="private" location="qleveldbglobal.cpp" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qleveldbglobal.cpp" lineno="194" virtual="non" meta="plain" const="false" static="false" overload="true" overload-number="2" type="QVariant" signature="QVariant jsonToVariant(QJsonObject object)">
+            <parameter left="QJsonObject" right="" name="object" default=""/>
+        </function>
+        <function threadsafety="unspecified" name="jsonToVariant" status="internal" access="private" location="qleveldbglobal.cpp" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qleveldbglobal.cpp" lineno="186" virtual="non" meta="plain" const="false" static="false" overload="false" type="QVariant" signature="QVariant jsonToVariant(QString json)">
+            <parameter left="QString" right="" name="json" default=""/>
+        </function>
+        <function threadsafety="unspecified" name="variantToJsonObject" status="internal" access="private" location="qleveldbglobal.cpp" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qleveldbglobal.cpp" lineno="18" virtual="non" meta="plain" const="false" static="false" overload="false" type="QJsonObject" signature="QJsonObject variantToJsonObject(QVariant variant)">
+            <parameter left="QVariant" right="" name="variant" default=""/>
+        </function>
+        <function threadsafety="unspecified" name="variantToJson" status="internal" access="private" location="qleveldbglobal.h" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qleveldbglobal.h" lineno="18" virtual="non" meta="plain" const="false" static="false" overload="false" type="QString" signature="QString variantToJson(QVariant variant)">
+            <parameter left="QVariant" right="" name="variant" default=""/>
+        </function>
+        <qmlclass threadsafety="unspecified" name="Settings" fullname="QtLevelDB.Settings" href="qml-qtleveldb-settings.html" status="commendable" access="public" location="qqmlleveldbsettings.cpp" filepath="/home/paulo/proj/qtleveldb/src/leveldb/qqmlleveldbsettings.cpp" lineno="12" title="Settings" fulltitle="Settings" subtitle="" brief="A high-level API to store properties in leveldb"/>
+        <group name="modules" href="modules.html" status="internal" seen="false" title="" members="QtLevelDB"/>
+        <group name="qtleveldb-examples" href="qtleveldb-examples.html" status="commendable" location="examples.qdoc" filepath="/home/paulo/proj/qtleveldb/src/leveldb/doc/src/examples.qdoc" lineno="1" seen="true" title="Qt LevelDB Examples" module="QtLevelDB" brief="List of Qt LevelDB examples"/>
+        <module name="QtLevelDB" href="qtleveldb-module.html" status="commendable" location="module.qdoc" filepath="/home/paulo/proj/qtleveldb/src/leveldb/doc/src/module.qdoc" lineno="1" since="5.5" seen="true" title="Qt LevelDB C++ Classes" module="QtLevelDB" groups="modules" members="QLevelDB,QLevelDBBatch,QLevelDBOptions,QLevelDBReadStream" brief="List of C++ classes that provide the Qt LevelDB functionality"/>
+        <qmlmodule name="QtLevelDB" qml-module-name="QtLevelDB" qml-module-version="1.0" href="qtleveldb-qmlmodule.html" status="commendable" location="module.qdoc" filepath="/home/paulo/proj/qtleveldb/src/leveldb/doc/src/module.qdoc" lineno="23" since="5.4" seen="true" title="Qt LevelDB QML Types" module="QtLevelDB" members="LevelDB,Settings" brief="List of QML types that provide LevelDB functionality"/>
+    </namespace>
+</INDEX>

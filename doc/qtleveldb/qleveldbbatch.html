@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- qleveldbbatch.cpp -->
+  <title>QLevelDBBatch Class | Qt LevelDB 5.5</title>
+  <link rel="stylesheet" type="text/css" href="style/offline.css" />
+</head>
+<body>
+<div class="header" id="qtdocheader">
+    <div class="main">
+    <div class="main-rounded">
+        <div class="navigationbar">
+        <ul>
+<li><a href="../qtdoc/index.html">Qt 5.5</a></li>
+<li><a href="qtleveldb-index.html">Qt LevelDB</a></li>
+<li><a href="qtleveldb-module.html">C++ Classes</a></li>
+<li>QLevelDBBatch</li>
+<li id="buildversion">Qt 5.5.0 Reference Documentation</li>
+    </ul>
+    </div>
+</div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#public-functions">Public Functions</a></li>
+<li class="level1"><a href="#signals">Signals</a></li>
+<li class="level1"><a href="#details">Detailed Description</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QLevelDBBatch Class</h1>
+<!-- $$$QLevelDBBatch-brief -->
+<p>Apply bulk operations in a <a href="qml-qtleveldb-leveldb.html">LevelDB</a> Database, rolling back in case of error. <a href="#details">More...</a></p>
+<!-- @@@QLevelDBBatch -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign"> <span class="preprocessor">#include &lt;QLevelDBBatch&gt;</span>
+</td></tr><tr><td class="memItemLeft rightAlign topAlign"> qmake:</td><td class="memItemRight bottomAlign"> QT += leveldb</td></tr><tr><td class="memItemLeft rightAlign topAlign"> Since:</td><td class="memItemRight bottomAlign">  Qt 5.5</td></tr><tr><td class="memItemLeft rightAlign topAlign"> Inherits:</td><td class="memItemRight bottomAlign"> <a href="../qtcore/qobject.html">QObject</a></td></tr></table></div><ul>
+<li><a href="qleveldbbatch-members.html">List of all members, including inherited members</a></li>
+</ul>
+<a name="public-functions"></a>
+<h2 id="public-functions">Public Functions</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qleveldbbatch.html#QLevelDBBatch">QLevelDBBatch</a></b>(QWeakPointer&lt;leveldb::DB&gt;<i> db</i>, QObject *<i> parent</i> = 0)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qleveldbbatch.html#dtor.QLevelDBBatch">~QLevelDBBatch</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QLevelDBBatch * </td><td class="memItemRight bottomAlign"><b><a href="qleveldbbatch.html#clear">clear</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QLevelDBBatch * </td><td class="memItemRight bottomAlign"><b><a href="qleveldbbatch.html#del">del</a></b>(QString<i> key</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QLevelDBBatch * </td><td class="memItemRight bottomAlign"><b><a href="qleveldbbatch.html#put">put</a></b>(QString<i> key</i>, QVariant<i> value</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qleveldbbatch.html#write">write</a></b>()</td></tr>
+</table></div>
+<ul>
+<li class="fn">31 public functions inherited from <a href="../qtcore/qobject.html#public-functions">QObject</a></li>
+</ul>
+<a name="signals"></a>
+<h2 id="signals">Signals</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qleveldbbatch.html#batchWritten">batchWritten</a></b>(QSet&lt;QString&gt;<i> keys</i>)</td></tr>
+</table></div>
+<ul>
+<li class="fn">2 signals inherited from <a href="../qtcore/qobject.html#signals">QObject</a></li>
+</ul>
+<h3>Additional Inherited Members</h3>
+<ul>
+<li class="fn">1 property inherited from <a href="../qtcore/qobject.html#properties">QObject</a></li>
+<li class="fn">1 public slot inherited from <a href="../qtcore/qobject.html#public-slots">QObject</a></li>
+<li class="fn">1 public variable inherited from <a href="../qtcore/qobject.html#public-variables">QObject</a></li>
+<li class="fn">10 static public members inherited from <a href="../qtcore/qobject.html#static-public-members">QObject</a></li>
+<li class="fn">9 protected functions inherited from <a href="../qtcore/qobject.html#protected-functions">QObject</a></li>
+<li class="fn">2 protected variables inherited from <a href="../qtcore/qobject.html#protected-variables">QObject</a></li>
+</ul>
+<a name="details"></a>
+<!-- $$$QLevelDBBatch-description -->
+<div class="descr">
+<h2 id="details">Detailed Description</h2>
+<p>Apply bulk operations in a <a href="qml-qtleveldb-leveldb.html">LevelDB</a> Database, rolling back in case of error.</p>
+</div>
+<!-- @@@QLevelDBBatch -->
+<div class="func">
+<h2>Member Function Documentation</h2>
+<!-- $$$QLevelDBBatch[overload1]$$$QLevelDBBatchQWeakPointer<leveldb::DB>QObject* -->
+<h3 class="fn" id="QLevelDBBatch"><a name="QLevelDBBatch"></a>QLevelDBBatch::<span class="name">QLevelDBBatch</span>(<span class="type"><a href="../qtcore/qweakpointer.html">QWeakPointer</a></span>&lt;<span class="type">leveldb::DB</span>&gt;<i> db</i>, <span class="type"><a href="../qtcore/qobject.html#QObject">QObject</a></span> *<i> parent</i> = 0)</h3>
+<p>Constructs an new <a href="qleveldbbatch.html">QLevelDBBatch</a> object.</p>
+<!-- @@@QLevelDBBatch -->
+<!-- $$$~QLevelDBBatch[overload1]$$$~QLevelDBBatch -->
+<h3 class="fn" id="dtor.QLevelDBBatch"><a name="dtor.QLevelDBBatch"></a>QLevelDBBatch::<span class="name">~QLevelDBBatch</span>()</h3>
+<!-- @@@~QLevelDBBatch -->
+<!-- $$$batchWritten[overload1]$$$batchWrittenQSet<QString> -->
+<h3 class="fn" id="batchWritten"><a name="batchWritten"></a><code>[signal] </code><span class="type">void</span> QLevelDBBatch::<span class="name">batchWritten</span>(<span class="type"><a href="../qtcore/qset.html">QSet</a></span>&lt;<span class="type"><a href="../qtcore/qstring.html">QString</a></span>&gt;<i> keys</i>)</h3>
+<!-- @@@batchWritten -->
+<!-- $$$clear[overload1]$$$clear -->
+<h3 class="fn" id="clear"><a name="clear"></a><span class="type"><a href="qleveldbbatch.html#QLevelDBBatch">QLevelDBBatch</a></span> * QLevelDBBatch::<span class="name">clear</span>()</h3>
+<p>Remove all peding operations.</p>
+<!-- @@@clear -->
+<!-- $$$del[overload1]$$$delQString -->
+<h3 class="fn" id="del"><a name="del"></a><span class="type"><a href="qleveldbbatch.html#QLevelDBBatch">QLevelDBBatch</a></span> * QLevelDBBatch::<span class="name">del</span>(<span class="type"><a href="../qtcore/qstring.html">QString</a></span><i> key</i>)</h3>
+<p>Deletes a key/value.</p>
+<!-- @@@del -->
+<!-- $$$put[overload1]$$$putQStringQVariant -->
+<h3 class="fn" id="put"><a name="put"></a><span class="type"><a href="qleveldbbatch.html#QLevelDBBatch">QLevelDBBatch</a></span> * QLevelDBBatch::<span class="name">put</span>(<span class="type"><a href="../qtcore/qstring.html">QString</a></span><i> key</i>, <span class="type"><a href="../qtcore/qvariant.html">QVariant</a></span><i> value</i>)</h3>
+<p>Inserts or update a key/value.</p>
+<!-- @@@put -->
+<!-- $$$write[overload1]$$$write -->
+<h3 class="fn" id="write"><a name="write"></a><span class="type">bool</span> QLevelDBBatch::<span class="name">write</span>()</h3>
+<p>Apply all operations in database.</p>
+<!-- @@@write -->
+</div>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2015 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>

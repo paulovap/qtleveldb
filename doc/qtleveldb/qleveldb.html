@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- qleveldb.cpp -->
+  <title>QLevelDB Class | Qt LevelDB 5.5</title>
+  <link rel="stylesheet" type="text/css" href="style/offline.css" />
+</head>
+<body>
+<div class="header" id="qtdocheader">
+    <div class="main">
+    <div class="main-rounded">
+        <div class="navigationbar">
+        <ul>
+<li><a href="../qtdoc/index.html">Qt 5.5</a></li>
+<li><a href="qtleveldb-index.html">Qt LevelDB</a></li>
+<li><a href="qtleveldb-module.html">C++ Classes</a></li>
+<li>QLevelDB</li>
+<li id="buildversion">Qt 5.5.0 Reference Documentation</li>
+    </ul>
+    </div>
+</div>
+<div class="content">
+<div class="line">
+<div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#public-types">Public Types</a></li>
+<li class="level1"><a href="#public-functions">Public Functions</a></li>
+<li class="level1"><a href="#signals">Signals</a></li>
+<li class="level1"><a href="#details">Detailed Description</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QLevelDB Class</h1>
+<!-- $$$QLevelDB-brief -->
+<p>The <a href="qleveldb.html">QLevelDB</a> class enables access to a <a href="qml-qtleveldb-leveldb.html">LevelDB</a> database. <a href="#details">More...</a></p>
+<!-- @@@QLevelDB -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign"> <span class="preprocessor">#include &lt;QLevelDB&gt;</span>
+</td></tr><tr><td class="memItemLeft rightAlign topAlign"> qmake:</td><td class="memItemRight bottomAlign"> QT += leveldb</td></tr><tr><td class="memItemLeft rightAlign topAlign"> Since:</td><td class="memItemRight bottomAlign">  Qt 5.5</td></tr><tr><td class="memItemLeft rightAlign topAlign"> Inherits:</td><td class="memItemRight bottomAlign"> <a href="../qtcore/qobject.html">QObject</a></td></tr></table></div><ul>
+<li><a href="qleveldb-members.html">List of all members, including inherited members</a></li>
+</ul>
+<a name="public-types"></a>
+<h2 id="public-types">Public Types</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> enum </td><td class="memItemRight bottomAlign"><b><a href="qleveldb.html#Status-enum">Status</a></b> { Undefined, Ok, NotFound, Corruption, ..., IOError }</td></tr>
+</table></div>
+<a name="public-functions"></a>
+<h2 id="public-functions">Public Functions</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qleveldb.html#QLevelDB">QLevelDB</a></b>(QObject *<i> parent</i> = 0)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qleveldb.html#QLevelDB-2">QLevelDB</a></b>(QString<i> filename</i>, QObject *<i> parent</i> = 0)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="qleveldb.html#dtor.QLevelDB">~QLevelDB</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QLevelDBBatch * </td><td class="memItemRight bottomAlign"><b><a href="qleveldb.html#batch">batch</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qleveldb.html#close">close</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QWeakPointer&lt;leveldb::DB&gt; </td><td class="memItemRight bottomAlign"><b><a href="qleveldb.html#dbNativeHandler">dbNativeHandler</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qleveldb.html#del">del</a></b>(QString<i> key</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qleveldb.html#destroyDB">destroyDB</a></b>(QString<i> filename</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QString </td><td class="memItemRight bottomAlign"><b><a href="qleveldb.html#filename">filename</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QVariant </td><td class="memItemRight bottomAlign"><b><a href="qleveldb.html#get">get</a></b>(QString<i> key</i>, QVariant<i> defaultValue</i> = QVariant())</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QString </td><td class="memItemRight bottomAlign"><b><a href="qleveldb.html#lastError">lastError</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> Status </td><td class="memItemRight bottomAlign"><b><a href="qleveldb.html#open">open</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qleveldb.html#opened">opened</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QLevelDBOptions * </td><td class="memItemRight bottomAlign"><b><a href="qleveldb.html#options">options</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qleveldb.html#put">put</a></b>(QString<i> key</i>, QVariant<i> value</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qleveldb.html#putSync">putSync</a></b>(QString<i> key</i>, QVariant<i> value</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QLevelDBReadStream * </td><td class="memItemRight bottomAlign"><b><a href="qleveldb.html#readStream">readStream</a></b>(const QString<i> startKey</i> = QString(), const int<i> length</i> = -1)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="qleveldb.html#repairDB">repairDB</a></b>(QString<i> filename</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qleveldb.html#setFilename">setFilename</a></b>(QString<i> filename</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> Status </td><td class="memItemRight bottomAlign"><b><a href="qleveldb.html#status">status</a></b>()</td></tr>
+</table></div>
+<ul>
+<li class="fn">31 public functions inherited from <a href="../qtcore/qobject.html#public-functions">QObject</a></li>
+</ul>
+<a name="signals"></a>
+<h2 id="signals">Signals</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qleveldb.html#filenameChanged">filenameChanged</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qleveldb.html#keyValueChanged">keyValueChanged</a></b>(QString<i> key</i>, QVariant<i> value</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qleveldb.html#lastErrorChanged">lastErrorChanged</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qleveldb.html#openedChanged">openedChanged</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="qleveldb.html#statusChanged">statusChanged</a></b>()</td></tr>
+</table></div>
+<ul>
+<li class="fn">2 signals inherited from <a href="../qtcore/qobject.html#signals">QObject</a></li>
+</ul>
+<h3>Additional Inherited Members</h3>
+<ul>
+<li class="fn">1 property inherited from <a href="../qtcore/qobject.html#properties">QObject</a></li>
+<li class="fn">1 public slot inherited from <a href="../qtcore/qobject.html#public-slots">QObject</a></li>
+<li class="fn">1 public variable inherited from <a href="../qtcore/qobject.html#public-variables">QObject</a></li>
+<li class="fn">10 static public members inherited from <a href="../qtcore/qobject.html#static-public-members">QObject</a></li>
+<li class="fn">9 protected functions inherited from <a href="../qtcore/qobject.html#protected-functions">QObject</a></li>
+<li class="fn">2 protected variables inherited from <a href="../qtcore/qobject.html#protected-variables">QObject</a></li>
+</ul>
+<a name="details"></a>
+<!-- $$$QLevelDB-description -->
+<div class="descr">
+<h2 id="details">Detailed Description</h2>
+<p>The <a href="qleveldb.html">QLevelDB</a> class enables access to a <a href="qml-qtleveldb-leveldb.html">LevelDB</a> database.</p>
+<p>A <a href="qleveldb.html">QLevelDB</a> classe can be used to insert or access data in a <a href="qml-qtleveldb-leveldb.html">LevelDB</a> database.</p>
+</div>
+<!-- @@@QLevelDB -->
+<div class="types">
+<h2>Member Type Documentation</h2>
+<!-- $$$Status$$$Undefined$$$Ok$$$NotFound$$$Corruption$$$NotSupported$$$InvalidArgument$$$IOError -->
+<h3 class="fn" id="Status-enum"><a name="Status-enum"></a>enum QLevelDB::<span class="name">Status</span></h3>
+<!-- @@@Status -->
+</div>
+<div class="func">
+<h2>Member Function Documentation</h2>
+<!-- $$$QLevelDB[overload1]$$$QLevelDBQObject* -->
+<h3 class="fn" id="QLevelDB"><a name="QLevelDB"></a>QLevelDB::<span class="name">QLevelDB</span>(<span class="type"><a href="../qtcore/qobject.html#QObject">QObject</a></span> *<i> parent</i> = 0)</h3>
+<p>Constructs an new <a href="qleveldb.html">QLevelDB</a> object.</p>
+<!-- @@@QLevelDB -->
+<!-- $$$QLevelDB$$$QLevelDBQStringQObject* -->
+<h3 class="fn" id="QLevelDB-2"><a name="QLevelDB-2"></a>QLevelDB::<span class="name">QLevelDB</span>(<span class="type"><a href="../qtcore/qstring.html">QString</a></span><i> filename</i>, <span class="type"><a href="../qtcore/qobject.html#QObject">QObject</a></span> *<i> parent</i> = 0)</h3>
+<p>Constructs an new <a href="qleveldb.html">QLevelDB</a> object passing the filename of the database to be opened.</p>
+<!-- @@@QLevelDB -->
+<!-- $$$~QLevelDB[overload1]$$$~QLevelDB -->
+<h3 class="fn" id="dtor.QLevelDB"><a name="dtor.QLevelDB"></a>QLevelDB::<span class="name">~QLevelDB</span>()</h3>
+<!-- @@@~QLevelDB -->
+<!-- $$$batch[overload1]$$$batch -->
+<h3 class="fn" id="batch"><a name="batch"></a><span class="type"><a href="qleveldbbatch.html">QLevelDBBatch</a></span> * QLevelDB::<span class="name">batch</span>()</h3>
+<p>Returns a <a href="qleveldbbatch.html">QLevelDBBatch</a> for bulk operations. <a href="qleveldbbatch.html">QLevelDBBatch</a> pointer returned will only remain valid as long as <a href="qleveldb.html#close">QLevelDB::close</a>() or another QLevelDB::batch() is not called.</p>
+<!-- @@@batch -->
+<!-- $$$close[overload1]$$$close -->
+<h3 class="fn" id="close"><a name="close"></a><span class="type">void</span> QLevelDB::<span class="name">close</span>()</h3>
+<p>Close the database</p>
+<!-- @@@close -->
+<!-- $$$dbNativeHandler[overload1]$$$dbNativeHandler -->
+<h3 class="fn" id="dbNativeHandler"><a name="dbNativeHandler"></a><span class="type"><a href="../qtcore/qweakpointer.html">QWeakPointer</a></span>&lt;<span class="type">leveldb::DB</span>&gt; QLevelDB::<span class="name">dbNativeHandler</span>()</h3>
+<!-- @@@dbNativeHandler -->
+<!-- $$$del[overload1]$$$delQString -->
+<h3 class="fn" id="del"><a name="del"></a><span class="type">bool</span> QLevelDB::<span class="name">del</span>(<span class="type"><a href="../qtcore/qstring.html">QString</a></span><i> key</i>)</h3>
+<p>Deletes a Key/Value from database.</p>
+<!-- @@@del -->
+<!-- $$$destroyDB[overload1]$$$destroyDBQString -->
+<h3 class="fn" id="destroyDB"><a name="destroyDB"></a><span class="type">bool</span> QLevelDB::<span class="name">destroyDB</span>(<span class="type"><a href="../qtcore/qstring.html">QString</a></span><i> filename</i>)</h3>
+<p>Delete the database files from the filesystem.</p>
+<!-- @@@destroyDB -->
+<!-- $$$filename[overload1]$$$filename -->
+<h3 class="fn" id="filename"><a name="filename"></a><span class="type"><a href="../qtcore/qstring.html">QString</a></span> QLevelDB::<span class="name">filename</span>()</h3>
+<p>Path to the database files.</p>
+<p><b>See also </b><a href="qleveldb.html#setFilename">setFilename</a>().</p>
+<!-- @@@filename -->
+<!-- $$$filenameChanged[overload1]$$$filenameChanged -->
+<h3 class="fn" id="filenameChanged"><a name="filenameChanged"></a><code>[signal] </code><span class="type">void</span> QLevelDB::<span class="name">filenameChanged</span>()</h3>
+<!-- @@@filenameChanged -->
+<!-- $$$get[overload1]$$$getQStringQVariant -->
+<h3 class="fn" id="get"><a name="get"></a><span class="type"><a href="../qtcore/qvariant.html">QVariant</a></span> QLevelDB::<span class="name">get</span>(<span class="type"><a href="../qtcore/qstring.html">QString</a></span><i> key</i>, <span class="type"><a href="../qtcore/qvariant.html">QVariant</a></span><i> defaultValue</i> = QVariant())</h3>
+<p>Returns a value for a given key. An options defaultValue can be used in case there is no such key.</p>
+<!-- @@@get -->
+<!-- $$$keyValueChanged[overload1]$$$keyValueChangedQStringQVariant -->
+<h3 class="fn" id="keyValueChanged"><a name="keyValueChanged"></a><code>[signal] </code><span class="type">void</span> QLevelDB::<span class="name">keyValueChanged</span>(<span class="type"><a href="../qtcore/qstring.html">QString</a></span><i> key</i>, <span class="type"><a href="../qtcore/qvariant.html">QVariant</a></span><i> value</i>)</h3>
+<!-- @@@keyValueChanged -->
+<!-- $$$lastError[overload1]$$$lastError -->
+<h3 class="fn" id="lastError"><a name="lastError"></a><span class="type"><a href="../qtcore/qstring.html">QString</a></span> QLevelDB::<span class="name">lastError</span>()</h3>
+<p>A text representing the last error in a operation.</p>
+<!-- @@@lastError -->
+<!-- $$$lastErrorChanged[overload1]$$$lastErrorChanged -->
+<h3 class="fn" id="lastErrorChanged"><a name="lastErrorChanged"></a><code>[signal] </code><span class="type">void</span> QLevelDB::<span class="name">lastErrorChanged</span>()</h3>
+<!-- @@@lastErrorChanged -->
+<!-- $$$open[overload1]$$$open -->
+<h3 class="fn" id="open"><a name="open"></a><span class="type"><a href="qleveldb.html#Status-enum">Status</a></span> QLevelDB::<span class="name">open</span>()</h3>
+<p>Open the database. Return the results as <a href="qleveldb.html#Status-enum">QLevelDB::Status</a></p>
+<!-- @@@open -->
+<!-- $$$opened[overload1]$$$opened -->
+<h3 class="fn" id="opened"><a name="opened"></a><span class="type">bool</span> QLevelDB::<span class="name">opened</span>()</h3>
+<p>Indicates whether the database is already open or not.</p>
+<!-- @@@opened -->
+<!-- $$$openedChanged[overload1]$$$openedChanged -->
+<h3 class="fn" id="openedChanged"><a name="openedChanged"></a><code>[signal] </code><span class="type">void</span> QLevelDB::<span class="name">openedChanged</span>()</h3>
+<!-- @@@openedChanged -->
+<!-- $$$options[overload1]$$$options -->
+<h3 class="fn" id="options"><a name="options"></a><span class="type"><a href="qleveldboptions.html">QLevelDBOptions</a></span> * QLevelDB::<span class="name">options</span>()</h3>
+<p>Options used when opening the database. For more details see <a href="qleveldboptions.html">QLevelDBOptions</a>.</p>
+<!-- @@@options -->
+<!-- $$$put[overload1]$$$putQStringQVariant -->
+<h3 class="fn" id="put"><a name="put"></a><span class="type">bool</span> QLevelDB::<span class="name">put</span>(<span class="type"><a href="../qtcore/qstring.html">QString</a></span><i> key</i>, <span class="type"><a href="../qtcore/qvariant.html">QVariant</a></span><i> value</i>)</h3>
+<p>Add a Key/Value in database. If there is already a value, it will be overriden. This operation is asynchronous.</p>
+<!-- @@@put -->
+<!-- $$$putSync[overload1]$$$putSyncQStringQVariant -->
+<h3 class="fn" id="putSync"><a name="putSync"></a><span class="type">bool</span> QLevelDB::<span class="name">putSync</span>(<span class="type"><a href="../qtcore/qstring.html">QString</a></span><i> key</i>, <span class="type"><a href="../qtcore/qvariant.html">QVariant</a></span><i> value</i>)</h3>
+<p>Add a Key/Value in database. If there is already a value, it will be overriden. This operation is synchronous.</p>
+<!-- @@@putSync -->
+<!-- $$$readStream[overload1]$$$readStreamconstQStringconstint -->
+<h3 class="fn" id="readStream"><a name="readStream"></a><span class="type"><a href="qleveldbreadstream.html">QLevelDBReadStream</a></span> * QLevelDB::<span class="name">readStream</span>(const <span class="type"><a href="../qtcore/qstring.html">QString</a></span><i> startKey</i> = QString(), const <span class="type">int</span><i> length</i> = -1)</h3>
+<p>Create a <a href="qleveldbreadstream.html">QLevelDBReadStream</a> object to read a series of key/values. If no startKey or endKey is set it will stream all inserted elements. The order of the stream is sorted by key.</p>
+<!-- @@@readStream -->
+<!-- $$$repairDB[overload1]$$$repairDBQString -->
+<h3 class="fn" id="repairDB"><a name="repairDB"></a><span class="type">bool</span> QLevelDB::<span class="name">repairDB</span>(<span class="type"><a href="../qtcore/qstring.html">QString</a></span><i> filename</i>)</h3>
+<p>Execute <a href="qml-qtleveldb-leveldb.html">LevelDB</a>'s repair operation on a database.</p>
+<!-- @@@repairDB -->
+<!-- $$$setFilename[overload1]$$$setFilenameQString -->
+<h3 class="fn" id="setFilename"><a name="setFilename"></a><span class="type">void</span> QLevelDB::<span class="name">setFilename</span>(<span class="type"><a href="../qtcore/qstring.html">QString</a></span><i> filename</i>)</h3>
+<p><b>See also </b><a href="qleveldb.html#filename">filename</a>().</p>
+<!-- @@@setFilename -->
+<!-- $$$status[overload1]$$$status -->
+<h3 class="fn" id="status"><a name="status"></a><span class="type"><a href="qleveldb.html#Status-enum">Status</a></span> QLevelDB::<span class="name">status</span>()</h3>
+<p><a href="qleveldb.html#Status-enum">QLevelDB::Status</a> of the last operation.</p>
+<!-- @@@status -->
+<!-- $$$statusChanged[overload1]$$$statusChanged -->
+<h3 class="fn" id="statusChanged"><a name="statusChanged"></a><code>[signal] </code><span class="type">void</span> QLevelDB::<span class="name">statusChanged</span>()</h3>
+<!-- @@@statusChanged -->
+</div>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+   <p>
+   <acronym title="Copyright">&copy;</acronym> 2015 The Qt Company Ltd.
+   Documentation contributions included herein are the copyrights of
+   their respective owners.<br>    The documentation provided herein is licensed under the terms of the    <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation    License version 1.3</a> as published by the Free Software Foundation.<br>    Qt and respective logos are trademarks of The Qt Company Ltd.     in Finland and/or other countries worldwide. All other trademarks are property
+   of their respective owners. </p>
+</div>
+</body>
+</html>
