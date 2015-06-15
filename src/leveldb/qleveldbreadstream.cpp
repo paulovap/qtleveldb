@@ -42,13 +42,11 @@ QLevelDBReadStream::QLevelDBReadStream(QWeakPointer<leveldb::DB> db, QString sta
 
 
 {
-
 }
 
 
 QLevelDBReadStream::~QLevelDBReadStream()
 {
-
 }
 
 /*!
@@ -66,6 +64,9 @@ bool QLevelDBReadStream::start()
     return true;
 }
 
+/*!
+    Start streaming key/value pairs. Theses pairs will be passed to callback functor.
+*/
 bool QLevelDBReadStream::start(std::function<bool (QString, QVariant)> callback)
 {
     if (m_db.isNull())

@@ -19,7 +19,7 @@ static QMultiHash<QString, QLevelDB*> qLevelDBInstances;
 */
 
 /*!
-    Constructs an new QLevelDB object.
+    Constructs an new QLevelDB object with \a parent as parent.
 */
 QLevelDB::QLevelDB(QObject *parent)
     : QObject(parent)
@@ -31,7 +31,7 @@ QLevelDB::QLevelDB(QObject *parent)
 }
 
 /*!
-    Constructs an new QLevelDB object passing the filename of the database to be opened.
+    Constructs an new QLevelDB object passing the  \a filename of the database to be opened and \a parent as the parent object.
 */
 QLevelDB::QLevelDB(QString filename, QObject *parent)
     : QLevelDB(parent)
@@ -39,19 +39,37 @@ QLevelDB::QLevelDB(QString filename, QObject *parent)
     setFilename(filename);
 }
 
-
+/*!
+    Destroys the object, closing the database if necessary.
+*/
 QLevelDB::~QLevelDB()
 {
     close();
 }
 
 /*!
-    Indicates whether the database is already open or not.
+    Returns a boolean indicating whether the database is already open or not.
 */
 bool QLevelDB::opened()
 {
     return m_opened;
 }
+
+/*!
+    \since 5.5
+ 
+    \enum QLevelDB::Status
+ 
+    This enum describes the status return of a given operation
+ 
+    \value Undefined No initialized or undefined behavior
+    \value Ok operation return success
+    \value NotFound Key not found during operation
+    \value Corruption database is corrupted
+    \value NotSupported operation is not supported
+    \value InvalidArgument Invalid argument in a operation
+    \value IOError Io error during operation
+*/
 
 /*!
     QLevelDB::Status of the last operation.
@@ -78,10 +96,10 @@ QString QLevelDB::filename()
 }
 
 /*!
-    Change the path to the database file. If there is a already a database opened,
+    Change the path to the database file to \a filename. If there is a already a database opened,
     it will be automatically closed.
 */
-void QLevelDB::setFilename(const QString filename)
+void QLevelDB::setFilename(QString filename)
 {
     if (m_filename != filename){
         m_filename = filename;
@@ -92,7 +110,7 @@ void QLevelDB::setFilename(const QString filename)
 }
 
 /*!
-    Options used when opening the database. For more details see QLevelDBOptions.
+    Returns the Options used when opening the database. For more details see QLevelDBOptions.
 */
 QLevelDBOptions *QLevelDB::options()
 {
@@ -174,7 +192,7 @@ void QLevelDB::close()
 
 /*!
     Returns a QLevelDBBatch for bulk operations. QLevelDBBatch pointer returned will only
-    remain valid as long as QLevelDB::close() or QLevelDB::batch() is not called.
+    remain valid as long as QLevelDB::close() or another QLevelDB::batch() is not called.
 */
 QLevelDBBatch* QLevelDB::batch()
 {
@@ -186,7 +204,8 @@ QLevelDBBatch* QLevelDB::batch()
 }
 
 /*!
-    Deletes a Key/Value from database.
+    Deletes a value from database passing \a key as argument.
+    Returns true if success.
 */
 bool QLevelDB::del(QString key)
 {
@@ -197,7 +216,9 @@ bool QLevelDB::del(QString key)
 }
 
 /*!
-    Add a Key/Value in database. If there is already a value, it will be overriden. This operation is asynchronous.
+    Add a \a key / \a value in database. If there is already a value, it will be overriden. 
+    This operation is asynchronous.
+    Returns true if the operation succeded.
 */
 bool QLevelDB::put(QString key, QVariant value)
 {
@@ -220,7 +241,7 @@ bool QLevelDB::put(QString key, QVariant value)
 }
 
 /*!
-    Add a Key/Value in database. If there is already a value, it will be overriden. This operation is synchronous.
+    Add a \a key / \a value in database. If there is already a value, it will be overriden. This operation is synchronous.
 */
 bool QLevelDB::putSync(QString key, QVariant value)
 {
@@ -244,7 +265,7 @@ bool QLevelDB::putSync(QString key, QVariant value)
 }
 
 /*!
-    Returns a value for a given key. An options defaultValue can be used in case there is no such key.
+    Returns a value for a given \a key. An options \a defaultValue can be used in case there is no such key.
 */
 QVariant QLevelDB::get(QString key, QVariant defaultValue)
 {
@@ -261,7 +282,8 @@ QVariant QLevelDB::get(QString key, QVariant defaultValue)
 }
 
 /*!
-    Delete the database files from the filesystem.
+    Delete the database  with \a filename from the filesystem.
+    Returns true if success.
 */
 bool QLevelDB::destroyDB(QString filename)
 {
@@ -276,7 +298,7 @@ bool QLevelDB::destroyDB(QString filename)
 }
 
 /*!
-    Execute LevelDB's repair operation on a database.
+    Execute LevelDB's repair operation on a database with \a filename path.
 */
 bool QLevelDB::repairDB(QString filename)
 {

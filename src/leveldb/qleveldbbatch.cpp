@@ -78,5 +78,6 @@ bool QLevelDBBatch::write()
     }
     return status.ok();
 }
+
 QT_END_NAMESPACE
-//#include "moc_qleveldbbatch.cpp"
+

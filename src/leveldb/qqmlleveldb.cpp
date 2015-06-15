@@ -11,8 +11,8 @@ QT_BEGIN_NAMESPACE
 /*!
   \qmltype LevelDB
   \inqmlmodule QtLevelDB
+  \since 1.0
   \brief Low level API to access LevelDB database.
-
 */
 QQmlLevelDB::QQmlLevelDB(QObject *parent)
     : QObject(parent)
@@ -25,6 +25,12 @@ QQmlLevelDB::QQmlLevelDB(QObject *parent)
     connect(&m_leveldb, &QLevelDB::keyValueChanged, this, &QQmlLevelDB::keyValueChanged);
 }
 
+/*!
+     \qmlproperty url LevelDB::source
+  
+     This property specifies the URL of datavase. The URL must point to a
+     local file that contains LeveldDB's data.
+*/
 QUrl QQmlLevelDB::source()
 {
     return m_source;
@@ -41,26 +47,60 @@ void QQmlLevelDB::setSource(QUrl source)
     }
 }
 
+/*!
+    \readonly
+    \qmlattachedproperty enumeration LevelDB::status
+ 
+    This property holds the status of the item. It can have one of the following values:
+    \list
+    \li \c LevelDB.Undefined: No initialized or undefined behavior
+    \li \c LevelDB.Ok: operation return success
+    \li \c LevelDB.NotFound: Key not found during operation
+    \li \c LevelDB.InvalidArgument: Invalid argument in a operation
+    \li \c LevelDB.IOError: Io error during operation
+    \endlist
+*/
 QLevelDB::Status QQmlLevelDB::status()
 {
     return m_leveldb.status();
 }
 
+/*!
+     \qmlproperty string LevelDB::lastError
+  
+     A string that indicates the status result of the last operation.
+*/
 QString QQmlLevelDB::lastError()
 {
     return m_leveldb.lastError();
 }
 
+/*!
+     \qmlproperty bool LevelDB::opened
+  
+     Indicate wheter the database is open or not.
+*/
 bool QQmlLevelDB::opened()
 {
     return m_leveldb.opened();
 }
 
+/*!
+     \qmlproperty QLevelDBOptions* LevelDB::options
+  
+     This property holds the configuration used to open the database. 
+     It cannot be changed once the database it opened
+*/
 QLevelDBOptions *QQmlLevelDB::options()
 {
     return m_leveldb.options();
 }
 
+/*!
+     \qmlproperty QLevelDBBatch* LevelDB::batch
+  
+     Return batch object for bulk operations.
+*/
 QLevelDBBatch *QQmlLevelDB::batch()
 {
     return m_leveldb.batch();
