@@ -32,6 +32,7 @@ private slots:
     void onNextKeyValue(QString key, QVariant value);
 private:
     Q_DISABLE_COPY(QQmlLevelDBReadStream)
+    QJSEngine m_engine;
     QJSValue m_callback;
 };
 

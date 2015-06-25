@@ -24,7 +24,7 @@ class Q_LEVELDB_EXPORT QQmlLevelDB : public QObject, public QQmlParserStatus
     Q_PROPERTY(bool opened READ opened NOTIFY openedChanged)
     Q_PROPERTY(QLevelDBOptions* options READ options)
     Q_INTERFACES(QQmlParserStatus)
-    Q_ENUM(QLevelDB::Status)
+    Q_ENUMS(QLevelDB::Status)
 public:
     explicit QQmlLevelDB(QObject *parent = nullptr);
 
