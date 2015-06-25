@@ -41,13 +41,10 @@ void QQmlLevelDBReadStream::componentComplete()
 
 void QQmlLevelDBReadStream::onNextKeyValue(QString key, QVariant value)
 {
-    QJSEngine *engine = qjsEngine(this);
-    if (!engine)
-        return;
     if (m_callback.isCallable()){
         QJSValueList list;
         list << QJSValue(key);
-        list << engine->toScriptValue<QVariant>(value);
+        list << m_engine.toScriptValue<QVariant>(value);
         m_callback.call(list);
     }
 }
