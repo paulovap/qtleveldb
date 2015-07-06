@@ -1,6 +1,5 @@
 #include "qleveldbglobal.h"
 #include "qqmlleveldb.h"
-#include "qqmlleveldbreadstream.h"
 #include "qleveldbbatch.h"
 #include <qqmlinfo.h>
 #include <QJsonDocument>
@@ -27,7 +26,7 @@ QQmlLevelDB::QQmlLevelDB(QObject *parent)
 
 /*!
      \qmlproperty url LevelDB::source
-  
+
      This property specifies the URL of datavase. The URL must point to a
      local file that contains LeveldDB's data.
 */
@@ -50,7 +49,7 @@ void QQmlLevelDB::setSource(QUrl source)
 /*!
     \readonly
     \qmlattachedproperty enumeration LevelDB::status
- 
+
     This property holds the status of the item. It can have one of the following values:
     \list
     \li \c LevelDB.Undefined: No initialized or undefined behavior
@@ -67,7 +66,7 @@ QLevelDB::Status QQmlLevelDB::status()
 
 /*!
      \qmlproperty string LevelDB::lastError
-  
+
      A string that indicates the status result of the last operation.
 */
 QString QQmlLevelDB::lastError()
@@ -77,7 +76,7 @@ QString QQmlLevelDB::lastError()
 
 /*!
      \qmlproperty bool LevelDB::opened
-  
+
      Indicate wheter the database is open or not.
 */
 bool QQmlLevelDB::opened()
@@ -87,8 +86,8 @@ bool QQmlLevelDB::opened()
 
 /*!
      \qmlproperty QLevelDBOptions* LevelDB::options
-  
-     This property holds the configuration used to open the database. 
+
+     This property holds the configuration used to open the database.
      It cannot be changed once the database it opened
 */
 QLevelDBOptions *QQmlLevelDB::options()
@@ -98,7 +97,7 @@ QLevelDBOptions *QQmlLevelDB::options()
 
 /*!
      \qmlproperty QLevelDBBatch* LevelDB::batch
-  
+
      Return batch object for bulk operations.
 */
 QLevelDBBatch *QQmlLevelDB::batch()
@@ -135,12 +134,20 @@ bool QQmlLevelDB::repairDB(QUrl url)
 {
     return m_leveldb.repairDB(url.toLocalFile());
 }
-//TODO: maybe readStream should be owned by *this* and deleted when database is closed or source changed.
-QQmlLevelDBReadStream *QQmlLevelDB::readStream(QString startKey, int length)
+
+bool QQmlLevelDB::readStream(QJSValue callback, QString startKey, int length)
 {
-    QQmlLevelDBReadStream *readStream = new QQmlLevelDBReadStream(m_leveldb.dbNativeHandler(), startKey, length, this);
-    QQmlEngine::setObjectOwnership(readStream, QQmlEngine::JavaScriptOwnership);
-    return readStream;
+    if (!callback.isCallable())
+        return false;
+
+    std::function<bool(QString, QVariant)> func = [this, &callback](QString key, QVariant value) {
+        QJSValueList list;
+        list << QJSValue(key);
+        list << m_jsEngine.toScriptValue<QVariant>(value);
+        bool result = callback.call(list).toBool();
+        return result;
+    };
+    return m_leveldb.readStream(func, startKey, length);
 }
 
 void QQmlLevelDB::classBegin()

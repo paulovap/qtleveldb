@@ -57,11 +57,11 @@ bool QLevelDB::opened()
 
 /*!
     \since 5.5
- 
+
     \enum QLevelDB::Status
- 
+
     This enum describes the status return of a given operation
- 
+
     \value Undefined No initialized or undefined behavior
     \value Ok operation return success
     \value NotFound Key not found during operation
@@ -125,7 +125,7 @@ QLevelDB::Status QLevelDB::open()
 {
     if (opened()){
         setStatus(IOError);
-        setLastError("Database already opened");
+        setLastError(QStringLiteral("Database already opened"));
         return m_status;
     }
 
@@ -216,7 +216,7 @@ bool QLevelDB::del(QString key)
 }
 
 /*!
-    Add a \a key / \a value in database. If there is already a value, it will be overriden. 
+    Add a \a key / \a value in database. If there is already a value, it will be overriden.
     This operation is asynchronous.
     Returns true if the operation succeded.
 */
@@ -312,14 +312,39 @@ QWeakPointer<leveldb::DB> QLevelDB::dbNativeHandler()
     return m_levelDB.toWeakRef();
 }
 
-/*!
-    Create a QLevelDBReadStream object to read a series of key/values. If no startKey or endKey
-    is set it will stream all inserted elements. The order of the stream is sorted by key.
-*/
-QLevelDBReadStream *QLevelDB::readStream(const QString startKey, const int length)
+
+
+bool QLevelDB::readStream(std::function<bool(QString, QVariant)> callback, const QString startKey, const int length)
 {
-    QLevelDBReadStream *readStream = new QLevelDBReadStream(m_levelDB.toWeakRef(), startKey, length, this);
-    return readStream;
+    if (m_levelDB.isNull() || length == 0)
+        return false;
+
+    int llength = length;
+    leveldb::ReadOptions options;
+    leveldb::Iterator *it = m_levelDB.data()->NewIterator(options);
+
+    if (!it)
+        return false;
+
+    if (!startKey.isEmpty())
+        it->Seek(leveldb::Slice(startKey.toStdString()));
+    else
+        it->SeekToFirst();
+
+    for ( ;it->Valid(); it->Next()){
+
+        QString key = QString::fromStdString(it->key().ToString());
+        QVariant value = jsonToVariant(QString::fromStdString(it->value().ToString()));
+
+        llength--;
+        bool shouldContinue = callback(key, value);
+
+        if (!shouldContinue || (length != -1 && length <= 0))
+            break;
+    }
+
+    delete it;
+    return true;
 }
 
 void QLevelDB::setStatus(QLevelDB::Status status)

@@ -2,10 +2,13 @@
 #define QLEVELDB_H
 
 #include <QObject>
+#include <functional>
+#include <QSharedPointer>
+#include <QVariant>
+#include <QString>
 
 #include "qleveldbglobal.h"
 #include "qleveldboptions.h"
-#include "qleveldbreadstream.h"
 
 QT_BEGIN_NAMESPACE
 
@@ -43,7 +46,7 @@ public:
     Status open();
     void close();
 
-    QLevelDBReadStream* readStream(const QString startKey =  QString(), const int length = -1);
+    bool readStream(std::function<bool(QString, QVariant)> callback, const QString startKey = QString(), const int length = -1);
 
     void setFilename(QString filename);
     QLevelDBBatch* batch();

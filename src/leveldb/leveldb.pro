@@ -1,6 +1,6 @@
 TARGET = QtLevelDB
 QT = core-private
-CONFIG += warn_on strict_flags
+CONFIG += warn_on strict_flags c++11
 
 load(qt_module)
 
@@ -12,7 +12,6 @@ PUBLIC_HEADERS += \
     $$PWD/qleveldb.h \
     $$PWD/qleveldbbatch.h \
     $$PWD/qleveldboptions.h \
-    $$PWD/qleveldbreadstream.h \
     $$PWD/qleveldb.h
 
 PRIVATE_HEADERS += \
@@ -23,18 +22,15 @@ SOURCES += \
     $$PWD/qleveldbbatch.cpp \
     $$PWD/qleveldbglobal.cpp \
     $$PWD/qleveldboptions.cpp \
-    $$PWD/qleveldbreadstream.cpp \
     $$PWD/qqmlleveldb.cpp \
-    $$PWD/qqmlleveldbsettings.cpp \
-    $$PWD/qqmlleveldbreadstream.cpp
+    $$PWD/qqmlleveldbsettings.cpp
 
 qtHaveModule(qml) {
     QT += qml
 
     PUBLIC_HEADERS += \
         $$PWD/qqmlleveldb.h \
-        $$PWD/qqmlleveldbsettings.h \
-        $$PWD/qqmlleveldbreadstream.h
+        $$PWD/qqmlleveldbsettings.h
 }
 
 HEADERS += $$PUBLIC_HEADERS $$PRIVATE_HEADERS

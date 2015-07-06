@@ -94,8 +94,9 @@ import QtLevelDB 1.0
                 db.put(key, data[key])
             })
             compare(batch.write(), true, db.statusText)
-            db.readStream().start(function (key,value){
+            db.readStream(function (key,value){
                compare(value, data[key], "Inconsistent data")
+                return true;
             })
             db.source = ""
             compare(db.destroyDB("read_stream.db"), true, db.statusText)

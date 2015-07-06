@@ -2,14 +2,13 @@
 #define QQMLLEVELDB_H
 #include <QObject>
 #include <QUrl>
+#include <QJSEngine>
 #include <QtQml>
 #include <QtQml/qqmlparserstatus.h>
 
 #include "qleveldbglobal.h"
 #include "qleveldboptions.h"
-#include "qleveldbreadstream.h"
 #include "qleveldb.h"
-#include "qqmlleveldbreadstream.h"
 
 QT_BEGIN_NAMESPACE
 
@@ -43,7 +42,7 @@ public:
     Q_INVOKABLE bool putSync(QString key, QVariant value);
     Q_INVOKABLE bool destroyDB(QUrl url);
     Q_INVOKABLE bool repairDB(QUrl url);
-    Q_INVOKABLE QQmlLevelDBReadStream* readStream(QString startKey = QString(), int length = -1);
+    Q_INVOKABLE bool readStream(QJSValue callback, QString startKey = QString(), int length = -1);
 signals:
     void sourceChanged();
     void statusChanged();
@@ -58,6 +57,7 @@ private:
     bool m_initialized;
     QUrl m_source;
     QLevelDB m_leveldb;
+    QJSEngine m_jsEngine;
 };
 
 QT_END_NAMESPACE

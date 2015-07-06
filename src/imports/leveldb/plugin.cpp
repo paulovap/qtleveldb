@@ -2,7 +2,6 @@
 #include <QtQml/QQmlExtensionPlugin>
 #include <qleveldbbatch.h>
 #include <qleveldboptions.h>
-#include <qqmlleveldbreadstream.h>
 #include <qqmlleveldbsettings.h>
 #include <qqmlleveldb.h>
 
@@ -19,7 +18,6 @@ public:
 
         qmlRegisterType<QQmlLevelDB>(uri, 1, 0, "LevelDB");
         qmlRegisterType<QQmlLevelDBSettings>(uri, 1, 0, "Settings");
-        qmlRegisterUncreatableType<QQmlLevelDBReadStream>(uri, 1, 0, "LevelDBReadStream", QObject::tr("Cannot create separate instance of LevelDBReadStream"));
         qmlRegisterUncreatableType<QLevelDBOptions>(uri, 1, 0, "Options", QObject::tr("Cannot create separate instance of Options"));
         qmlRegisterUncreatableType<QLevelDBBatch>(uri, 1, 0, "Batch", QObject::tr("Cannot create separate instance of Batch"));
     }
