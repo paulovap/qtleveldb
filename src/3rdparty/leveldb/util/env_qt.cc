@@ -90,22 +90,22 @@ public:
 
 class QtRandomAccessFile: public RandomAccessFile {
 public:
-    mutable QFile m_file;
+    QFile *m_file;
 
-    QtRandomAccessFile(const std::string& fname) : m_file(QString::fromStdString(fname))
+    QtRandomAccessFile(const std::string& fname) : m_file(new QFile(QString::fromStdString(fname)))
     { }
-    virtual ~QtRandomAccessFile() { m_file.close(); }
+    virtual ~QtRandomAccessFile() { m_file->close(); m_file->deleteLater(); }
 
     virtual Status Read(uint64_t offset, size_t n, Slice* result, char* scratch) const
     {
-        if (!m_file.seek(offset))
-            return IOError(m_file.fileName(), m_file.errorString());
+        if (!m_file->seek(offset))
+            return IOError(m_file->fileName(), m_file->errorString());
 
-        qint64 r = m_file.peek(scratch, n);
+        qint64 r = m_file->peek(scratch, n);
         *result = Slice(scratch, (r < 0) ? 0 : r);
         if (r < 0) {
             // An error: return a non-ok status
-            return IOError(m_file.fileName(), m_file.errorString());
+            return IOError(m_file->fileName(), m_file->errorString());
         }
         return Status::OK();
     }
@@ -237,9 +237,9 @@ public:
     virtual Status NewRandomAccessFile(const std::string& fname, RandomAccessFile** result)
     {
         QtRandomAccessFile* file = new QtRandomAccessFile(fname);
-        if (!file->m_file.open(QIODevice::ReadOnly)) {
+        if (!file->m_file->open(QIODevice::ReadOnly)) {
             *result = 0;
-            Status status = IOError(file->m_file.fileName(), file->m_file.errorString());
+            Status status = IOError(file->m_file->fileName(), file->m_file->errorString());
             delete file;
             return status;
         }
