@@ -316,7 +316,7 @@ QWeakPointer<leveldb::DB> QLevelDB::dbNativeHandler()
 
 bool QLevelDB::readStream(std::function<bool(QString, QVariant)> callback, const QString startKey, const int length)
 {
-    if (m_levelDB.isNull() || length == 0)
+    if (!opened() || length == 0)
         return false;
 
     int llength = length;

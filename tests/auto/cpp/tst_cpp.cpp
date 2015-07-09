@@ -9,7 +9,7 @@
 #include <QVariant>
 #include <QVariantList>
 #include <QVariantMap>
-
+#include <QtConcurrent>
 class CppTest: public QObject
 {
     Q_OBJECT
@@ -22,6 +22,7 @@ private slots:
     void test_put_get();
     void test_batch();
     void test_readStream();
+    void test_readStreamConcurrent();
 private:
     QLevelDB *m_leveldb;
     QVariantMap dataMap;
@@ -123,10 +124,34 @@ void CppTest::test_readStream()
     sequenceKeys << "/comics/" << "/comics/AA" << "/comics/a" << "/comics/abc" << "/comics/~";
     m_leveldb->readStream(
                 [&toCompareKeys](QString key, QVariant value){
-            toCompareKeys << key;
-            return true;
-            }, "/comics/");
+        toCompareKeys << key;
+        return true;
+    }, "/comics/");
     QCOMPARE(sequenceKeys, toCompareKeys);
+}
+
+void CppTest::test_readStreamConcurrent()
+{
+    QVERIFY2(m_leveldb->opened(), "unable to open database");
+    QList<int> list;
+    list << 1 << 2 << 3 << 4 << 5 << 6 << 7 << 8;
+    QString key("key");
+    for(int i=0; i <1000000; i++) {
+        m_leveldb->putSync(key+i, key +i);
+    }
+    QFuture<void> future = QtConcurrent::map(list, [this](int i) {
+        if (i%2 == 0) {
+            m_leveldb->readStream([this, i] (QString key, QVariant value) -> bool {
+                return true;
+            });
+        } else {
+            qDebug() << "jiji";
+            for(int j=0;j<10000; j++){
+                m_leveldb->put(QString("keke") + j, QString("keke") + j);
+            }
+        }
+    });
+    future.waitForFinished();
 }
 
 QTEST_MAIN(CppTest)
