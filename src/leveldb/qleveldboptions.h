@@ -7,7 +7,7 @@ QT_BEGIN_NAMESPACE
 
 namespace leveldb {
 class DB;
-class Options;
+struct Options;
 }
 
 class Q_LEVELDB_EXPORT QLevelDBOptions : public QObject

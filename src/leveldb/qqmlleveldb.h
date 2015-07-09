@@ -57,7 +57,6 @@ private:
     bool m_initialized;
     QUrl m_source;
     QLevelDB m_leveldb;
-    QJSEngine m_jsEngine;
 };
 
 QT_END_NAMESPACE

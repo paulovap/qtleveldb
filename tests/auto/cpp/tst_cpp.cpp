@@ -23,6 +23,7 @@ private slots:
     void test_batch();
     void test_readStream();
     void test_readStreamConcurrent();
+    void test_readStreamClosedDB();
 private:
     QLevelDB *m_leveldb;
     QVariantMap dataMap;
@@ -136,7 +137,7 @@ void CppTest::test_readStreamConcurrent()
     QList<int> list;
     list << 1 << 2 << 3 << 4 << 5 << 6 << 7 << 8;
     QString key("key");
-    for(int i=0; i <1000000; i++) {
+    for(int i=0; i <1000; i++) {
         m_leveldb->putSync(key+i, key +i);
     }
     QFuture<void> future = QtConcurrent::map(list, [this](int i) {
@@ -145,13 +146,22 @@ void CppTest::test_readStreamConcurrent()
                 return true;
             });
         } else {
-            qDebug() << "jiji";
             for(int j=0;j<10000; j++){
                 m_leveldb->put(QString("keke") + j, QString("keke") + j);
             }
         }
     });
     future.waitForFinished();
+}
+
+void CppTest::test_readStreamClosedDB() {
+     QVERIFY2(m_leveldb->opened(), "unable to open database");
+     m_leveldb->close();
+     QVERIFY2(!m_leveldb->opened(), "unable to open database");
+     m_leveldb->readStream([](QString key, QVariant value) -> bool {
+         qDebug() << key;
+         return true;
+     });
 }
 
 QTEST_MAIN(CppTest)
