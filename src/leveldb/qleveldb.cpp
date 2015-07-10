@@ -326,6 +326,7 @@ bool QLevelDB::readStream(std::function<bool(QString, QVariant)> callback, const
     if (!it)
         return false;
 
+    QMutexLocker l(&m_mutex);
     if (!startKey.isEmpty())
         it->Seek(leveldb::Slice(startKey.toStdString()));
     else

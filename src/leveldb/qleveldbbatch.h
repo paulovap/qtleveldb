@@ -1,7 +1,7 @@
 #ifndef QLEVELDBBATCH_H
 #define QLEVELDBBATCH_H
 
-
+#include <QMutex>
 #include <QObject>
 #include <QSet>
 #include "qleveldbglobal.h"
@@ -32,6 +32,7 @@ private:
     QSharedPointer<leveldb::DB> m_levelDB;
     leveldb::WriteBatch *m_writeBatch;
     QSet<QString> m_operations;
+    QMutex m_mutex;
 };
 
 QT_END_NAMESPACE

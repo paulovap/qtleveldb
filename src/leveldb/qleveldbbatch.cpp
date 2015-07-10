@@ -37,6 +37,8 @@ QLevelDBBatch::~QLevelDBBatch()
 QLevelDBBatch* QLevelDBBatch::del(QString key)
 {
     m_operations.insert(key);
+
+    QMutexLocker l(&m_mutex);
     m_writeBatch->Delete(leveldb::Slice(key.toStdString()));
     return this;
 }
@@ -48,6 +50,8 @@ QLevelDBBatch* QLevelDBBatch::put(QString key, QVariant value)
 {
     QString json = variantToJson(value);
     m_operations.insert(key);
+
+    QMutexLocker l(&m_mutex);
     m_writeBatch->Put(leveldb::Slice(key.toStdString()),
                      leveldb::Slice(json.toStdString()));
     return this;
@@ -58,8 +62,10 @@ QLevelDBBatch* QLevelDBBatch::put(QString key, QVariant value)
 */
 QLevelDBBatch* QLevelDBBatch::clear()
 {
-    m_writeBatch->Clear();
     m_operations.clear();
+
+    QMutexLocker l(&m_mutex);
+    m_writeBatch->Clear();
     return this;
 }
 
