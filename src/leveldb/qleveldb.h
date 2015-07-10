@@ -1,6 +1,7 @@
 #ifndef QLEVELDB_H
 #define QLEVELDB_H
 
+#include <QMutex>
 #include <QObject>
 #include <functional>
 #include <QSharedPointer>
@@ -76,6 +77,7 @@ private:
     bool m_opened;
     Status m_status;
     QString m_lastError;
+    QMutex m_mutex;
 
     void setStatus(Status status);
     void setLastError(QString text);
