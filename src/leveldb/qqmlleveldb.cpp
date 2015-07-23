@@ -141,9 +141,10 @@ bool QQmlLevelDB::readStream(QJSValue callback, QString startKey, int length)
         return false;
 
     std::function<bool(QString, QVariant)> func = [this, &callback](QString key, QVariant value) {
+        QJSEngine *engine = qjsEngine(this);
         QJSValueList list;
         list << QJSValue(key);
-        list << m_jsEngine.toScriptValue<QVariant>(value);
+        list << engine->toScriptValue<QVariant>(value);
         bool result = callback.call(list).toBool();
         return result;
     };

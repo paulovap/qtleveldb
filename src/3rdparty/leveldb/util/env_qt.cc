@@ -91,17 +91,23 @@ public:
 class QtRandomAccessFile: public RandomAccessFile {
 public:
     QFile *m_file;
-
-    QtRandomAccessFile(const std::string& fname) : m_file(new QFile(QString::fromStdString(fname)))
+    QMutex *m_mutex;
+    QtRandomAccessFile(const std::string& fname)
+        : m_file(new QFile(QString::fromStdString(fname)))
+        , m_mutex(new QMutex())
     { }
-    virtual ~QtRandomAccessFile() { m_file->close(); m_file->deleteLater(); }
+    virtual ~QtRandomAccessFile() { m_file->close(); m_file->deleteLater(); delete m_mutex;}
 
     virtual Status Read(uint64_t offset, size_t n, Slice* result, char* scratch) const
     {
+        //This is needed due to sigsegv when multiple reads occurs.
+        // a thread could seek in file while other is peeking.
+        m_mutex->lock();
         if (!m_file->seek(offset))
             return IOError(m_file->fileName(), m_file->errorString());
 
         qint64 r = m_file->peek(scratch, n);
+        m_mutex->unlock();
         *result = Slice(scratch, (r < 0) ? 0 : r);
         if (r < 0) {
             // An error: return a non-ok status
