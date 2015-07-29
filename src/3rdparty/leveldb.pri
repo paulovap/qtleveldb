@@ -5,18 +5,26 @@
 # See 'Tools/qmake/README' for an overview of the build system
 # -------------------------------------------------------------------
 
+DEFINES += LEVELDB_PLATFORM_QT
+
 win32: DEFINES += OS_WIN
 win64: DEFINES += OS_WIN
 macx: DEFINES += OS_MACOSX
 ios: DEFINES += OS_MACOSX
-linux: {
+
+android {
+    DEFINES += _REENTRANT OS_ANDROID LEVELDB_PLATFORM_POSIX
+    QMAKE_CFLAGS += -fno-builtin-memcmp
+    QMAKE_CXXFLAGS += -fno-builtin-memcmp
+}
+
+linux&!android {
     DEFINES += OS_LINUX LEVELDB_PLATFORM_POSIX
     QMAKE_CFLAGS += -fno-builtin-memcmp -pthread
     QMAKE_CXXFLAGS += -fno-builtin-memcmp -pthread
     QMAKE_LFLAGS += -pthread -lrt
-
 }
-android: DEFINES += OS_ANDROID
+
 freebsd*: DEFINES += OS_FREEBSD
 
 SOURCE_DIR = $$PWD/leveldb
