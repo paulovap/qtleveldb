@@ -2,8 +2,7 @@
 #define QTLEVELDB_H
 
 #include <QtCore/qglobal.h>
-#include <QVariant>
-#include <QJsonObject>
+
 QT_BEGIN_NAMESPACE
 
 #ifndef QT_STATIC

@@ -2,8 +2,7 @@
 
 #include "qleveldb.h"
 #include "qleveldbbatch.h"
-#include <QFileInfo>
-#include <QDir>
+
 QT_BEGIN_NAMESPACE
 
 static QHash<QString, QWeakPointer<leveldb::DB> > dbInstances;
