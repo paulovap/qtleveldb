@@ -5,18 +5,25 @@
 # See 'Tools/qmake/README' for an overview of the build system
 # -------------------------------------------------------------------
 
-win32: DEFINES += OS_WIN
-win64: DEFINES += OS_WIN
+win: DEFINES += OS_WIN
 macx: DEFINES += OS_MACOSX
 ios: DEFINES += OS_MACOSX
-linux: {
-    DEFINES += OS_LINUX LEVELDB_PLATFORM_POSIX
+
+android {
+    DEFINES += OS_ANDROID
+} else{
+
+ linux {
+    DEFINES += OS_LINUX
     QMAKE_CFLAGS += -fno-builtin-memcmp -pthread
     QMAKE_CXXFLAGS += -fno-builtin-memcmp -pthread
     QMAKE_LFLAGS += -pthread -lrt
-
 }
-android: DEFINES += OS_ANDROID
+}
+
+DEFINES += LEVELDB_PLATFORM_QT
+
+android:
 freebsd*: DEFINES += OS_FREEBSD
 
 SOURCE_DIR = $$PWD/leveldb
@@ -41,7 +48,7 @@ PRIVATE_HEADERS += \
     $$SOURCE_DIR/db/version_set.h \
     $$SOURCE_DIR/db/write_batch_internal.h \
     $$SOURCE_DIR/port/port.h \
-    $$SOURCE_DIR/port/port_posix.h \
+    $$SOURCE_DIR/port/port.qt \
     $$SOURCE_DIR/port/thread_annotations.h \
     $$SOURCE_DIR/port/win/stdint.h \
     $$SOURCE_DIR/helpers/memenv/memenv.h \
@@ -78,7 +85,6 @@ PRIVATE_HEADERS += \
 
 MEMENV_SOURCES=helpers/memenv/memenv.cc
 SOURCES += \
-    $$SOURCE_DIR/port/port_posix.cc \
     $$SOURCE_DIR/db/builder.cc \
     $$SOURCE_DIR/db/c.cc \
     $$SOURCE_DIR/db/dbformat.cc \
@@ -111,7 +117,7 @@ SOURCES += \
     $$SOURCE_DIR/util/comparator.cc \
     $$SOURCE_DIR/util/crc32c.cc \
     $$SOURCE_DIR/util/env.cc \
-    $$SOURCE_DIR/util/env_posix.cc \
+    $$SOURCE_DIR/util/env_qt.cc \
     $$SOURCE_DIR/util/filter_policy.cc \
     $$SOURCE_DIR/util/hash.cc \
     $$SOURCE_DIR/util/histogram.cc \
