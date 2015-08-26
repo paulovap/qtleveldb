@@ -2,6 +2,7 @@
 #define QTLEVELDB_H
 
 #include <QtCore/qglobal.h>
+#include <QtCore>
 
 QT_BEGIN_NAMESPACE
 
