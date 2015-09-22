@@ -48,7 +48,7 @@ PRIVATE_HEADERS += \
     $$SOURCE_DIR/db/version_set.h \
     $$SOURCE_DIR/db/write_batch_internal.h \
     $$SOURCE_DIR/port/port.h \
-    $$SOURCE_DIR/port/port.qt \
+    $$SOURCE_DIR/port/port_qt.h \
     $$SOURCE_DIR/port/thread_annotations.h \
     $$SOURCE_DIR/port/win/stdint.h \
     $$SOURCE_DIR/helpers/memenv/memenv.h \
