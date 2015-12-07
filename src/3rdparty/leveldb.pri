@@ -5,7 +5,6 @@
 # See 'Tools/qmake/README' for an overview of the build system
 # -------------------------------------------------------------------
 
-win: DEFINES += OS_WIN
 macx: DEFINES += OS_MACOSX
 ios: DEFINES += OS_MACOSX
 

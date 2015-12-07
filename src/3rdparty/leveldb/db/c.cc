@@ -5,7 +5,7 @@
 #include "leveldb/c.h"
 
 #include <stdlib.h>
-#ifndef OS_WIN
+#if !defined(Q_OS_WIN) && !defined(Q_OS_WIN32)
 #include <unistd.h>
 #else
 
