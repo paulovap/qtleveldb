@@ -49,7 +49,7 @@ API for receive property change signals when you don't want to declare all the p
 ```qml
 Settings{
     source: "/home/test/.cache/Appname/window_settings.db"
-    onPropertyChanged: console.log("property:" + key + changed to: " + value)
+    onPropertyChanged: console.log("property:" + key + "changed to: " + value)
 }
 ```
 
